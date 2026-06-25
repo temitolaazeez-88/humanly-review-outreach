@@ -1,40 +1,31 @@
-# Humanly Review Outreach Website
+# Humanly Review Outreach Website — Updated Mobile-Friendly Version
 
-This is a premium static website for **Humanly Review Outreach**.
+This updated version:
+- Removes the confusing percentage dashboard.
+- Improves mobile spacing and font sizes.
+- Rebuilds the trust strip into clean badges.
+- Uses simpler, clearer English.
+- Adds clearer compliance wording.
+- Keeps the design premium, mature, and professional.
 
-## Files included
+## File structure
 
-- `index.html` — main premium sales page
-- `contact.html` — contact / campaign request page
-- `terms.html` — Terms & Conditions
-- `privacy.html` — Privacy Policy
-- `refund-policy.html` — Refund Policy
-- `assets/css/styles.css` — all website styling
-- `assets/js/main.js` — mobile menu, FAQ, and contact email helper
-- `CNAME` — custom domain file for GitHub Pages
+index.html
+contact.html
+terms.html
+privacy.html
+refund-policy.html
+CNAME
+README.md
+assets/css/styles.css
+assets/js/main.js
 
-## How to upload to GitHub Pages
+## Contact form
 
-1. Create a new GitHub repository.
-2. Upload all files and folders from this zip.
-3. Go to **Settings**.
-4. Click **Pages**.
-5. Under **Build and deployment**, choose:
-   - Source: **Deploy from a branch**
-   - Branch: **main**
-   - Folder: **/root**
-6. Save.
-7. Add your custom domain: `humanlyreview.com`.
-8. In your domain DNS, point your domain to GitHub Pages according to GitHub's current instructions.
+The contact form uses mailto and opens the visitor's email app to send to outreach@humanlyreview.com.
 
-## Contact form note
+For a live website form that submits directly, connect Formspree, Basin, Tally, or Netlify Forms.
 
-The contact form uses `mailto:`. It opens the visitor's email app and prepares an email to:
+## Legal note
 
-outreach@humanlyreview.com
-
-For a form that submits directly without opening an email app, connect a form service like Formspree, Basin, Tally, or Netlify Forms.
-
-## Important
-
-This website includes professional policy language, but it is not legal advice. For full legal protection, have a qualified lawyer review the Terms, Privacy Policy, and Refund Policy.
+The policy language is professional but not legal advice. Have a qualified lawyer review it before depending on it for full legal protection.
