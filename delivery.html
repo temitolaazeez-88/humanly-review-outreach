@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Report — Humanly Review</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="topbar">
+  <a href="index.html" class="brand" data-site-name>Humanly Review</a>
+  <a href="help.html" class="help-pill">Need help?</a>
+</div>
+<div class="wrap" id="app"><div class="card center"><p class="muted">Loading your secure page…</p></div></div>
+<footer><span data-site-name>Humanly Review</span></footer>
+
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const app = document.getElementById('app');
+const token = hrGetParam('token');
+
+async function load() {
+  if (!token) { app.innerHTML = '<div class="card"><div class="error-box">This link is missing information. Please use the exact link from your email.</div></div>'; return; }
+  try {
+    const res = await hrCall('getDelivery', { token: token });
+    if (res.deleted) return renderDeleted(res);
+    renderDelivery(res);
+  } catch (e) {
+    app.innerHTML = '<div class="card"><div class="error-box">' + hrEscape(e.message) + '</div>' +
+      '<p class="muted">If you believe this is a mistake, <a href="help.html">contact support</a> — we can look it up by your email.</p></div>';
+  }
+}
+
+function renderDeleted(res) {
+  app.innerHTML =
+    '<div class="card center">' +
+      '<h2>Your Files Have Been Deleted ✓</h2>' +
+      '<p class="sub">Order ' + hrEscape(res.orderRef) + ' was completed and the files were securely removed on ' + new Date(res.deletedAt).toLocaleString() + '.</p>' +
+      '<p class="muted">This is expected — files are always deleted automatically for your privacy once you confirm receipt.</p>' +
+      '<a class="btn secondary" href="help.html">Need something else? Contact support →</a>' +
+    '</div>';
+}
+
+function renderDelivery(res) {
+  app.innerHTML =
+    '<div class="card">' +
+      '<h2>Your report is ready</h2>' +
+      '<p class="sub">Order ' + hrEscape(res.orderRef) + ' · ' + hrEscape(res.planName) + '</p>' +
+      '<div class="info-box">Files are kept temporarily. Please download and confirm receipt below.</div>' +
+      '<div id="msg"></div>' +
+      '<div id="fileButtons">' + res.files.map(function(f, i) {
+        return '<button class="btn ' + (i > 0 ? 'secondary' : '') + '" style="margin-bottom:10px;" data-file-id="' + hrEscape(f.id) + '" data-file-name="' + hrEscape(f.name) + '">Download ' + hrEscape(f.name) + '</button>';
+      }).join('') + '</div>' +
+      '<hr style="border:none;border-top:1px solid var(--border);margin:20px 0;">' +
+      '<label style="display:flex;gap:10px;align-items:flex-start;font-weight:400;">' +
+        '<input type="checkbox" id="confirmCheck" style="width:auto;min-height:auto;margin-top:4px;"> ' +
+        '<span>I confirm I have downloaded and opened my report(s). <span class="muted">Confirming will permanently delete these files from our system — this cannot be undone.</span></span>' +
+      '</label>' +
+      '<button class="btn" id="confirmBtn" style="margin-top:14px;" disabled>Confirm receipt & delete my files</button>' +
+      '<p class="center" style="margin-top:18px;"><a href="#" id="issueLink">I cannot download or open my file →</a></p>' +
+    '</div>';
+
+  document.querySelectorAll('[data-file-id]').forEach(function(btn) {
+    btn.onclick = function() { downloadOne(btn, btn.getAttribute('data-file-id'), btn.getAttribute('data-file-name')); };
+  });
+
+  const confirmCheck = document.getElementById('confirmCheck');
+  const confirmBtn = document.getElementById('confirmBtn');
+  const msg = document.getElementById('msg');
+  confirmCheck.onchange = function() { confirmBtn.disabled = !confirmCheck.checked; };
+
+  confirmBtn.onclick = async function() {
+    if (!confirm('This will permanently delete your files from our system. Continue?')) return;
+    confirmBtn.disabled = true; confirmBtn.innerHTML = '<span class="spinner"></span>Confirming…';
+    try {
+      await hrCall('confirmReceived', { token: token });
+      app.innerHTML = '<div class="card center"><h2>Thank you ✓</h2><p class="sub">Your receipt has been confirmed and your files have been securely deleted.</p></div>';
+    } catch (e) { hrShowError(msg, e.message); confirmBtn.disabled = false; confirmBtn.innerText = 'Confirm receipt & delete my files'; }
+  };
+
+  document.getElementById('issueLink').onclick = function(e) { e.preventDefault(); renderIssue(res); };
+}
+
+async function downloadOne(btn, fileId, fileName) {
+  const original = btn.innerText;
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Downloading…';
+  try { await hrDownloadFile(HR_CONFIG.API_URL, token, fileId, fileName); }
+  catch (e) { alert(e.message); }
+  btn.disabled = false; btn.innerText = original;
+}
+
+function renderIssue(res) {
+  app.innerHTML =
+    '<div class="card">' +
+      '<h2>Trouble downloading or opening?</h2>' +
+      '<p class="sub">Tell us what happened — your files are safe and this link stays active.</p>' +
+      '<div id="msg"></div>' +
+      '<textarea id="issueText" rows="4" placeholder="e.g. The PDF won\'t open on my phone"></textarea>' +
+      '<button class="btn" id="sendIssueBtn" style="margin-top:10px;">Send</button>' +
+      '<p class="center" style="margin-top:14px;"><a href="#" id="backBtn">← Back</a></p>' +
+    '</div>';
+  document.getElementById('backBtn').onclick = function(e){ e.preventDefault(); renderDelivery(res); };
+  document.getElementById('sendIssueBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Sending…';
+    try {
+      const r = await hrCall('reportIssue', { token: token, message: document.getElementById('issueText').value });
+      hrShowSuccess(msg, r.message);
+    } catch (e) { hrShowError(msg, e.message); }
+    btn.disabled = false; btn.innerText = 'Send';
+  };
+}
+
+hrApplyTheme().then(load);
+</script>
+</body>
+</html>

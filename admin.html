@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Humanly Review</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  .wrap{max-width:960px;}
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;}
+  .tab{padding:9px 16px;border-radius:20px;border:1.5px solid var(--border);background:#fff;cursor:pointer;font-size:.88rem;}
+  .tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+  .order-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);gap:10px;flex-wrap:wrap;cursor:pointer;}
+  .order-row:last-child{border-bottom:none;}
+  .order-row:hover{background:#FAFAF7;}
+  th{cursor:pointer;user-select:none;}
+  .detail-panel{background:#F7F6F1;border-radius:10px;padding:16px;margin-top:10px;}
+  .kv{display:grid;grid-template-columns:160px 1fr;gap:6px 12px;font-size:.88rem;}
+  .kv div:nth-child(odd){color:var(--text-secondary);}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="brand">Humanly Review — Admin</span>
+  <a href="#" id="logoutLink" class="muted" style="text-decoration:none;display:none;">Log out</a>
+</div>
+<div class="wrap" id="app"></div>
+
+<script src="assets/config.js"></script>
+<script src="assets/app.js"></script>
+<script>
+let ADMIN_KEY = sessionStorage.getItem('hr_admin_key') || '';
+const app = document.getElementById('app');
+const logoutLink = document.getElementById('logoutLink');
+
+async function adminCall(action, payload) { return hrCall(action, Object.assign({}, payload, { adminKey: ADMIN_KEY })); }
+
+logoutLink.onclick = function(e) { e.preventDefault(); ADMIN_KEY = ''; sessionStorage.removeItem('hr_admin_key'); logoutLink.style.display = 'none'; renderLogin(); };
+
+function renderLogin() {
+  app.innerHTML =
+    '<div class="card"><h1>Admin sign-in</h1><p class="sub">Enter your admin key.</p><div id="msg"></div>' +
+    '<input type="password" id="keyInput" placeholder="Your admin key"><button class="btn" id="loginBtn" style="margin-top:10px;">Sign in →</button></div>';
+  document.getElementById('loginBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    ADMIN_KEY = document.getElementById('keyInput').value.trim();
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Checking…';
+    try { await adminCall('adminLogin', {}); sessionStorage.setItem('hr_admin_key', ADMIN_KEY); logoutLink.style.display = 'inline'; renderDashboard('queue'); }
+    catch (e) { hrShowError(msg, 'That key was not recognized.'); btn.disabled = false; btn.innerText = 'Sign in →'; }
+  };
+}
+
+const TABS = [['queue','Upload Queue'],['orders','All Orders'],['overview','Overview'],['inquiries','Inquiries'],
+  ['settings','Settings'],['plans','Plans'],['faqs','FAQs'],['samples','Samples'],['audit','Audit Log']];
+
+function renderDashboard(active) {
+  app.innerHTML = '<div class="tabs">' + TABS.map(function(t){ return '<div class="tab ' + (t[0]===active?'active':'') + '" data-tab="' + t[0] + '">' + t[1] + '</div>'; }).join('') + '</div><div id="tabContent"></div>';
+  document.querySelectorAll('[data-tab]').forEach(function(el){ el.onclick = function(){ renderDashboard(el.getAttribute('data-tab')); }; });
+  const c = document.getElementById('tabContent');
+  ({queue: renderQueue, orders: renderOrders, overview: renderOverview, inquiries: renderInquiries,
+    settings: renderSettings, plans: renderPlans, faqs: renderFaqs, samples: renderSamples, audit: renderAudit}[active])(c);
+}
+
+/* ---------------- Upload queue ---------------- */
+async function renderQueue(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading queue…</p></div>';
+  const res = await adminCall('adminListOrders', {});
+  const waiting = res.orders.filter(function(o){ return ['submitted','in_review'].indexOf(o.Status) !== -1; });
+  c.innerHTML =
+    '<div class="card"><h2>Orders waiting for your upload (' + waiting.length + ')</h2>' +
+    '<p class="sub">Review each original in your own process, then attach as many finished files as you need — not fixed to two.</p>' +
+    (waiting.length === 0 ? '<p class="muted">Nothing waiting right now. 🎉</p>' :
+      waiting.map(function(o) {
+        const openedBadge = o.OriginalOpenedAt ? '<span class="badge ok">Opened</span>' : '<span class="badge warn">Not opened yet</span>';
+        return '<div class="order-row" style="cursor:default;flex-direction:column;align-items:stretch;">' +
+          '<div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">' +
+          '<div><strong>' + hrEscape(o.OrderRef) + '</strong> ' + openedBadge + '<br>' +
+          '<span class="muted">' + hrEscape(o.PlanName) + ' · ' + o.FileSizeMB + 'MB</span></div>' +
+          '<div><button class="btn small secondary" data-open="' + o.OriginalFileId + '" data-ref="' + o.OrderRef + '">Open original</button> ' +
+          '<button class="btn small" data-upload="' + hrEscape(o.OrderRef) + '">Upload finished files</button></div>' +
+          '</div></div>';
+      }).join('')) +
+    '</div><div id="uploadModal"></div>';
+
+  document.querySelectorAll('[data-open]').forEach(function(a) {
+    a.onclick = async function() {
+      const fileId = a.getAttribute('data-open'), ref = a.getAttribute('data-ref');
+      try { await adminCall('adminMarkOpened', { orderRef: ref }); } catch (e) {}
+      window.open('https://drive.google.com/file/d/' + fileId + '/view', '_blank');
+      renderQueue(document.getElementById('tabContent'));
+    };
+  });
+  document.querySelectorAll('[data-upload]').forEach(function(btn){ btn.onclick = function(){ renderUploadModal(btn.getAttribute('data-upload')); }; });
+}
+
+function renderUploadModal(orderRef) {
+  const modal = document.getElementById('uploadModal');
+  modal.innerHTML =
+    '<div class="card"><h2>Upload finished files — ' + hrEscape(orderRef) + '</h2><div id="msg"></div>' +
+    '<label>Finished file(s) — pick as many as you need</label>' +
+    '<input type="file" id="filesInput" multiple>' +
+    '<button class="btn" id="doUploadBtn" style="margin-top:10px;">Upload & deliver to client →</button></div>';
+  document.getElementById('doUploadBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    const filesEl = document.getElementById('filesInput');
+    if (!filesEl.files.length) { hrShowError(msg, 'Please choose at least one file.'); return; }
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Uploading & delivering…';
+    try {
+      const files = [];
+      for (const f of filesEl.files) files.push({ name: f.name, base64: await fileToBase64(f) });
+      await adminCall('adminUpload', { orderRef: orderRef, files: files });
+      hrShowSuccess(msg, 'Delivered! The client has been emailed their secure link automatically.');
+      setTimeout(function(){ renderDashboard('queue'); }, 1200);
+    } catch (e) { hrShowError(msg, e.message); btn.disabled = false; btn.innerText = 'Upload & deliver to client →'; }
+  };
+}
+
+/* ---------------- All Orders (search, sort, drill-down — requirement #22) ---------------- */
+let ordersCache = [], ordersSortKey = 'CreatedAt', ordersSortDir = -1;
+async function renderOrders(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  ordersCache = (await adminCall('adminListOrders', {})).orders;
+  drawOrdersTable(c);
+}
+function drawOrdersTable(c) {
+  const sorted = ordersCache.slice().sort(function(a,b){
+    const av = a[ordersSortKey], bv = b[ordersSortKey];
+    return (av > bv ? 1 : av < bv ? -1 : 0) * ordersSortDir;
+  });
+  c.innerHTML =
+    '<div class="card"><h2>All orders (' + ordersCache.length + ')</h2>' +
+    '<input type="search" id="orderSearch" placeholder="Search by reference, email, plan, status…">' +
+    '<table><thead><tr>' +
+      ['OrderRef','ClientEmail','PlanName','Status','FileSizeMB','CreatedAt'].map(function(k){ return '<th data-sort="' + k + '">' + k + (ordersSortKey===k ? (ordersSortDir>0?' ▲':' ▼') : '') + '</th>'; }).join('') +
+    '</tr></thead><tbody id="ordersBody"></tbody></table></div><div id="orderDetail"></div>';
+
+  document.querySelectorAll('[data-sort]').forEach(function(th){
+    th.onclick = function(){ const k = th.getAttribute('data-sort'); ordersSortDir = (ordersSortKey === k) ? -ordersSortDir : -1; ordersSortKey = k; drawOrdersTable(c); };
+  });
+  document.getElementById('orderSearch').oninput = function(){ fillOrdersBody(sorted, this.value.toLowerCase()); };
+  fillOrdersBody(sorted, '');
+}
+function fillOrdersBody(list, q) {
+  const filtered = q ? list.filter(function(o){ return JSON.stringify(o).toLowerCase().indexOf(q) !== -1; }) : list;
+  document.getElementById('ordersBody').innerHTML = filtered.map(function(o) {
+    return '<tr data-row="' + hrEscape(o.OrderRef) + '"><td>' + hrEscape(o.OrderRef) + '</td><td>' + hrEscape(o.ClientEmail) + '</td><td>' + hrEscape(o.PlanName) + '</td><td>' + hrEscape(o.Status) + '</td><td>' + o.FileSizeMB + '</td><td>' + new Date(o.CreatedAt).toLocaleDateString() + '</td></tr>';
+  }).join('');
+  document.querySelectorAll('[data-row]').forEach(function(tr){ tr.onclick = function(){ showOrderDetail(tr.getAttribute('data-row')); }; tr.style.cursor='pointer'; });
+}
+function showOrderDetail(orderRef) {
+  const o = ordersCache.filter(function(x){ return x.OrderRef === orderRef; })[0];
+  const panel = document.getElementById('orderDetail');
+  panel.innerHTML =
+    '<div class="card"><h2>' + hrEscape(o.OrderRef) + '</h2>' +
+    '<div class="detail-panel"><div class="kv">' +
+    Object.keys(o).map(function(k){ return '<div>' + k + '</div><div>' + hrEscape(String(o[k])) + '</div>'; }).join('') +
+    '</div></div>' +
+    (o.PaymentStatus !== 'confirmed' ? '<button class="btn secondary small" id="waiveBtn" style="margin-top:12px;">Waive / approve payment for this order</button>' : '') +
+    '</div>';
+  const waiveBtn = document.getElementById('waiveBtn');
+  if (waiveBtn) waiveBtn.onclick = async function() {
+    if (!confirm('Mark this order as paid for free? The customer\'s browser will pick this up automatically if they\'re still on the payment page.')) return;
+    await adminCall('adminApprovePayment', { orderRef: o.OrderRef });
+    renderOrders(document.getElementById('tabContent'));
+  };
+}
+
+/* ---------------- Overview ---------------- */
+async function renderOverview(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminListOrders', {});
+  const orders = res.orders;
+  const count = function(s){ return orders.filter(function(o){ return o.Status === s; }).length; };
+  const problems = orders.filter(function(o){ return o.IssueReported === true || String(o.Notes||'').indexOf('OVERDUE') !== -1; });
+  const settingsRes = await adminCall('adminGetSettings', {});
+  const maintOn = String(settingsRes.settings.maintenance_mode) === 'true';
+
+  c.innerHTML =
+    '<div class="card"><h2>Same-day overview</h2><ul class="checklist">' +
+      '<li><span>Total orders</span><span>' + orders.length + '</span></li>' +
+      '<li><span>Awaiting payment</span><span>' + count('awaiting_payment') + '</span></li>' +
+      '<li><span>Waiting on your upload</span><span>' + (count('submitted')+count('in_review')) + '</span></li>' +
+      '<li><span>Delivered</span><span>' + count('delivered') + '</span></li>' +
+      '<li><span>Completed (deleted)</span><span>' + count('deleted') + '</span></li>' +
+    '</ul></div>' +
+    '<div class="card"><h2>Needs attention (' + problems.length + ')</h2>' +
+    (problems.length === 0 ? '<p class="muted">Nothing flagged. ✅</p>' : problems.map(function(o){ return '<div class="order-row" style="cursor:default;"><span>' + hrEscape(o.OrderRef) + '</span><span class="badge problem">' + (o.IssueReported ? 'Issue reported' : 'Overdue') + '</span></div>'; }).join('')) +
+    '</div>' +
+    '<div class="card"><h2>Emergency & maintenance</h2><p class="sub">Pause new submissions site-wide.</p>' +
+    '<button class="btn ' + (maintOn ? 'danger' : '') + '" id="maintBtn">' + (maintOn ? 'Turn OFF maintenance mode' : 'Turn ON maintenance mode') + '</button></div>';
+  document.getElementById('maintBtn').onclick = async function() { await adminCall('adminToggleMaintenance', { enabled: !maintOn }); renderDashboard('overview'); };
+}
+
+/* ---------------- Inquiries (throttled tickets, oversized quoting, Claude helper) ---------------- */
+async function renderInquiries(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetInquiries', {});
+  const open = res.inquiries.filter(function(i){ return i.Status !== 'resolved'; });
+  c.innerHTML = '<div class="card"><h2>Support inquiries — open (' + open.length + ')</h2>' +
+    (open.length === 0 ? '<p class="muted">Nothing open. ✅</p>' :
+      open.map(function(i) { return renderInquiryCard_(i); }).join('')) +
+    '</div>' +
+    '<div class="card"><h2>Resolved history</h2>' +
+    res.inquiries.filter(function(i){ return i.Status === 'resolved'; }).slice(0,20).map(function(i){
+      return '<div class="order-row" style="cursor:default;"><span>' + hrEscape(i.TicketRef) + ' — ' + hrEscape(i.Category) + '</span><span class="badge ok">Resolved</span></div>';
+    }).join('') + '</div>';
+
+  document.querySelectorAll('[data-reply]').forEach(function(btn){
+    btn.onclick = async function() {
+      const id = btn.getAttribute('data-reply');
+      const box = document.getElementById('reply-' + id);
+      btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Sending…';
+      try { await adminCall('adminReplyInquiry', { inquiryId: id, replyMessage: box.value }); renderInquiries(document.getElementById('tabContent')); }
+      catch (e) { alert(e.message); btn.disabled = false; btn.innerText = 'Send reply & resolve'; }
+    };
+  });
+  document.querySelectorAll('[data-quote]').forEach(function(btn){
+    btn.onclick = async function() {
+      const id = btn.getAttribute('data-quote');
+      if (!confirm('Send an automatic custom quote for this document size?')) return;
+      try { const r = await adminCall('adminQuoteOversized', { inquiryId: id }); alert('Quote sent: ' + r.price); renderInquiries(document.getElementById('tabContent')); }
+      catch (e) { alert(e.message); }
+    };
+  });
+  document.querySelectorAll('[data-copy-claude]').forEach(function(btn){
+    btn.onclick = function() {
+      const raw = decodeURIComponent(btn.getAttribute('data-copy-claude'));
+      hrCopyToClipboard(raw, null);
+      btn.innerText = 'Copied! Paste into your Claude Project';
+      setTimeout(function(){ btn.innerText = 'Copy for Claude Project'; }, 2000);
+    };
+  });
+}
+
+function renderInquiryCard_(i) {
+  const claudePayload = 'SUPPORT TICKET\nTicketRef: ' + i.TicketRef + '\nCategory: ' + i.Category + '\nCustomer email: ' + i.Email +
+    '\nOrder reference: ' + (i.OrderRef || 'none') + '\nMessage from customer:\n' + i.Message +
+    '\n\nWrite a short, warm, professional reply as Humanly Review support. Keep it under 120 words.';
+  return '<div class="order-row" style="cursor:default;flex-direction:column;align-items:stretch;">' +
+    '<div><strong>' + hrEscape(i.TicketRef) + '</strong> — ' + hrEscape(i.Category) + ' ' + (i.Category === 'Oversized Request' ? '<span class="badge warn">Oversized</span>' : '') + '<br>' +
+    '<span class="muted">' + hrEscape(i.Email) + ' · Order: ' + hrEscape(i.OrderRef || '—') + ' · ' + new Date(i.Timestamp).toLocaleString() + '</span></div>' +
+    '<div style="margin:8px 0;">' + hrEscape(i.Message) + '</div>' +
+    '<textarea id="reply-' + i.InquiryID + '" placeholder="Type or paste your reply here…" rows="3"></textarea>' +
+    '<div class="btn-row" style="margin-top:6px;">' +
+      '<button class="btn small secondary" data-copy-claude="' + encodeURIComponent(claudePayload) + '">Copy for Claude Project</button>' +
+      '<button class="btn small" data-reply="' + i.InquiryID + '">Send reply & resolve</button>' +
+      (i.Category === 'Oversized Request' ? '<button class="btn small secondary" data-quote="' + i.InquiryID + '">Send auto quote</button>' : '') +
+    '</div></div>';
+}
+
+/* ---------------- Settings (bigger boxes — requirement #10) ---------------- */
+async function renderSettings(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetSettings', {});
+  const s = res.settings;
+  c.innerHTML = '<div class="card"><h2>Site & system settings</h2><p class="sub">Changes apply instantly, no code needed.</p>' +
+    '<input type="search" id="settingsSearch" placeholder="Search settings…"><div id="msg"></div><div id="settingsList"></div>' +
+    '<button class="btn" id="saveSettingsBtn" style="margin-top:14px;">Save all changes</button></div>';
+  function draw(filter) {
+    const keys = Object.keys(s).filter(function(k){ return !filter || k.toLowerCase().indexOf(filter) !== -1; });
+    document.getElementById('settingsList').innerHTML = keys.map(function(k) {
+      return '<label>' + hrEscape(k) + '</label><textarea class="admin-textarea-lg" data-key="' + k + '">' + hrEscape(s[k]) + '</textarea>';
+    }).join('');
+  }
+  draw('');
+  document.getElementById('settingsSearch').oninput = function(){ draw(this.value.toLowerCase()); };
+  document.getElementById('saveSettingsBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    const updates = {}; document.querySelectorAll('[data-key]').forEach(function(el){ updates[el.getAttribute('data-key')] = el.value; });
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saving…';
+    try { await adminCall('adminUpdateSettings', { settings: updates }); hrShowSuccess(msg, 'Saved.'); }
+    catch (e) { hrShowError(msg, e.message); }
+    btn.disabled = false; btn.innerText = 'Save all changes';
+  };
+}
+
+/* ---------------- Plans (size-based, no spinner arrows — requirement #2 #10) ---------------- */
+async function renderPlans(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetPlans', {});
+  drawPlans(c, res.plans);
+}
+function drawPlans(c, plans) {
+  c.innerHTML = '<div class="card"><h2>Plans & pricing (by file size)</h2><div id="msg"></div>' +
+    '<table><thead><tr><th>Name</th><th>Min MB</th><th>Max MB</th><th>Price</th><th>Currency</th><th>Hours</th><th>Destination folder ID (optional)</th><th>Active</th></tr></thead>' +
+    '<tbody id="plansBody">' + plans.map(planRow_).join('') + '</tbody></table>' +
+    '<button class="btn secondary small" id="addPlanBtn" style="margin-top:10px;">+ Add plan</button> ' +
+    '<button class="btn small" id="savePlansBtn" style="margin-top:10px;">Save plans</button></div>';
+  document.getElementById('addPlanBtn').onclick = function() {
+    document.getElementById('plansBody').insertAdjacentHTML('beforeend', planRow_({PlanID:'NEW'+Date.now(),PlanName:'New Plan',MinSizeMB:0,MaxSizeMB:0,Price:0,Currency:'NGN',DeliveryHours:48,DestinationFolderId:'',Active:true}));
+  };
+  document.getElementById('savePlansBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    const newPlans = Array.from(document.querySelectorAll('#plansBody tr')).map(function(row) {
+      return {
+        PlanID: row.querySelector('[data-f=PlanID]').value, PlanName: row.querySelector('[data-f=PlanName]').value,
+        MinSizeMB: Number(row.querySelector('[data-f=MinSizeMB]').value), MaxSizeMB: Number(row.querySelector('[data-f=MaxSizeMB]').value),
+        Price: Number(row.querySelector('[data-f=Price]').value), Currency: row.querySelector('[data-f=Currency]').value,
+        DeliveryHours: Number(row.querySelector('[data-f=DeliveryHours]').value), DestinationFolderId: row.querySelector('[data-f=DestinationFolderId]').value,
+        Active: row.querySelector('[data-f=Active]').checked
+      };
+    });
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saving…';
+    try { await adminCall('adminUpdatePlans', { plans: newPlans }); hrShowSuccess(msg, 'Plans saved.'); }
+    catch (e) { hrShowError(msg, e.message); }
+    btn.disabled = false; btn.innerText = 'Save plans';
+  };
+}
+function planRow_(p) {
+  return '<tr>' +
+    '<td><input data-f="PlanID" value="' + hrEscape(p.PlanID) + '" style="display:none;"><input data-f="PlanName" value="' + hrEscape(p.PlanName) + '"></td>' +
+    '<td><input type="text" inputmode="decimal" data-f="MinSizeMB" value="' + p.MinSizeMB + '"></td>' +
+    '<td><input type="text" inputmode="decimal" data-f="MaxSizeMB" value="' + p.MaxSizeMB + '"></td>' +
+    '<td><input type="text" inputmode="decimal" data-f="Price" value="' + p.Price + '"></td>' +
+    '<td><input data-f="Currency" value="' + hrEscape(p.Currency) + '"></td>' +
+    '<td><input type="text" inputmode="decimal" data-f="DeliveryHours" value="' + p.DeliveryHours + '"></td>' +
+    '<td><input data-f="DestinationFolderId" value="' + hrEscape(p.DestinationFolderId||'') + '" placeholder="leave blank for default"></td>' +
+    '<td><input type="checkbox" data-f="Active" ' + (p.Active === true || p.Active === 'true' || p.Active === 'TRUE' ? 'checked' : '') + '></td>' +
+    '</tr>';
+}
+
+/* ---------------- FAQs (add/delete/reorder — requirement #14) ---------------- */
+async function renderFaqs(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetFaqs', {});
+  drawFaqs(c, res.faqs);
+}
+function drawFaqs(c, faqs) {
+  c.innerHTML = '<div class="card"><h2>FAQs shown on the Help page</h2><div id="msg"></div><div id="faqRows">' +
+    faqs.map(faqRow_).join('') + '</div>' +
+    '<button class="btn secondary small" id="addFaqBtn" style="margin-top:10px;">+ Add FAQ</button> ' +
+    '<button class="btn small" id="saveFaqBtn" style="margin-top:10px;">Save FAQs</button></div>';
+  document.getElementById('addFaqBtn').onclick = function() {
+    document.getElementById('faqRows').insertAdjacentHTML('beforeend', faqRow_({FaqID:'',Category:'General',Question:'',Answer:'',Active:true}));
+    attachFaqRemovers_();
+  };
+  attachFaqRemovers_();
+  document.getElementById('saveFaqBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    const faqs2 = Array.from(document.querySelectorAll('.faq-row')).map(function(row) {
+      return { FaqID: row.querySelector('[data-f=FaqID]').value, Category: row.querySelector('[data-f=Category]').value,
+        Question: row.querySelector('[data-f=Question]').value, Answer: row.querySelector('[data-f=Answer]').value, Active: true };
+    });
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saving…';
+    try { await adminCall('adminUpdateFaqs', { faqs: faqs2 }); hrShowSuccess(msg, 'Saved.'); }
+    catch (e) { hrShowError(msg, e.message); }
+    btn.disabled = false; btn.innerText = 'Save FAQs';
+  };
+}
+function faqRow_(f) {
+  return '<div class="faq-row detail-panel" style="margin-top:10px;">' +
+    '<input data-f="FaqID" value="' + hrEscape(f.FaqID) + '" style="display:none;">' +
+    '<label>Category</label><input data-f="Category" value="' + hrEscape(f.Category) + '">' +
+    '<label>Question</label><input data-f="Question" value="' + hrEscape(f.Question) + '">' +
+    '<label>Answer</label><textarea data-f="Answer">' + hrEscape(f.Answer) + '</textarea>' +
+    '<button class="btn small danger faq-remove" style="margin-top:6px;">Delete this FAQ</button></div>';
+}
+function attachFaqRemovers_() {
+  document.querySelectorAll('.faq-remove').forEach(function(btn){ btn.onclick = function(){ btn.closest('.faq-row').remove(); }; });
+}
+
+/* ---------------- Samples (upload preview + downloadable file — requirement #17) ---------------- */
+async function renderSamples(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetSamples', {});
+  c.innerHTML = '<div class="card"><h2>Sample reports shown on the homepage</h2><div id="msg"></div><div id="sampleRows">' +
+    res.samples.map(sampleRow_).join('') + '</div>' +
+    '<button class="btn secondary small" id="addSampleBtn" style="margin-top:10px;">+ Add sample</button> ' +
+    '<button class="btn small" id="saveSamplesBtn" style="margin-top:10px;">Save samples</button></div>';
+  document.getElementById('addSampleBtn').onclick = function() {
+    document.getElementById('sampleRows').insertAdjacentHTML('beforeend', sampleRow_({SampleID:'',Title:'',Description:'',PreviewFileId:'',DownloadFileId:'',Active:true}));
+  };
+  document.getElementById('saveSamplesBtn').onclick = async function() {
+    const btn = this, msg = document.getElementById('msg');
+    const rows = Array.from(document.querySelectorAll('.sample-row'));
+    for (const row of rows) {
+      const previewFile = row.querySelector('[data-upload-preview]').files[0];
+      const downloadFile = row.querySelector('[data-upload-download]').files[0];
+      if (previewFile) { const b64 = await fileToBase64(previewFile); const r = await adminCall('adminUploadSampleFile', { base64: b64, fileName: previewFile.name, mimeType: previewFile.type }); row.querySelector('[data-f=PreviewFileId]').value = r.fileId; }
+      if (downloadFile) { const b64 = await fileToBase64(downloadFile); const r = await adminCall('adminUploadSampleFile', { base64: b64, fileName: downloadFile.name, mimeType: downloadFile.type }); row.querySelector('[data-f=DownloadFileId]').value = r.fileId; }
+    }
+    const samples2 = rows.map(function(row) {
+      return { SampleID: row.querySelector('[data-f=SampleID]').value, Title: row.querySelector('[data-f=Title]').value,
+        Description: row.querySelector('[data-f=Description]').value, PreviewFileId: row.querySelector('[data-f=PreviewFileId]').value,
+        DownloadFileId: row.querySelector('[data-f=DownloadFileId]').value, Active: true };
+    });
+    btn.disabled = true; btn.innerHTML = '<span class="spinner"></span>Saving…';
+    try { await adminCall('adminUpdateSamples', { samples: samples2 }); hrShowSuccess(msg, 'Saved.'); }
+    catch (e) { hrShowError(msg, e.message); }
+    btn.disabled = false; btn.innerText = 'Save samples';
+  };
+}
+function sampleRow_(s) {
+  return '<div class="sample-row detail-panel" style="margin-top:10px;">' +
+    '<input data-f="SampleID" value="' + hrEscape(s.SampleID) + '" style="display:none;">' +
+    '<input data-f="PreviewFileId" value="' + hrEscape(s.PreviewFileId) + '" style="display:none;">' +
+    '<input data-f="DownloadFileId" value="' + hrEscape(s.DownloadFileId) + '" style="display:none;">' +
+    '<label>Title</label><input data-f="Title" value="' + hrEscape(s.Title) + '">' +
+    '<label>Description</label><textarea data-f="Description">' + hrEscape(s.Description) + '</textarea>' +
+    '<label>Preview file (upload to replace)</label><input type="file" data-upload-preview>' +
+    '<label>Downloadable file (upload to replace)</label><input type="file" data-upload-download>' +
+    '</div>';
+}
+
+/* ---------------- Audit log ---------------- */
+async function renderAudit(c) {
+  c.innerHTML = '<div class="card"><p class="muted">Loading…</p></div>';
+  const res = await adminCall('adminGetAuditLog', {});
+  c.innerHTML = '<div class="card"><h2>Audit log — most recent 300 events</h2>' +
+    '<table><thead><tr><th>Time</th><th>Order</th><th>Action</th><th>Detail</th><th>By</th></tr></thead><tbody>' +
+    res.log.map(function(l){ return '<tr><td>' + new Date(l.Timestamp).toLocaleString() + '</td><td>' + hrEscape(l.OrderRef) + '</td><td>' + hrEscape(l.Action) + '</td><td>' + hrEscape(String(l.Detail).slice(0,80)) + '</td><td>' + hrEscape(l.Actor) + '</td></tr>'; }).join('') +
+    '</tbody></table></div>';
+}
+
+(async function() {
+  await hrApplyTheme();
+  if (ADMIN_KEY) { try { await adminCall('adminLogin', {}); logoutLink.style.display = 'inline'; renderDashboard('queue'); return; } catch (e) { sessionStorage.removeItem('hr_admin_key'); ADMIN_KEY = ''; } }
+  renderLogin();
+})();
+</script>
+</body>
+</html>
