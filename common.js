@@ -1,6 +1,6 @@
 /* Humanly Review shared frontend helpers. */
 const HR_CONFIG = Object.freeze({
-  BACKEND_URL: 'PASTE_APPS_SCRIPT_WEB_APP_EXEC_URL_HERE',
+  BACKEND_URL: 'https://script.google.com/macros/s/AKfycby0B-bWG0ohSWk4cVvU7hXWw50rHGDBKaUZ-PjdMbHte8zJSzf8GyOyEeo95IKGc6sSoQ/exec',
   SITE_URL: 'https://humanlyreview.com',
   SUPPORT_PAGE: '/help.html',
   DELIVERY_PAGE: '/delivery.html',
