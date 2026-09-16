@@ -1,63 +1,2078 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Humanly Review Admin</title><link rel="stylesheet" href="styles.css"></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Humanly Review Admin</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
 <body>
-<div id="admin-loader" class="global-loader hidden"><div class="loader-card"><span class="spinner"></span><span id="admin-loader-text">Working…</span></div></div>
-<header class="topbar"><div class="container nav"><a class="brand" href="index.html">Humanly Review Admin</a><span class="badge warning">Owner dashboard</span></div></header>
-<main><section class="section"><div class="container">
-<div id="login" class="card pad form-wrap"><h1>Admin sign-in</h1><p class="muted">Use your private Admin Key. It is never shown to customers.</p><div class="field"><label for="admin-key">Admin Key</label><input id="admin-key" class="input" type="password" autocomplete="current-password"></div><div id="login-error" class="notice danger hidden"></div><button id="login-btn" class="btn full-mobile">Open dashboard</button><p class="small muted" style="margin-top:12px"><a href="help.html">Open customer Help</a> · <a href="index.html">Open website</a></p></div>
+
+<header class="topbar">
+  <div class="container nav">
+    <a class="brand" href="index.html">Humanly Review Admin</a>
+    <span class="badge warning">Owner dashboard</span>
+  </div>
+</header>
+
+<main>
+<section class="section">
+<div class="container">
+
+<!-- =========================
+     LOGIN
+========================= -->
+<div id="login" class="card pad form-wrap">
+  <h1>Admin sign-in</h1>
+
+  <p class="muted">
+    Use the long random Admin Key stored in
+    Apps Script → Project Settings → Script Properties.
+  </p>
+
+  <div class="field">
+    <label for="admin-key">Admin Key</label>
+    <input
+      id="admin-key"
+      class="input"
+      type="password"
+      autocomplete="current-password"
+      placeholder="Enter your Admin Key"
+    >
+  </div>
+
+  <div id="login-error" class="notice danger hidden"></div>
+
+  <button id="login-btn" class="btn">
+    Open dashboard
+  </button>
+</div>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
 <div id="dashboard" class="hidden">
-<div class="spaced admin-head"><div><h1 style="margin:0">Dashboard</h1><p class="muted">Your control centre: paid orders, custom requests, support, plans, and customer-facing settings.</p></div><div class="actions compact"><button class="btn secondary" id="refresh-btn">Refresh</button><a class="btn secondary" href="index.html" target="_blank" rel="noopener">View website</a></div></div>
-<div id="banner" class="notice warning hidden" style="margin:18px 0"></div>
-<div id="kpis" class="grid-3" style="margin:18px 0"></div>
-<div class="admin-tabs"><button class="tab active" data-tab="queue">Queue</button><button class="tab" data-tab="inquiries">Inquiries</button><button class="tab" data-tab="plans">Plans</button><button class="tab" data-tab="settings">Settings</button><button class="tab" data-tab="faqs">FAQs</button><button class="tab" data-tab="samples">Samples</button></div>
-<div id="tab-queue" class="tab-panel" style="margin-top:18px"><div class="card pad"><div class="spaced"><div><h2 style="margin:0">Review Queue</h2><p class="small muted">Open an order only after it is paid and submitted.</p></div><input id="queue-search" class="input search-input" placeholder="Search order or email"></div><div id="queue" class="admin-list" style="margin-top:14px"></div></div></div>
-<div id="tab-inquiries" class="tab-panel hidden" style="margin-top:18px"><div class="card pad"><div class="spaced"><div><h2 style="margin:0">Customer requests</h2><p class="small muted">Custom-size requests receive an automatic acknowledgement. Open one to quote or reply.</p></div><a class="btn secondary" href="help.html" target="_blank" rel="noopener">Customer Help</a></div><div id="inquiries" style="margin-top:14px"></div></div></div>
-<div id="tab-plans" class="tab-panel hidden" style="margin-top:18px"><div class="card pad"><div class="spaced"><div><h2 style="margin:0">Plans</h2><p class="small muted">Price and size ranges are controlled here.</p></div><button class="btn" id="new-plan">Add plan</button></div><div id="plans-admin" class="table-wrap" style="margin-top:12px"></div></div></div>
-<div id="tab-settings" class="tab-panel hidden" style="margin-top:18px"><div class="card pad"><h2>Settings</h2><p class="muted">Change customer-facing behaviour here. Email templates accept the placeholders shown below each template.</p><div id="settings-form"></div><div class="actions"><button id="save-settings" class="btn">Save all settings</button></div><div id="settings-msg" class="notice hidden" style="margin-top:12px"></div></div></div>
-<div id="tab-faqs" class="tab-panel hidden" style="margin-top:18px"><div class="card pad"><h2>FAQs</h2><p class="muted">Edit FAQ rows in the Google Sheet. The customer Help page uses these rows.</p><div id="faqs-admin"></div></div></div>
-<div id="tab-samples" class="tab-panel hidden" style="margin-top:18px"><div class="card pad"><h2>Samples</h2><p class="muted">Manage sample cards from the Samples sheet.</p><div id="samples-admin"></div></div></div>
-</div></div></section></main>
-<div id="work-modal" class="hidden modal-shell"><div class="card pad modal-card"><div class="spaced"><h2 id="modal-title" style="margin:0">Order</h2><button id="modal-close" class="btn secondary">Close</button></div><div id="modal-content" style="margin-top:14px"></div></div></div>
-<script src="common.js"></script><script>
-let adminToken=localStorage.getItem('hr_admin_token')||'',data=null,activeOrder=null;
-const $=id=>document.getElementById(id);
-function adminBusy(on,text='Working…'){const l=$('admin-loader');$('admin-loader-text').textContent=text;l.classList.toggle('hidden',!on);}
-async function adminApi(action,payload={}){try{adminBusy(true);return await hrApi(action,Object.assign({},payload,{adminToken}));}finally{adminBusy(false);}}
-function openModal(title,html){$('modal-title').textContent=title;$('modal-content').innerHTML=html;$('work-modal').classList.remove('hidden');document.body.classList.add('modal-open');}
-function closeModal(){$('work-modal').classList.add('hidden');document.body.classList.remove('modal-open');}
-function renderKpis(){const k=data.kpis||{};$('kpis').innerHTML=[['Awaiting payment',k.awaiting_payment||0,'Customers who have not completed payment'],['Submitted',k.submitted||0,'Paid work ready to open'],['In review',k.in_review||0,'You are reviewing these'],['Report ready',k.delivered||0,'Final reports waiting for customer'],['Open tickets',k.open_inquiries||0,'Support/custom requests'],['Overdue',k.overdue||0,'Past estimated delivery']].map(x=>`<div class="card pad kpi-card"><div class="small muted">${x[0]}</div><div class="kpi-number">${x[1]}</div><div class="small muted">${x[2]}</div></div>`).join('');}
-function statusClass(s){return s==='delivered'||s==='deleted'?'success':s==='awaiting_payment'||s==='abandoned_expired'?'warning':s==='in_review'?'info':'';}
-function queueAction(o){if(o.status==='submitted')return '<span class="badge info">Ready to review</span>';if(o.status==='in_review')return '<span class="badge info">Continue review</span>';if(o.status==='delivered')return '<span class="badge success">Report delivered</span>';if(o.status==='awaiting_payment')return '<span class="badge warning">Waiting for payment</span>';return `<span class="badge">${hrEscape(hrStatusLabel(o.status))}</span>`;}
-function renderQueue(){const q=String($('queue-search').value||'').toLowerCase();const rows=(data.orders||[]).filter(o=>!q||String(o.orderRef).toLowerCase().includes(q)||String(o.email).toLowerCase().includes(q));$('queue').innerHTML=rows.map(o=>`<div class="admin-order-card"><div class="spaced"><div><strong>${hrEscape(o.orderRef)}</strong><div class="small muted">${hrEscape(o.email)}</div></div><span class="badge ${statusClass(o.status)}">${hrEscape(hrStatusLabel(o.status))}</span></div><div class="admin-order-meta"><div><span class="small muted">Work</span><strong>${Number(o.workFileCount||0)} file(s) · ${hrFormatBytes(o.workTotalBytes)}</strong></div><div><span class="small muted">Plan</span><strong>${hrEscape(o.planName||'—')} · ${hrFormatMoney(o.price,o.currency)}</strong></div><div><span class="small muted">Due</span><strong>${hrFormatDate(o.dueAt)}</strong></div></div><div class="admin-order-actions">${queueAction(o)}<button class="btn secondary" data-open-order="${hrEscape(o.orderRef)}">Open details</button></div></div>`).join('')||'<div class="notice">No orders match this search.</div>';document.querySelectorAll('[data-open-order]').forEach(b=>b.onclick=()=>openOrder(b.dataset.openOrder));}
-function renderFileRows(files,withOpen=false){if(!files?.length)return '<div class="muted">None</div>';return files.map((f,i)=>`<div class="file-meta"><div class="file-meta-main"><strong>${hrEscape(f.name)}</strong><div class="small muted">${hrFormatBytes(f.size)}${f.uploaded?' · stored':''}</div></div>${withOpen&&f.url?`<a class="btn secondary" href="${hrEscape(f.url)}" target="_blank" rel="noopener">Open</a>`:''}</div>`).join('');}
-function renderInquiries(){const rows=data.inquiries||[];$('inquiries').innerHTML=rows.map(i=>{const oversized=i.Category==='Oversized Request';return `<div class="ticket-card card pad"><div class="spaced"><div><strong>${hrEscape(i.TicketRef)}</strong> <span class="badge ${i.Status==='Open'?'warning':'success'}">${hrEscape(i.Status)}</span><div class="small muted">${hrEscape(i.Category)} · ${hrEscape(i.Email)}</div></div><div class="actions compact"><button class="btn secondary" data-chatgpt-ticket="${hrEscape(i.TicketRef)}">Copy for ChatGPT</button>${oversized&&i.Status==='Open'?`<button class="btn" data-autoquote="${hrEscape(i.InquiryID)}">Create custom quote</button>`:''}</div></div><p style="white-space:pre-wrap;margin-bottom:10px">${hrEscape(i.Message||'')}</p>${i.SystemCheck?`<div class="small muted">${hrEscape(i.SystemCheck)}</div>`:''}${i.OrderRef?`<div class="small muted" style="margin-top:6px">Order: ${hrEscape(i.OrderRef)}</div>`:''}${i.Status==='Open'?`<div class="field"><label for="reply-${hrEscape(i.InquiryID)}">Reply to customer</label><textarea class="textarea" rows="4" id="reply-${hrEscape(i.InquiryID)}" placeholder="Write the exact reply you want to send…"></textarea></div><div class="actions compact"><button class="btn" data-reply="${hrEscape(i.InquiryID)}">Send reply & resolve</button><span id="replymsg-${hrEscape(i.InquiryID)}" class="small"></span></div>`:''}</div>`;}).join('')||'<div class="notice">No customer requests yet.</div>';document.querySelectorAll('[data-chatgpt-ticket]').forEach(b=>b.onclick=()=>copyTicket(b.dataset.chatgptTicket));document.querySelectorAll('[data-reply]').forEach(b=>b.onclick=()=>replyTicket(b.dataset.reply));document.querySelectorAll('[data-autoquote]').forEach(b=>b.onclick=()=>openQuote(b.dataset.autoquote));}
-function renderPlans(){const rows=data.plans||[];$('plans-admin').innerHTML=`<table class="table"><thead><tr><th>Plan</th><th>Range MB</th><th>Price</th><th>Hours</th><th>Active</th><th></th></tr></thead><tbody>${rows.map(p=>`<tr><td><strong>${hrEscape(p.PlanName)}</strong><div class="small muted">${hrEscape(p.PlanID)}</div></td><td>${p.MinSizeMB}–${p.MaxSizeMB}</td><td>${hrFormatMoney(p.Price,p.Currency)}</td><td>${p.DeliveryHours}</td><td>${p.Active?'Yes':'No'}</td><td><button class="btn secondary" data-edit-plan="${hrEscape(p.PlanID)}">Edit</button></td></tr>`).join('')}</tbody></table>`;document.querySelectorAll('[data-edit-plan]').forEach(b=>b.onclick=()=>editPlan(b.dataset.editPlan));}
-const settingsFields=[
- ['max_work_files','Maximum Work files','number','Upload rules'],['max_upload_mb','Maximum Work size for normal plans (MB)','number','Upload rules'],['max_customer_work_mb','Technical maximum Work upload size (MB)','number','Upload rules'],['accepted_work_file_types','Accepted Work file types','text','Upload rules'],['max_instruction_files','Maximum instruction files','number','Upload rules'],['max_instruction_total_mb','Maximum total instruction size (MB)','number','Upload rules'],['accepted_instruction_file_types','Accepted instruction types','text','Upload rules'],['instructions_optional','Allow customer to say they have no instructions','bool','Upload rules'],['instructions_count_toward_price','Count instruction files toward pricing','bool','Upload rules'],
- ['maintenance_mode','Pause new submissions','bool','Customer flow'],['delivery_retention_days','Days before delivered files are automatically cleaned','number','Customer flow'],['manual_delivery_hours_override','Manual delivery hours override (blank = plan hours)','number','Customer flow'],['support_email','Support/admin notification email','text','Customer flow'],['site_url','Website URL','text','Customer flow'],
- ['oversized_price_per_mb','Custom quote price per MB','number','Custom requests'],['oversized_discount_percent','Automatic custom-quote discount %','number','Custom requests'],['enterprise_folder_id','Enterprise/custom-quote Drive folder ID','text','Custom requests'],
- ['site_name','Site name','text','Branding'],['hero_title','Homepage headline','text','Branding'],['hero_subtitle','Homepage subtitle','text','Branding'],['cta_text','Main action text','text','Branding'],['site_slogan','Footer slogan','text','Branding'],['how_it_works_video_url','How-it-works video URL','text','Branding'],
- ['otp_expiry_minutes','OTP validity minutes','number','Security'],['otp_max_attempts','Maximum wrong OTP attempts','number','Security'],['otp_resend_cooldown_seconds','Resend cooldown seconds','number','Security'],['auth_session_hours','Verified session lifetime hours','number','Security'],
- ['email_oversized_request_subject','Custom request received email subject','email_subject','Email templates'],['email_oversized_request_body','Custom request received email body','email_body','Email templates'],['email_oversized_quote_subject','Custom quote email subject','email_subject','Email templates'],['email_oversized_quote_body','Custom quote email body','email_body','Email templates'],['email_welcome_subject','Payment confirmed email subject','email_subject','Email templates'],['email_welcome_body','Payment confirmed email body','email_body','Email templates'],['email_report_ready_subject','Report ready email subject','email_subject','Email templates'],['email_report_ready_body','Report ready email body','email_body','Email templates'],['email_support_ack_subject','Support acknowledgement email subject','email_subject','Email templates'],['email_support_ack_body','Support acknowledgement email body','email_body','Email templates']
+
+  <div class="spaced">
+    <div>
+      <h1 style="margin:0">Dashboard</h1>
+      <p class="muted">
+        Process orders, review customer files, deliver reports,
+        reply to support, and control settings.
+      </p>
+    </div>
+
+    <button class="btn secondary" id="refresh-btn">
+      Refresh
+    </button>
+  </div>
+
+  <div
+    id="banner"
+    class="notice warning hidden"
+    style="margin:18px 0"
+  ></div>
+
+  <div id="kpis" class="grid-3" style="margin:18px 0"></div>
+
+  <!-- TABS -->
+  <div class="admin-tabs">
+    <button class="tab active" data-tab="queue">Queue</button>
+    <button class="tab" data-tab="inquiries">Inquiries</button>
+    <button class="tab" data-tab="plans">Plans</button>
+    <button class="tab" data-tab="settings">Settings</button>
+    <button class="tab" data-tab="faqs">FAQs</button>
+    <button class="tab" data-tab="samples">Samples</button>
+  </div>
+
+
+  <!-- QUEUE -->
+  <div
+    id="tab-queue"
+    class="tab-panel"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+
+      <div class="spaced">
+        <h2>Review Queue</h2>
+
+        <input
+          id="queue-search"
+          class="input"
+          style="max-width:280px"
+          placeholder="Search order/email"
+        >
+      </div>
+
+      <div
+        id="queue"
+        class="table-wrap"
+        style="margin-top:12px"
+      ></div>
+
+    </div>
+  </div>
+
+
+  <!-- INQUIRIES -->
+  <div
+    id="tab-inquiries"
+    class="tab-panel hidden"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+      <div id="inquiries"></div>
+    </div>
+  </div>
+
+
+  <!-- PLANS -->
+  <div
+    id="tab-plans"
+    class="tab-panel hidden"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+
+      <div class="spaced">
+        <h2>Plans</h2>
+        <button class="btn" id="new-plan">
+          Add plan
+        </button>
+      </div>
+
+      <div
+        id="plans-admin"
+        class="table-wrap"
+        style="margin-top:12px"
+      ></div>
+
+    </div>
+  </div>
+
+
+  <!-- SETTINGS -->
+  <div
+    id="tab-settings"
+    class="tab-panel hidden"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+
+      <h2>Settings</h2>
+
+      <p class="muted">
+        The important upload controls are grouped first so you
+        can change them without editing code.
+      </p>
+
+      <div id="settings-form"></div>
+
+      <button id="save-settings" class="btn">
+        Save settings
+      </button>
+
+    </div>
+  </div>
+
+
+  <!-- FAQS -->
+  <div
+    id="tab-faqs"
+    class="tab-panel hidden"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+
+      <h2>FAQs</h2>
+
+      <p class="muted">
+        Edit FAQ rows in the Google Sheet.
+        The current list is shown below.
+      </p>
+
+      <div id="faqs-admin"></div>
+
+    </div>
+  </div>
+
+
+  <!-- SAMPLES -->
+  <div
+    id="tab-samples"
+    class="tab-panel hidden"
+    style="margin-top:18px"
+  >
+    <div class="card pad">
+
+      <h2>Samples</h2>
+
+      <p class="muted">
+        Manage sample cards from the Samples sheet.
+      </p>
+
+      <div id="samples-admin"></div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+</main>
+
+
+<!-- =========================
+     MODAL
+========================= -->
+<div
+  id="work-modal"
+  class="hidden"
+  style="
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.56);
+    z-index:90;
+    padding:12px;
+    overflow:auto;
+  "
+>
+
+  <div class="card pad form-wrap">
+
+    <div class="spaced">
+
+      <h2 id="modal-title">Order</h2>
+
+      <button
+        id="modal-close"
+        class="btn secondary"
+      >
+        Close
+      </button>
+
+    </div>
+
+    <div id="modal-content"></div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     SCRIPTS
+========================= -->
+<script src="common.js"></script>
+
+<script>
+
+let adminToken =
+  localStorage.getItem('hr_admin_token') || '';
+
+let data = null;
+let activeOrder = null;
+
+const $ = id => document.getElementById(id);
+
+
+/* =========================
+   ADMIN API
+========================= */
+
+async function adminApi(action, payload = {}) {
+
+  if (typeof hrApi !== 'function') {
+    throw new Error(
+      'The website connection is not ready. Please refresh the page and try again.'
+    );
+  }
+
+  return hrApi(
+    action,
+    Object.assign({}, payload, {
+      adminToken
+    })
+  );
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(title, html) {
+
+  $('modal-title').textContent = title;
+  $('modal-content').innerHTML = html;
+  $('work-modal').classList.remove('hidden');
+
+}
+
+function closeModal() {
+
+  $('work-modal').classList.add('hidden');
+
+}
+
+
+/* =========================
+   KPIs
+========================= */
+
+function renderKpis() {
+
+  const k = data.kpis || {};
+
+  $('kpis').innerHTML = [
+    ['Awaiting payment', k.awaiting_payment || 0],
+    ['Submitted', k.submitted || 0],
+    ['In review', k.in_review || 0],
+    ['Report ready', k.delivered || 0],
+    ['Open tickets', k.open_inquiries || 0],
+    ['Overdue', k.overdue || 0]
+  ]
+  .map(x => `
+    <div class="card pad">
+      <div class="small muted">${x[0]}</div>
+      <div style="font-size:28px;font-weight:800">
+        ${x[1]}
+      </div>
+    </div>
+  `)
+  .join('');
+
+}
+
+
+/* =========================
+   QUEUE
+========================= */
+
+function renderQueue() {
+
+  const q =
+    String($('queue-search').value || '').toLowerCase();
+
+  const rows =
+    (data.orders || []).filter(o =>
+      !q ||
+      String(o.orderRef).toLowerCase().includes(q) ||
+      String(o.email).toLowerCase().includes(q)
+    );
+
+  $('queue').innerHTML = `
+    <table class="table">
+
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Work</th>
+          <th>Instructions</th>
+          <th>Status</th>
+          <th>Due</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+        ${rows.map(o => `
+          <tr>
+
+            <td>
+              <strong>${hrEscape(o.orderRef)}</strong>
+            </td>
+
+            <td>
+              ${hrEscape(o.email)}
+            </td>
+
+            <td>
+              ${Number(o.workFileCount || 0)} file(s)
+              <div class="small muted">
+                ${hrFormatBytes(o.workTotalBytes)}
+              </div>
+            </td>
+
+            <td>
+              ${o.hasInstructions ? 'Yes' : 'No'}
+            </td>
+
+            <td>
+              <span class="badge ${
+                o.status === 'delivered'
+                  ? 'success'
+                  : o.status === 'awaiting_payment'
+                  ? 'warning'
+                  : o.status === 'in_review'
+                  ? 'info'
+                  : ''
+              }">
+                ${hrEscape(hrStatusLabel(o.status))}
+              </span>
+            </td>
+
+            <td>
+              ${hrFormatDate(o.dueAt)}
+            </td>
+
+            <td>
+              <button
+                class="btn secondary"
+                data-open-order="${hrEscape(o.orderRef)}"
+              >
+                Open
+              </button>
+            </td>
+
+          </tr>
+        `).join('')}
+
+      </tbody>
+
+    </table>
+  `;
+
+  document
+    .querySelectorAll('[data-open-order]')
+    .forEach(b =>
+      b.onclick = () =>
+        openOrder(b.dataset.openOrder)
+    );
+
+}
+
+
+/* =========================
+   FILE ROWS
+========================= */
+
+function renderFileRows(files) {
+
+  if (!files?.length) {
+    return '<div class="muted">None</div>';
+  }
+
+  return files.map(f => `
+    <div class="file-meta">
+
+      <div>
+
+        <strong>
+          ${hrEscape(f.name)}
+        </strong>
+
+        <div class="small muted">
+          ${hrFormatBytes(f.size)}
+          ${f.uploaded ? ' • stored' : ''}
+        </div>
+
+      </div>
+
+    </div>
+  `)
+  .join('');
+
+}
+
+
+/* =========================
+   INQUIRIES
+========================= */
+
+function renderInquiries() {
+
+  const rows = data.inquiries || [];
+
+  $('inquiries').innerHTML =
+    rows.map(i => `
+
+      <div
+        class="card pad"
+        style="margin-bottom:12px"
+      >
+
+        <div class="spaced">
+
+          <div>
+
+            <strong>
+              ${hrEscape(i.TicketRef)}
+            </strong>
+
+            <span class="badge ${
+              i.Status === 'Open'
+                ? 'warning'
+                : 'success'
+            }">
+              ${hrEscape(i.Status)}
+            </span>
+
+            <div class="small muted">
+              ${hrEscape(i.Category)}
+              •
+              ${hrEscape(i.Email)}
+            </div>
+
+          </div>
+
+          <button
+            class="btn secondary"
+            data-chatgpt-ticket="${hrEscape(i.TicketRef)}"
+          >
+            Copy for ChatGPT
+          </button>
+
+        </div>
+
+        <p style="white-space:pre-wrap">
+          ${hrEscape(i.Message || '')}
+        </p>
+
+        ${
+          i.OrderRef
+            ? `
+              <div class="small muted">
+                Order: ${hrEscape(i.OrderRef)}
+              </div>
+            `
+            : ''
+        }
+
+        ${
+          i.Status === 'Open'
+            ? `
+
+              <div class="field">
+
+                <label>Reply</label>
+
+                <textarea
+                  class="input"
+                  rows="3"
+                  id="reply-${hrEscape(i.InquiryID)}"
+                ></textarea>
+
+              </div>
+
+              <button
+                class="btn"
+                data-reply="${hrEscape(i.InquiryID)}"
+              >
+                Send reply
+              </button>
+
+              <span
+                id="replymsg-${hrEscape(i.InquiryID)}"
+                class="small"
+              ></span>
+
+            `
+            : ''
+        }
+
+      </div>
+
+    `).join('')
+
+    || '<div class="notice">No support tickets.</div>';
+
+  document
+    .querySelectorAll('[data-chatgpt-ticket]')
+    .forEach(b =>
+      b.onclick = () =>
+        copyTicket(b.dataset.chatgptTicket)
+    );
+
+  document
+    .querySelectorAll('[data-reply]')
+    .forEach(b =>
+      b.onclick = () =>
+        replyTicket(b.dataset.reply)
+    );
+
+}
+
+
+/* =========================
+   PLANS
+========================= */
+
+function renderPlans() {
+
+  const rows = data.plans || [];
+
+  $('plans-admin').innerHTML = `
+
+    <table class="table">
+
+      <thead>
+
+        <tr>
+          <th>PlanID</th>
+          <th>Name</th>
+          <th>Range MB</th>
+          <th>Price</th>
+          <th>Hours</th>
+          <th>Active</th>
+          <th></th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${rows.map(p => `
+
+          <tr>
+
+            <td>
+              ${hrEscape(p.PlanID)}
+            </td>
+
+            <td>
+              ${hrEscape(p.PlanName)}
+            </td>
+
+            <td>
+              ${p.MinSizeMB}–${p.MaxSizeMB}
+            </td>
+
+            <td>
+              ${hrFormatMoney(p.Price, p.Currency)}
+            </td>
+
+            <td>
+              ${p.DeliveryHours}
+            </td>
+
+            <td>
+              ${p.Active ? '✓' : '—'}
+            </td>
+
+            <td>
+
+              <button
+                class="btn secondary"
+                data-edit-plan="${hrEscape(p.PlanID)}"
+              >
+                Edit
+              </button>
+
+            </td>
+
+          </tr>
+
+        `).join('')}
+
+      </tbody>
+
+    </table>
+  `;
+
+  document
+    .querySelectorAll('[data-edit-plan]')
+    .forEach(b =>
+      b.onclick = () =>
+        editPlan(b.dataset.editPlan)
+    );
+
+}
+
+
+/* =========================
+   SETTINGS
+========================= */
+
+const settingsFields = [
+
+  [
+    'max_work_files',
+    'Maximum Work files',
+    'number'
+  ],
+
+  [
+    'max_upload_mb',
+    'Maximum total Work size (MB)',
+    'number'
+  ],
+
+  [
+    'accepted_work_file_types',
+    'Work file types, e.g. docx,pdf,txt',
+    'text'
+  ],
+
+  [
+    'max_instruction_files',
+    'Maximum Assignment instruction files',
+    'number'
+  ],
+
+  [
+    'max_instruction_total_mb',
+    'Maximum total instruction size (MB)',
+    'number'
+  ],
+
+  [
+    'accepted_instruction_file_types',
+    'Instruction types, e.g. pdf,docx,jpg,jpeg,png,txt',
+    'text'
+  ],
+
+  [
+    'instructions_optional',
+    'Allow customer to say they do not have instructions',
+    'bool'
+  ],
+
+  [
+    'instructions_count_toward_price',
+    'Count instruction files toward pricing',
+    'bool'
+  ],
+
+  [
+    'maintenance_mode',
+    'Pause new submissions',
+    'bool'
+  ],
+
+  [
+    'delivery_retention_days',
+    'Delivery retention days',
+    'number'
+  ],
+
+  [
+    'manual_delivery_hours_override',
+    'Manual delivery hours override',
+    'number'
+  ],
+
+  [
+    'site_name',
+    'Site name',
+    'text'
+  ],
+
+  [
+    'hero_title',
+    'Hero title',
+    'text'
+  ],
+
+  [
+    'hero_subtitle',
+    'Hero subtitle',
+    'text'
+  ],
+
+  [
+    'cta_text',
+    'Button text',
+    'text'
+  ],
+
+  [
+    'site_slogan',
+    'Site slogan',
+    'text'
+  ],
+
+  [
+    'site_url',
+    'Website URL',
+    'text'
+  ],
+
+  [
+    'support_email',
+    'Support email',
+    'text'
+  ],
+
+  [
+    'default_folder_id',
+    'Default Drive folder ID',
+    'text'
+  ],
+
+  [
+    'enterprise_folder_id',
+    'Enterprise/custom-quote folder ID',
+    'text'
+  ],
+
+  [
+    'oversized_price_per_mb',
+    'Oversized price per MB',
+    'number'
+  ],
+
+  [
+    'oversized_discount_percent',
+    'Oversized discount percent',
+    'number'
+  ],
+
+  [
+    'support_message_char_limit',
+    'Support message character limit',
+    'number'
+  ],
+
+  [
+    'support_max_followups',
+    'Maximum support follow-ups',
+    'number'
+  ],
+
+  [
+    'otp_expiry_minutes',
+    'OTP expiry minutes',
+    'number'
+  ],
+
+  [
+    'otp_max_attempts',
+    'OTP maximum attempts',
+    'number'
+  ],
+
+  [
+    'otp_resend_cooldown_seconds',
+    'OTP resend cooldown seconds',
+    'number'
+  ],
+
+  [
+    'how_it_works_video_url',
+    'How-it-works video URL',
+    'text'
+  ],
+
+  [
+    'primary_color',
+    'Primary colour',
+    'text'
+  ],
+
+  [
+    'accent_color',
+    'Accent colour',
+    'text'
+  ],
+
+  [
+    'background_color',
+    'Background colour',
+    'text'
+  ],
+
+  [
+    'text_color',
+    'Text colour',
+    'text'
+  ],
+
+  [
+    'success_color',
+    'Success colour',
+    'text'
+  ],
+
+  [
+    'warning_color',
+    'Warning colour',
+    'text'
+  ],
+
+  [
+    'danger_color',
+    'Danger colour',
+    'text'
+  ]
+
 ];
-const placeholderHelp={email_oversized_request_subject:'{{ticketRef}}',email_oversized_request_body:'{{ticketRef}}, {{email}}, {{workFiles}}, {{workTotalMB}}, {{instructionSummary}}, {{siteName}}, {{siteUrl}}',email_oversized_quote_subject:'{{ticketRef}}',email_oversized_quote_body:'{{ticketRef}}, {{price}}, {{currency}}, {{email}}, {{siteName}}, {{siteUrl}}',email_welcome_subject:'{{orderRef}}',email_welcome_body:'{{orderRef}}, {{workFileCount}}, {{dueAt}}, {{price}}, {{currency}}, {{siteName}}',email_report_ready_subject:'{{orderRef}}',email_report_ready_body:'{{orderRef}}, {{deliveryLink}}, {{siteName}}',email_support_ack_subject:'{{ticketRef}}',email_support_ack_body:'{{ticketRef}}, {{category}}, {{siteName}}'};
-function renderSettings(){const extras=Object.keys(data.settings||{}).filter(k=>!settingsFields.some(x=>x[0]===k)&&!['logo_url','google_client_id','backup_folder_id'].includes(k)).map(k=>[k,k,'text','Other']);const groups=[...settingsFields,...extras].reduce((a,x)=>{(a[x[3]] ||= []).push(x);return a;},{});$('settings-form').innerHTML=Object.entries(groups).map(([group,fields])=>`<section class="settings-group"><h3>${hrEscape(group)}</h3>${fields.map(([k,label,type])=>{const v=data.settings[k]??'';if(type==='bool')return `<label class="setting-toggle"><input type="checkbox" data-setting="${k}" ${String(v)==='true'?'checked':''}><span><strong>${hrEscape(label)}</strong></span></label>`;const help=placeholderHelp[k]||'';if(type==='email_body')return `<div class="field"><label>${hrEscape(label)}</label><textarea class="textarea template-box" rows="7" data-setting="${k}">${hrEscape(v)}</textarea>${help?`<div class="small muted">Available placeholders: ${hrEscape(help)}</div>`:''}</div>`;return `<div class="field"><label>${hrEscape(label)}</label><input class="input" data-setting="${k}" type="${type==='number'?'number':'text'}" value="${hrEscape(v)}">${help?`<div class="small muted">Available placeholder: ${hrEscape(help)}</div>`:''}</div>`;}).join('')}</section>`).join('');}
-function renderFaqs(){$('faqs-admin').innerHTML=(data.faqs||[]).map(f=>`<div class="card pad" style="margin:8px 0"><strong>${hrEscape(f.Question)}</strong><p class="muted">${hrEscape(f.Answer)}</p></div>`).join('')||'<div class="notice">No FAQs.</div>';}
-function renderSamples(){$('samples-admin').innerHTML=(data.samples||[]).map(s=>`<div class="card pad" style="margin:8px 0"><strong>${hrEscape(s.Title)}</strong><p class="muted">${hrEscape(s.Description||'')}</p><div class="small">${s.Active?'Active':'Inactive'}</div></div>`).join('')||'<div class="notice">No samples.</div>';}
-function renderAll(){renderKpis();renderQueue();renderInquiries();renderPlans();renderSettings();renderFaqs();renderSamples();$('banner').classList.toggle('hidden',String(data.settings.maintenance_mode)!=='true');$('banner').textContent='Maintenance mode is ACTIVE. New customer submissions are paused.';}
-async function loadData(){try{const r=await adminApi('adminGetData');data=r.data;renderAll();}catch(e){localStorage.removeItem('hr_admin_token');adminToken='';$('dashboard').classList.add('hidden');$('login').classList.remove('hidden');$('login-error').textContent=e.message;$('login-error').classList.remove('hidden');}}
-async function login(){const b=$('login-btn');hrSetBusy(b,true,'Signing in…');try{const r=await hrApi('adminLogin',{adminKey:$('admin-key').value});adminToken=r.data.adminToken;localStorage.setItem('hr_admin_token',adminToken);$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');await loadData();}catch(e){$('login-error').textContent=e.message;$('login-error').classList.remove('hidden');}finally{hrSetBusy(b,false);}}
-async function openOrder(ref){const o=(data.orders||[]).find(x=>x.orderRef===ref);if(!o)return;activeOrder=o;openModal(`Order ${ref}`,`<div class="order-summary"><div class="statline"><span>Customer</span><strong>${hrEscape(o.email)}</strong></div><div class="statline"><span>Work</span><strong>${o.workFileCount} file(s) · ${hrFormatBytes(o.workTotalBytes)}</strong></div><div class="statline"><span>Plan / price</span><strong>${hrEscape(o.planName||'—')} · ${hrFormatMoney(o.price,o.currency)}</strong></div><div class="statline"><span>Status</span><strong>${hrEscape(hrStatusLabel(o.status))}</strong></div><div class="statline"><span>Due</span><strong>${hrFormatDate(o.dueAt)}</strong></div></div><h3>Work files</h3><div id="work-files-admin">${renderFileRows(o.workFiles)}</div><h3 style="margin-top:20px">Assignment question or instructions</h3>${o.hasInstructions?`<div class="notice">${o.instructionText?`<strong>Pasted text</strong><div style="white-space:pre-wrap;margin-top:8px">${hrEscape(o.instructionText)}</div>`:''}${o.instructionFiles?.length?`<div style="margin-top:12px"><strong>Uploaded instruction files</strong>${renderFileRows(o.instructionFiles)}</div>`:''}</div>`:'<div class="notice success">Customer said they do not have a brief/instructions.</div>'}<div class="order-next-step" style="margin-top:18px"><strong>Next action</strong><div id="order-next-copy">${o.status==='submitted'?'Open the Work files, review them, then upload the finished report(s).':o.status==='in_review'?'Continue the human review and upload the finished report(s).':o.status==='delivered'?'The report has already been delivered.':o.status==='awaiting_payment'?'Waiting for customer payment. No Work file is stored yet.':'No action is currently required.'}</div></div><div class="actions" style="margin-top:16px"><button class="btn secondary" id="mark-review" ${['submitted','in_review'].includes(o.status)?'':'disabled'}>Open Work files</button><label class="btn secondary file-button" for="report-files">Choose finished report(s)<input id="report-files" type="file" multiple hidden></label><button class="btn success" id="deliver-order" ${['submitted','in_review'].includes(o.status)?'':'disabled'}>Upload & deliver</button><button class="btn danger" id="clear-reports" ${['submitted','in_review'].includes(o.status)?'':'disabled'}>Discard pending reports</button></div><div id="order-actions-msg" class="notice hidden" style="margin-top:14px"></div><div class="small muted" style="margin-top:12px"><a href="help.html" target="_blank" rel="noopener">Need customer help wording?</a></div>`);$('mark-review').onclick=async()=>{const b=$('mark-review');hrSetBusy(b,true,'Opening…');try{await adminApi('adminOpenOriginal',{orderRef:ref});const links=(await adminApi('adminGetWorkFileLinks',{orderRef:ref})).data;await loadData();if(links.length===1)window.open(links[0].url,'_blank','noopener');else openModal(`Work files — ${ref}`,links.map(x=>`<div class="file-meta"><div class="file-meta-main"><strong>${hrEscape(x.name)}</strong><div class="small muted">${hrFormatBytes(x.size)}</div></div><a class="btn secondary" href="${hrEscape(x.url)}" target="_blank" rel="noopener">Open</a></div>`).join('')||'<div class="notice">No stored Work files.</div>');}catch(e){showOrderMsg(e.message,true);}finally{hrSetBusy(b,false);}};$('deliver-order').onclick=()=>deliverOrder(ref);$('clear-reports').onclick=()=>clearReports(ref);$('report-files').onchange=()=>{const files=[...$('report-files').files];showOrderMsg(files.length?`${files.length} report file(s) selected. Click “Upload & deliver” when ready.`:'No report files selected.');};}
-function showOrderMsg(text,danger=false){const m=$('order-actions-msg');if(!m)return;m.className='notice '+(danger?'danger':'success');m.textContent=text;m.classList.remove('hidden');}
-async function uploadReports(ref){const input=$('report-files'),files=[...(input?.files||[])];if(!files.length)throw new Error('Choose at least one finished report file first.');for(let i=0;i<files.length;i++){showOrderMsg(`Uploading report ${i+1} of ${files.length}: ${files[i].name}`);await adminApi('adminUploadReportFile',{orderRef:ref,fileName:files[i].name,fileSizeBytes:files[i].size,mimeType:files[i].type,base64:await hrFileToBase64(files[i])});}}
-async function deliverOrder(ref){const b=$('deliver-order');hrSetBusy(b,true,'Uploading & delivering…');try{await uploadReports(ref);await adminApi('adminFinalizeDelivery',{orderRef:ref});showOrderMsg('Delivered successfully. The customer has received a secure delivery email.');await loadData();}catch(e){showOrderMsg(e.message,true);}finally{hrSetBusy(b,false);}}
-async function clearReports(ref){if(!confirm('Remove all pending finished report files for this order?'))return;const b=$('clear-reports');hrSetBusy(b,true,'Removing…');try{await adminApi('adminClearPendingReports',{orderRef:ref});showOrderMsg('Pending report files removed.');await loadData();}catch(e){showOrderMsg(e.message,true);}finally{hrSetBusy(b,false);}}
-async function copyTicket(ticketRef){const x=(data.inquiries||[]).find(i=>i.TicketRef===ticketRef);if(!x)return;const t=`Humanly Review support ticket\nTicket Ref: ${x.TicketRef}\nCategory: ${x.Category}\nCustomer email: ${x.Email}\nOrder ref: ${x.OrderRef||'None'}\nSystem check: ${x.SystemCheck||'None'}\nMessage: ${x.Message}\n\nInstruction: Draft a ready-to-send support reply. Use only the facts supplied above. Do not invent payment status, delivery status, dates, or policies.`;await navigator.clipboard.writeText(t);hrToast('Ticket copied for ChatGPT.','success');}
-async function replyTicket(id){const x=(data.inquiries||[]).find(i=>i.InquiryID===id),box=$(`reply-${id}`),msg=$(`replymsg-${id}`);if(!x||!box)return;const b=document.querySelector(`[data-reply="${CSS.escape(id)}"]`);hrSetBusy(b,true,'Sending…');try{await adminApi('adminReplyInquiry',{inquiryId:id,message:box.value.trim()});msg.textContent='Reply sent and ticket resolved.';msg.className='small';await loadData();}catch(e){msg.textContent=e.message;msg.className='small danger';}finally{hrSetBusy(b,false);}}
-function openQuote(id){const x=(data.inquiries||[]).find(i=>i.InquiryID===id);if(!x)return;openModal(`Custom quote — ${x.TicketRef}`,`<div class="notice">${hrEscape(x.Email)}<br>${hrEscape(x.Message)}</div><div class="field"><label for="quote-price">Quote price (NGN)</label><input id="quote-price" class="input" type="number" min="0" step="1" placeholder="Leave blank to use automatic calculation"><div class="small muted">The default calculation uses the custom price-per-MB and discount settings. You can override it here.</div></div><div class="actions"><button class="btn" id="send-quote">Create quote & email customer</button><button class="btn secondary" id="quote-cancel">Cancel</button></div><div id="quote-msg" class="notice hidden" style="margin-top:12px"></div>`);$('quote-cancel').onclick=closeModal;$('send-quote').onclick=async()=>{const b=$('send-quote');hrSetBusy(b,true,'Creating quote…');try{const r=await adminApi('adminAutoQuote',{inquiryId:id,overridePrice:$('quote-price').value.trim()});$('quote-msg').className='notice success';$('quote-msg').textContent=`Quote sent: ${hrFormatMoney(r.data.price,r.data.currency)}. The customer received the instructions to return to the website.`;$('quote-msg').classList.remove('hidden');await loadData();}catch(e){$('quote-msg').className='notice danger';$('quote-msg').textContent=e.message;$('quote-msg').classList.remove('hidden');}finally{hrSetBusy(b,false);}};}
-function editPlan(planId){const p=(data.plans||[]).find(x=>x.PlanID===planId);if(!p)return;openModal(`Edit ${hrEscape(planId)}`,`<div class="field"><label>Name</label><input id="p-name" class="input" value="${hrEscape(p.PlanName)}"></div><div class="grid-2"><div class="field"><label>Min MB</label><input id="p-min" class="input" type="number" step="0.0001" value="${p.MinSizeMB}"></div><div class="field"><label>Max MB</label><input id="p-max" class="input" type="number" step="0.0001" value="${p.MaxSizeMB}"></div></div><div class="grid-2"><div class="field"><label>Price</label><input id="p-price" class="input" type="number" step="0.01" value="${p.Price}"></div><div class="field"><label>Currency</label><input id="p-currency" class="input" value="${hrEscape(p.Currency||'NGN')}"></div></div><div class="grid-2"><div class="field"><label>Delivery hours</label><input id="p-hours" class="input" type="number" value="${p.DeliveryHours}"></div><div class="field"><label>Destination folder ID</label><input id="p-folder" class="input" value="${hrEscape(p.DestinationFolderId||'')}"></div></div><label class="inline"><input id="p-active" type="checkbox" ${p.Active?'checked':''}> Active</label><div class="actions"><button id="save-plan" class="btn">Save plan</button></div><div id="plan-msg" class="notice hidden"></div>`);$('save-plan').onclick=async()=>{const b=$('save-plan');hrSetBusy(b,true,'Saving…');try{await adminApi('adminSavePlan',{plan:{PlanID:p.PlanID,PlanName:$('p-name').value.trim(),MinSizeMB:Number($('p-min').value),MaxSizeMB:Number($('p-max').value),Price:Number($('p-price').value),Currency:$('p-currency').value.trim().toUpperCase(),DeliveryHours:Number($('p-hours').value),DestinationFolderId:$('p-folder').value.trim(),Active:$('p-active').checked}});closeModal();await loadData();hrToast('Plan saved.','success');}catch(e){$('plan-msg').className='notice danger';$('plan-msg').textContent=e.message;$('plan-msg').classList.remove('hidden');}finally{hrSetBusy(b,false);}};}
-$('new-plan').onclick=()=>openModal('Add plan',`<div class="notice">Create a normal plan here. Keep plan ranges clean and non-overlapping. Exact-size custom plans are created automatically from oversized requests.</div><div class="field"><label>Plan ID</label><input id="np-id" class="input" placeholder="e.g. PREMIUM"></div><div class="field"><label>Customer-facing name</label><input id="np-name" class="input" placeholder="e.g. Premium"></div><div class="grid-2"><div class="field"><label>Minimum MB</label><input id="np-min" class="input" type="number" step="0.01" min="0"></div><div class="field"><label>Maximum MB</label><input id="np-max" class="input" type="number" step="0.01" min="0"></div></div><div class="grid-2"><div class="field"><label>Price</label><input id="np-price" class="input" type="number" step="1" min="0"></div><div class="field"><label>Currency</label><input id="np-currency" class="input" value="NGN"></div></div><div class="field"><label>Delivery hours</label><input id="np-hours" class="input" type="number" step="1" min="1" value="48"></div><div class="actions"><button id="save-new-plan" class="btn">Save plan</button></div><div id="new-plan-msg" class="notice hidden"></div>`);$('save-new-plan').onclick=async()=>{const b=$('save-new-plan');hrSetBusy(b,true,'Saving…');try{await adminApi('adminSavePlan',{plan:{PlanID:$('np-id').value.trim().toUpperCase(),PlanName:$('np-name').value.trim(),MinSizeMB:Number($('np-min').value),MaxSizeMB:Number($('np-max').value),Price:Number($('np-price').value),Currency:$('np-currency').value.trim().toUpperCase()||'NGN',DeliveryHours:Number($('np-hours').value),DestinationFolderId:'',Active:true}});closeModal();await loadData();hrToast('Plan added.','success');}catch(e){$('new-plan-msg').className='notice danger';$('new-plan-msg').textContent=e.message;$('new-plan-msg').classList.remove('hidden');}finally{hrSetBusy(b,false);}};
-$('save-settings').onclick=async()=>{const out={};document.querySelectorAll('[data-setting]').forEach(el=>{out[el.dataset.setting]=el.type==='checkbox'?el.checked:el.value;});const b=$('save-settings');hrSetBusy(b,true,'Saving settings…');try{await adminApi('adminSaveSettings',{settings:out});$('settings-msg').className='notice success';$('settings-msg').textContent='Settings saved. Customer pages will use the new values on their next load.';$('settings-msg').classList.remove('hidden');await loadData();}catch(e){$('settings-msg').className='notice danger';$('settings-msg').textContent=e.message;$('settings-msg').classList.remove('hidden');}finally{hrSetBusy(b,false);}};
-$('login-btn').onclick=login;$('refresh-btn').onclick=()=>loadData();$('queue-search').oninput=renderQueue;$('modal-close').onclick=closeModal;$('work-modal').onclick=e=>{if(e.target===$('work-modal'))closeModal();};document.querySelectorAll('.tab').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-panel').forEach(x=>x.classList.add('hidden'));btn.classList.add('active');$('tab-'+btn.dataset.tab).classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});});
-(async function(){if(adminToken){$('login').classList.add('hidden');$('dashboard').classList.remove('hidden');await loadData();}})();
-</script></body></html>
+
+
+function renderSettings() {
+
+  const preferred = settingsFields;
+
+  const used =
+    new Set(preferred.map(x => x[0]));
+
+  const all =
+    Object.keys(data.settings || {})
+      .filter(k =>
+        !used.has(k) &&
+        ![
+          'logo_url',
+          'google_client_id',
+          'backup_folder_id'
+        ].includes(k)
+      );
+
+  $('settings-form').innerHTML =
+
+    preferred
+      .concat(
+        all.map(k => [k, k, 'text'])
+      )
+
+      .map(([k, label, type]) => {
+
+        const v =
+          data.settings[k] ?? '';
+
+        if (type === 'bool') {
+
+          return `
+            <div class="field">
+
+              <label class="inline">
+
+                <input
+                  type="checkbox"
+                  data-setting="${k}"
+                  ${String(v) === 'true' ? 'checked' : ''}
+                >
+
+                ${hrEscape(label)}
+
+              </label>
+
+            </div>
+          `;
+
+        }
+
+        return `
+          <div class="field">
+
+            <label>
+              ${hrEscape(label)}
+            </label>
+
+            <input
+              class="input"
+              data-setting="${k}"
+              type="${type === 'number' ? 'number' : 'text'}"
+              value="${hrEscape(v)}"
+            >
+
+          </div>
+        `;
+
+      })
+
+      .join('');
+
+}
+
+
+/* =========================
+   FAQS
+========================= */
+
+function renderFaqs() {
+
+  $('faqs-admin').innerHTML =
+    (data.faqs || [])
+      .map(f => `
+
+        <div
+          class="card pad"
+          style="margin:8px 0"
+        >
+
+          <strong>
+            ${hrEscape(f.Question)}
+          </strong>
+
+          <p class="muted">
+            ${hrEscape(f.Answer)}
+          </p>
+
+        </div>
+
+      `)
+      .join('')
+
+      || '<div class="notice">No FAQs.</div>';
+
+}
+
+
+/* =========================
+   SAMPLES
+========================= */
+
+function renderSamples() {
+
+  $('samples-admin').innerHTML =
+    (data.samples || [])
+      .map(s => `
+
+        <div
+          class="card pad"
+          style="margin:8px 0"
+        >
+
+          <strong>
+            ${hrEscape(s.Title)}
+          </strong>
+
+          <p class="muted">
+            ${hrEscape(s.Description || '')}
+          </p>
+
+          <div class="small">
+            ${s.Active ? 'Active' : 'Inactive'}
+          </div>
+
+        </div>
+
+      `)
+      .join('')
+
+      || '<div class="notice">No samples.</div>';
+
+}
+
+
+/* =========================
+   RENDER ALL
+========================= */
+
+function renderAll() {
+
+  renderKpis();
+  renderQueue();
+  renderInquiries();
+  renderPlans();
+  renderSettings();
+  renderFaqs();
+  renderSamples();
+
+  $('banner').classList.toggle(
+    'hidden',
+    String(data.settings.maintenance_mode) !== 'true'
+  );
+
+  $('banner').textContent =
+    'Maintenance mode is ACTIVE. New customer submissions are paused.';
+
+}
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+async function loadData() {
+
+  try {
+
+    const r =
+      await adminApi('adminGetData');
+
+    data = r.data;
+
+    renderAll();
+
+  } catch (e) {
+
+    localStorage.removeItem('hr_admin_token');
+
+    adminToken = '';
+
+    $('dashboard').classList.add('hidden');
+    $('login').classList.remove('hidden');
+
+    $('login-error').textContent =
+      e.message || 'Your admin session could not be loaded.';
+
+    $('login-error').classList.remove('hidden');
+
+  }
+
+}
+
+
+/* =========================
+   FIXED ADMIN LOGIN
+========================= */
+
+async function login() {
+
+  const b = $('login-btn');
+  const error = $('login-error');
+  const keyInput = $('admin-key');
+
+  const key =
+    String(keyInput.value || '').trim();
+
+  /* Clear old error */
+  error.textContent = '';
+  error.classList.add('hidden');
+
+  /* Check empty key */
+  if (!key) {
+
+    error.textContent =
+      'Please enter your Admin Key.';
+
+    error.classList.remove('hidden');
+
+    keyInput.focus();
+
+    return;
+  }
+
+  /* Visible loading state */
+  b.disabled = true;
+  b.textContent = 'Signing in…';
+
+  try {
+
+    /* Confirm common.js loaded */
+    if (typeof hrApi !== 'function') {
+
+      throw new Error(
+        'The website connection is not ready. Please refresh the page and try again.'
+      );
+
+    }
+
+    /* Send login request */
+    const r =
+      await hrApi(
+        'adminLogin',
+        {
+          adminKey: key
+        }
+      );
+
+    /* Validate response */
+    if (
+      !r ||
+      !r.data ||
+      !r.data.adminToken
+    ) {
+
+      throw new Error(
+        'Admin sign-in failed. No admin session was returned by the server.'
+      );
+
+    }
+
+    /* Save token */
+    adminToken =
+      r.data.adminToken;
+
+    localStorage.setItem(
+      'hr_admin_token',
+      adminToken
+    );
+
+    /* Open dashboard */
+    $('login').classList.add('hidden');
+
+    $('dashboard').classList.remove('hidden');
+
+    /* Load dashboard data */
+    await loadData();
+
+  } catch (e) {
+
+    error.textContent =
+      e?.message ||
+      'Unable to sign in. Please try again.';
+
+    error.classList.remove('hidden');
+
+  } finally {
+
+    b.disabled = false;
+    b.textContent = 'Open dashboard';
+
+  }
+
+}
+
+
+/* =========================
+   OPEN ORDER
+========================= */
+
+async function openOrder(ref) {
+
+  const o =
+    (data.orders || [])
+      .find(x => x.orderRef === ref);
+
+  if (!o) return;
+
+  activeOrder = o;
+
+  openModal(
+    `Order ${ref}`,
+    `
+      <div class="statline">
+        <span>Customer</span>
+        <strong>${hrEscape(o.email)}</strong>
+      </div>
+
+      <div class="statline">
+        <span>Work total</span>
+        <strong>
+          ${o.workFileCount} file(s) •
+          ${hrFormatBytes(o.workTotalBytes)}
+        </strong>
+      </div>
+
+      <div class="statline">
+        <span>Plan / price</span>
+        <strong>
+          ${hrEscape(o.planName)} •
+          ${hrFormatMoney(o.price, o.currency)}
+        </strong>
+      </div>
+
+      <div class="statline">
+        <span>Status</span>
+        <strong>
+          ${hrEscape(hrStatusLabel(o.status))}
+        </strong>
+      </div>
+
+      <div class="statline">
+        <span>Due</span>
+        <strong>
+          ${hrFormatDate(o.dueAt)}
+        </strong>
+      </div>
+
+      <h3 style="margin-top:20px">
+        Work files
+      </h3>
+
+      <div id="work-files-admin">
+        ${renderFileRows(o.workFiles)}
+      </div>
+
+      <h3 style="margin-top:20px">
+        Assignment question or instructions
+      </h3>
+
+      ${
+        o.hasInstructions
+          ? `
+            <div class="notice">
+
+              ${
+                o.instructionText
+                  ? `
+                    <strong>Pasted text:</strong>
+
+                    <div
+                      style="
+                        white-space:pre-wrap;
+                        margin-top:8px
+                      "
+                    >
+                      ${hrEscape(o.instructionText)}
+                    </div>
+                  `
+                  : ''
+              }
+
+              ${
+                o.instructionFiles?.length
+                  ? `
+                    <div style="margin-top:12px">
+
+                      <strong>
+                        Uploaded instruction files:
+                      </strong>
+
+                      ${renderFileRows(o.instructionFiles)}
+
+                    </div>
+                  `
+                  : ''
+              }
+
+            </div>
+          `
+          : `
+            <div class="notice">
+              Customer said they do not have a brief/instructions.
+            </div>
+          `
+      }
+
+      <div
+        class="actions"
+        style="margin-top:18px"
+      >
+
+        <button
+          class="btn secondary"
+          id="mark-review"
+        >
+          Open work files
+        </button>
+
+        <label
+          class="btn secondary"
+          for="report-files"
+        >
+
+          Upload finished report(s)
+
+          <input
+            id="report-files"
+            type="file"
+            multiple
+            style="display:none"
+          >
+
+        </label>
+
+        <button
+          class="btn success"
+          id="deliver-order"
+        >
+          Upload & deliver
+        </button>
+
+        <button
+          class="btn danger"
+          id="clear-reports"
+        >
+          Discard pending reports
+        </button>
+
+      </div>
+
+      <div
+        id="order-actions-msg"
+        class="notice hidden"
+        style="margin-top:14px"
+      ></div>
+    `
+  );
+
+
+  /* Open original */
+  $('mark-review').onclick =
+    async () => {
+
+      try {
+
+        await adminApi(
+          'adminOpenOriginal',
+          {
+            orderRef: ref
+          }
+        );
+
+        const links =
+          (
+            await adminApi(
+              'adminGetWorkFileLinks',
+              {
+                orderRef: ref
+              }
+            )
+          ).data;
+
+        if (links.length === 1) {
+
+          window.open(
+            links[0].url,
+            '_blank',
+            'noopener'
+          );
+
+        } else {
+
+          openModal(
+            `Work files — ${ref}`,
+            links
+              .map((x) => `
+                <div class="file-meta">
+
+                  <div>
+
+                    <strong>
+                      ${hrEscape(x.name)}
+                    </strong>
+
+                    <div class="small muted">
+                      ${hrFormatBytes(x.size)}
+                    </div>
+
+                  </div>
+
+                  <a
+                    class="btn secondary"
+                    href="${hrEscape(x.url)}"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Open
+                  </a>
+
+                </div>
+              `)
+              .join('')
+          );
+
+        }
+
+        await loadData();
+
+      } catch (e) {
+
+        $('order-actions-msg').className =
+          'notice danger';
+
+        $('order-actions-msg').textContent =
+          e.message;
+
+      }
+
+    };
+
+
+  $('deliver-order').onclick =
+    () => deliverOrder(ref);
+
+
+  $('clear-reports').onclick =
+    async () => {
+
+      try {
+
+        await adminApi(
+          'adminClearPendingReports',
+          {
+            orderRef: ref
+          }
+        );
+
+        $('order-actions-msg').className =
+          'notice success';
+
+        $('order-actions-msg').textContent =
+          'Pending report files removed.';
+
+        await loadData();
+
+      } catch (e) {
+
+        $('order-actions-msg').className =
+          'notice danger';
+
+        $('order-actions-msg').textContent =
+          e.message;
+
+      }
+
+    };
+
+}
+
+
+/* =========================
+   UPLOAD REPORTS
+========================= */
+
+async function uploadReports(ref) {
+
+  const input = $('report-files');
+
+  const files =
+    [...(input?.files || [])];
+
+  if (!files.length) {
+
+    throw new Error(
+      'Choose at least one report file.'
+    );
+
+  }
+
+  for (
+    let i = 0;
+    i < files.length;
+    i++
+  ) {
+
+    const f = files[i];
+
+    $('order-actions-msg').className =
+      'notice';
+
+    $('order-actions-msg').textContent =
+      `Uploading ${f.name} (${i + 1}/${files.length})…`;
+
+    await adminApi(
+      'adminUploadReportFile',
+      {
+        orderRef: ref,
+        fileName: f.name,
+        fileSizeBytes: f.size,
+        mimeType: f.type,
+        base64: await hrFileToBase64(f)
+      }
+    );
+
+  }
+
+}
+
+
+/* =========================
+   DELIVER ORDER
+========================= */
+
+async function deliverOrder(ref) {
+
+  const b = $('deliver-order');
+  const msg = $('order-actions-msg');
+
+  hrSetBusy(
+    b,
+    true,
+    'Delivering…'
+  );
+
+  try {
+
+    await uploadReports(ref);
+
+    await adminApi(
+      'adminFinalizeDelivery',
+      {
+        orderRef: ref
+      }
+    );
+
+    msg.className =
+      'notice success';
+
+    msg.textContent =
+      'Delivered successfully. Customer email sent and secure delivery link created.';
+
+    await loadData();
+
+  } catch (e) {
+
+    msg.className =
+      'notice danger';
+
+    msg.textContent =
+      e.message;
+
+  } finally {
+
+    hrSetBusy(b, false);
+
+  }
+
+}
+
+
+/* =========================
+   COPY TICKET
+========================= */
+
+async function copyTicket(ticketRef) {
+
+  const x =
+    (data.inquiries || [])
+      .find(i => i.TicketRef === ticketRef);
+
+  if (!x) return;
+
+  const t =
+
+`Humanly Review support ticket
+Ticket Ref: ${x.TicketRef}
+Category: ${x.Category}
+Customer email: ${x.Email}
+Order ref: ${x.OrderRef || 'None'}
+System check: ${x.SystemCheck || 'None'}
+Message: ${x.Message}
+
+Instruction: Draft a ready-to-send support reply. Use only the facts supplied above. Do not invent payment status, delivery status, dates, or policies.`;
+
+  await navigator.clipboard.writeText(t);
+
+  hrToast(
+    'Ticket copied for ChatGPT.',
+    'success'
+  );
+
+}
+
+
+/* =========================
+   REPLY TICKET
+========================= */
+
+async function replyTicket(id) {
+
+  const x =
+    (data.inquiries || [])
+      .find(i => i.InquiryID === id);
+
+  const box =
+    $(`reply-${id}`);
+
+  const msg =
+    $(`replymsg-${id}`);
+
+  if (!x || !box) return;
+
+  try {
+
+    await adminApi(
+      'adminReplyInquiry',
+      {
+        inquiryId: id,
+        message: box.value.trim()
+      }
+    );
+
+    msg.textContent =
+      'Reply sent.';
+
+    msg.className =
+      'small';
+
+    await loadData();
+
+  } catch (e) {
+
+    msg.textContent =
+      e.message;
+
+    msg.className =
+      'small danger';
+
+  }
+
+}
+
+
+/* =========================
+   EDIT PLAN
+========================= */
+
+function editPlan(planId) {
+
+  const p =
+    (data.plans || [])
+      .find(x => x.PlanID === planId);
+
+  if (!p) return;
+
+  openModal(
+    `Edit ${hrEscape(planId)}`,
+
+    `
+      <div class="field">
+
+        <label>Name</label>
+
+        <input
+          id="p-name"
+          class="input"
+          value="${hrEscape(p.PlanName)}"
+        >
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="field">
+
+          <label>Min MB</label>
+
+          <input
+            id="p-min"
+            class="input"
+            type="number"
+            step="0.0001"
+            value="${p.MinSizeMB}"
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label>Max MB</label>
+
+          <input
+            id="p-max"
+            class="input"
+            type="number"
+            step="0.0001"
+            value="${p.MaxSizeMB}"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="field">
+
+          <label>Price</label>
+
+          <input
+            id="p-price"
+            class="input"
+            type="number"
+            step="0.01"
+            value="${p.Price}"
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label>Currency</label>
+
+          <input
+            id="p-currency"
+            class="input"
+            value="${hrEscape(p.Currency || 'NGN')}"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="grid-2">
+
+        <div class="field">
+
+          <label>Delivery hours</label>
+
+          <input
+            id="p-hours"
+            class="input"
+            type="number"
+            value="${p.DeliveryHours}"
+          >
+
+        </div>
+
+        <div class="field">
+
+          <label>Destination folder ID</label>
+
+          <input
+            id="p-folder"
+            class="input"
+            value="${hrEscape(p.DestinationFolderId || '')}"
+          >
+
+        </div>
+
+      </div>
+
+      <label class="inline">
+
+        <input
+          id="p-active"
+          type="checkbox"
+          ${p.Active ? 'checked' : ''}
+        >
+
+        Active
+
+      </label>
+
+      <div class="actions">
+
+        <button
+          id="save-plan"
+          class="btn"
+        >
+          Save plan
+        </button>
+
+      </div>
+
+      <div
+        id="plan-msg"
+        class="notice hidden"
+      ></div>
+    `
+  );
+
+
+  $('save-plan').onclick =
+    async () => {
+
+      const b =
+        $('save-plan');
+
+      hrSetBusy(
+        b,
+        true,
+        'Saving…'
+      );
+
+      try {
+
+        await adminApi(
+          'adminSavePlan',
+          {
+            plan: {
+
+              PlanID:
+                p.PlanID,
+
+              PlanName:
+                $('p-name').value.trim(),
+
+              MinSizeMB:
+                Number($('p-min').value),
+
+              MaxSizeMB:
+                Number($('p-max').value),
+
+              Price:
+                Number($('p-price').value),
+
+              Currency:
+                $('p-currency')
+                  .value
+                  .trim()
+                  .toUpperCase(),
+
+              DeliveryHours:
+                Number($('p-hours').value),
+
+              DestinationFolderId:
+                $('p-folder')
+                  .value
+                  .trim(),
+
+              Active:
+                $('p-active').checked
+
+            }
+          }
+        );
+
+        closeModal();
+
+        await loadData();
+
+        hrToast(
+          'Plan saved.',
+          'success'
+        );
+
+      } catch (e) {
+
+        $('plan-msg').className =
+          'notice danger';
+
+        $('plan-msg').textContent =
+          e.message;
+
+        $('plan-msg').classList.remove(
+          'hidden'
+        );
+
+      } finally {
+
+        hrSetBusy(
+          b,
+          false
+        );
+
+      }
+
+    };
+
+}
+
+
+/* =========================
+   ADD PLAN
+========================= */
+
+$('new-plan').onclick =
+  () =>
+    openModal(
+      'Add plan',
+      `
+        <div class="notice">
+          Create a plan by adding a row to the Plans
+          sheet, then refresh this dashboard.
+          The backend validates overlapping ranges
+          before saving.
+        </div>
+      `
+    );
+
+
+/* =========================
+   SAVE SETTINGS
+========================= */
+
+$('save-settings').onclick =
+  async () => {
+
+    const out = {};
+
+    document
+      .querySelectorAll('[data-setting]')
+      .forEach(el => {
+
+        out[el.dataset.setting] =
+          el.type === 'checkbox'
+            ? el.checked
+            : el.value;
+
+      });
+
+    try {
+
+      await adminApi(
+        'adminSaveSettings',
+        {
+          settings: out
+        }
+      );
+
+      hrToast(
+        'Settings saved.',
+        'success'
+      );
+
+      await loadData();
+
+    } catch (e) {
+
+      hrToast(
+        e.message,
+        'danger'
+      );
+
+    }
+
+  };
+
+
+/* =========================
+   BUTTONS / EVENTS
+========================= */
+
+$('login-btn').onclick = login;
+
+
+/* ENTER KEY LOGIN */
+$('admin-key').addEventListener(
+  'keydown',
+  e => {
+
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      login();
+    }
+
+  }
+);
+
+
+$('refresh-btn').onclick =
+  loadData;
+
+
+$('queue-search').oninput =
+  renderQueue;
+
+
+$('modal-close').onclick =
+  closeModal;
+
+
+document
+  .querySelectorAll('.tab')
+  .forEach(btn => {
+
+    btn.onclick = () => {
+
+      document
+        .querySelectorAll('.tab')
+        .forEach(x =>
+          x.classList.remove('active')
+        );
+
+      document
+        .querySelectorAll('.tab-panel')
+        .forEach(x =>
+          x.classList.add('hidden')
+        );
+
+      btn.classList.add('active');
+
+      $(
+        'tab-' + btn.dataset.tab
+      ).classList.remove(
+        'hidden'
+      );
+
+    };
+
+  });
+
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+(async function () {
+
+  if (!adminToken) {
+    return;
+  }
+
+  $('login').classList.add(
+    'hidden'
+  );
+
+  $('dashboard').classList.remove(
+    'hidden'
+  );
+
+  await loadData();
+
+})();
+
+</script>
+
+</body>
+</html>
