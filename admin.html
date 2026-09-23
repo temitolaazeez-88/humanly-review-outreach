@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Admin | HumanlyReview</title>
+<meta name="theme-color" content="#0A1745"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect width=%22300%22 height=%22300%22 rx=%2258%22 fill=%22%230F1F5E%22/%3E%3Ccircle cx=%22139%22 cy=%22141%22 r=%2276%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2224%22/%3E%3Cpath d=%22M193 195L243 243%22 stroke=%22%23fff%22 stroke-width=%2224%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M105 138L132 167L176 116%22 stroke=%22%23F6BC3F%22 stroke-width=%2222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/%3E%3C/svg%3E" type="image/svg+xml"><script>try{var a=JSON.parse(localStorage.getItem('hr_display')||'{}'),r=document.documentElement;r.setAttribute('data-size',a.size||'0');r.setAttribute('data-contrast',a.contrast||(!localStorage.getItem('hr_display')&&window.matchMedia&&matchMedia('(prefers-contrast: more)').matches?'1':'0'))}catch(e){}</script><link rel="stylesheet" href="styles.css?v=20260923.2">
+</head>
+<body class="admin-app">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="hr-mark" viewBox="0 0 300 300"><rect width="300" height="300" rx="58" fill="#0F1F5E"/><circle cx="139" cy="141" r="76" fill="none" stroke="#fff" stroke-width="24"/><path d="M193 195L243 243" stroke="#fff" stroke-width="24" stroke-linecap="round"/><path d="M105 138L132 167L176 116" stroke="#F6BC3F" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+<symbol id="hr-mark-w" viewBox="0 0 300 300"><rect width="300" height="300" rx="58" fill="#fff"/><circle cx="139" cy="141" r="76" fill="none" stroke="#0F1F5E" stroke-width="24"/><path d="M193 195L243 243" stroke="#0F1F5E" stroke-width="24" stroke-linecap="round"/><path d="M105 138L132 167L176 116" stroke="#F6BC3F" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="ai" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9 16.5h6"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M8 11l2 2 4-4"/></symbol>
+<symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></symbol>
+<symbol id="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+<symbol id="arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.3"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="health" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 15h9"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></symbol>
+<symbol id="screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="law" viewBox="0 0 24 24"><path d="M12 4v16M6 20h12M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0L5 8zM19 8l-3 6a3 3 0 0 0 6 0l-3-6z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+<symbol id="people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 1.8 6 5.5"/></symbol>
+<symbol id="cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4zM9 9h5M9 13h5"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.6 8.3c.3-.6.7-.6 1-.6l.6.9c.1.3 0 .5-.3.9l-.4.5c.6 1.3 1.7 2.3 3 3l.5-.5c.4-.4.6-.4.9-.3l1 .5c.2.2.3.5.1.9-.5 1.1-1.6 1.3-2.5 1-2.6-.9-4.5-2.9-5.2-5.1-.1-.6 0-1.1.3-1.6z"/></symbol>
+<symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5M5 19h14"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+</defs></svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<header class="topbar"><div class="container nav">
+<a class="brand" href="index.html" aria-label="HumanlyReview home"><svg class="brand-mark" aria-hidden="true"><use href="#hr-mark"/></svg><span class="wmk">HumanlyReview<span>.com</span></span></a>
+<span class="badge warning"><span><span class="hide-sm">Owner </span>dashboard</span></span>
+</div></header>
+<main id="main"><section class="section"><div class="container">
+
+<div id="login-panel" class="card pad login-card">
+  <svg class="brand-mark" aria-hidden="true" style="width:3.2rem;height:3.2rem"><use href="#hr-mark"/></svg>
+  <h1 style="margin:.9rem 0 .3rem">Admin sign-in</h1>
+  <p class="muted">Enter the private Admin Key from Apps Script.</p>
+  <div class="connection"><span id="connection-dot" class="dot"></span><span id="connection-status">Checking backend…</span></div>
+  <div class="field"><label for="admin-key">Admin Key</label><div class="key-row"><input id="admin-key" class="input" type="password" autocomplete="current-password" spellcheck="false"><button type="button" class="btn secondary" id="toggle-admin-key">Show</button></div></div>
+  <div id="login-error" class="notice danger hidden" role="alert"></div>
+  <div class="admin-login-actions" style="margin-top:1rem"><button type="button" id="login-btn" class="btn">Open dashboard</button><button type="button" id="retry-connection" class="btn secondary">Test backend</button></div>
+</div>
+
+<div id="dashboard" class="hidden">
+  <div class="admin-hd"><div><h1>Dashboard</h1><p class="muted">Process orders, review customer files, deliver reports, reply to support, and control settings.</p></div><div class="admin-login-actions"><span class="mini" id="last-updated"></span><button type="button" class="btn secondary" id="refresh-btn">Refresh</button><button type="button" class="btn secondary" id="logout-btn">Sign out</button></div></div>
+  <div id="banner" class="notice warning hidden" style="margin:1rem 0"></div>
+  <div id="kpis" class="kpis"></div>
+  <div class="admin-tabs" role="tablist">
+    <button type="button" class="tab active" data-tab="queue">Queue <span class="count hidden"></span></button>
+    <button type="button" class="tab" data-tab="inquiries">Inquiries <span class="count hidden"></span></button>
+    <button type="button" class="tab" data-tab="plans">Plans</button>
+    <button type="button" class="tab" data-tab="settings">Settings</button>
+    <button type="button" class="tab" data-tab="faqs">FAQs</button>
+    <button type="button" class="tab" data-tab="samples">Samples</button>
+  </div>
+
+  <div id="tab-queue" class="tab-panel"><div class="card pad"><div class="toolbar"><h2>Review queue</h2><input id="queue-search" class="input" type="search" placeholder="Search order or email" aria-label="Search orders"></div><div id="queue-filters" class="chips" style="margin-bottom:1rem"></div><div id="queue" class="table-wrap"></div></div></div>
+  <div id="tab-inquiries" class="tab-panel hidden"><div id="inquiries"></div></div>
+  <div id="tab-plans" class="tab-panel hidden"><div class="card pad"><div class="toolbar"><div><h2>Plans</h2><p class="muted">Tier order controls MB/page matching. Per-plan report formats are optional overrides.</p></div><div class="actions"><button type="button" class="btn secondary" id="apply-recommended">Use recommended 5-tier setup</button><button type="button" class="btn secondary hidden" id="restore-pricing">Restore previous pricing setup</button><button type="button" class="btn" id="new-plan">Add plan</button></div></div><div class="admin-note" style="margin-bottom:1rem">The recommended setup saves a one-click rollback snapshot first. Existing paid orders keep their original price and report policy.</div><div id="plans-admin" class="table-wrap"></div></div></div>
+  <div id="tab-settings" class="tab-panel hidden"><div class="admin-note" style="margin-bottom:1rem"><strong>Online upload protection:</strong> the system-wide upload limits apply to every normal and custom online submission. They protect Apps Script, Google Drive and upload processing. Requests above the online custom range should use Enterprise / Institutional Review instead of uploading them here.</div><div class="card pad"><div class="toolbar"><div><h2>Settings</h2><p class="muted">Change pricing, paper/instruction limits, report formats, delivery, email, and site settings here. Important business rules remain editable here.</p></div><input id="settings-search" class="input" type="search" placeholder="Search settings" aria-label="Search settings"></div><div id="settings-form"></div><div class="savebar"><span class="small muted">Changes apply to the live site after you save.</span><button type="button" id="save-settings" class="btn">Save settings</button></div></div></div>
+  <div id="tab-faqs" class="tab-panel hidden"><div class="card pad"><h2>FAQs</h2><p class="muted">Manage FAQ rows in the Google Sheet.</p><div id="faqs-admin" style="margin-top:.8rem"></div></div></div>
+  <div id="tab-samples" class="tab-panel hidden"><div class="card pad"><h2>Samples</h2><p class="muted">Manage sample cards in the Samples sheet.</p><div id="samples-admin" style="margin-top:.8rem"></div></div></div>
+</div>
+</div></section></main>
+
+<div id="modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-card"><div class="mhead"><h2 id="modal-title">Admin</h2><button type="button" id="modal-close" class="btn secondary sm">Close</button></div><div class="mbody" id="modal-content"></div></div></div>
+
+<script src="common.js?v=20260923.2"></script>
+<script>
+
+(function(){
+'use strict';
+
+var adminToken=localStorage.getItem('hr_admin_token')||'';
+var data=null;
+var activeOrder=null;
+var $=function(id){return document.getElementById(id);};
+
+function backendUrl(){
+  try{if(typeof HR_CONFIG!=='undefined' && HR_CONFIG && HR_CONFIG.BACKEND_URL)return String(HR_CONFIG.BACKEND_URL).trim();}catch(e){}
+  try{if(window.HR_CONFIG && window.HR_CONFIG.BACKEND_URL)return String(window.HR_CONFIG.BACKEND_URL).trim();}catch(e){}
+  return String(localStorage.getItem('hr_backend_url')||'').trim();
+}
+
+function esc(v){return String(v==null?'':v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function money(v,c){var n=Number(v||0);return esc(c||'NGN')+' '+n.toLocaleString(undefined,{minimumFractionDigits:0,maximumFractionDigits:2});}
+function bytes(v){var n=Number(v||0);if(!n)return '0 B';var u=['B','KB','MB','GB'];var i=0;while(n>=1024&&i<u.length-1){n/=1024;i++;}return n.toLocaleString(undefined,{maximumFractionDigits:i?2:0})+' '+u[i];}
+function date(v){if(!v)return '—';var d=new Date(v);if(isNaN(d.getTime()))return esc(v);return d.toLocaleString(undefined,{dateStyle:'medium',timeStyle:'short'});}
+function statusLabel(s){return String(s||'').replace(/_/g,' ').replace(/\b\w/g,function(x){return x.toUpperCase();});}
+function setBusy(btn,busy,text){if(!btn)return;if(busy){if(btn.getAttribute('aria-busy')!=='true')btn.dataset.oldText=btn.textContent;btn.textContent=text||'Working…';btn.disabled=true;btn.setAttribute('aria-busy','true');}else{btn.textContent=btn.dataset.oldText||btn.textContent;btn.disabled=false;btn.removeAttribute('aria-busy');}}
+function toast(msg,kind){hrToast(msg,kind==='success'?'success':kind==='danger'?'danger':'info');}
+function showError(el,msg){if(!el)return;el.textContent=msg||'Something went wrong.';el.className='notice danger';el.classList.remove('hidden');}
+function clearError(el){if(el){el.textContent='';el.classList.add('hidden');}}
+
+async function api(action,payload,opts){
+  payload=payload||{};opts=opts||{};
+  var url=backendUrl();
+  if(!url)throw new Error('Backend URL is missing. Check common.js and make sure BACKEND_URL points to your Apps Script /exec URL.');
+  var body={action:action,payload:payload};
+  var response;
+  try{
+    response=await fetch(url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(body),redirect:'follow',cache:'no-store'});
+  }catch(e){throw new Error('Could not reach the backend. Check the Apps Script Web App URL and deployment access.');}
+  var text=await response.text();
+  var obj;
+  try{obj=JSON.parse(text);}catch(e){throw new Error('The backend returned an invalid response. Check that the Apps Script Web App is deployed as a Web App and opens with /exec.');}
+  if(!response.ok)throw new Error(obj.error||('Backend HTTP error '+response.status));
+  if(obj.ok===false)throw new Error(obj.error||'The backend rejected the request.');
+  return obj;
+}
+
+async function health(){
+  var dot=$('connection-dot'),label=$('connection-status');
+  if(dot)dot.className='dot';
+  if(label)label.textContent='Testing backend…';
+  var url=backendUrl();
+  if(!url){if(dot)dot.className='dot bad';if(label)label.textContent='Backend URL missing';return false;}
+  try{
+    var r=await fetch(url+'?action=health&v='+Date.now(),{method:'GET',cache:'no-store',redirect:'follow'});var t=await r.text();var o=JSON.parse(t);
+    if(!o.ok)throw new Error(o.error||'Health check failed');
+    if(dot)dot.className='dot ok';if(label)label.textContent='Backend connected • '+(o.version||'online');return true;
+  }catch(e){if(dot)dot.className='dot bad';if(label)label.textContent='Backend not reachable';showError($('login-error'),e.message||'Backend health test failed.');return false;}
+}
+
+function showLogin(message){$('login-panel').classList.remove('hidden');$('dashboard').classList.add('hidden');if(message)showError($('login-error'),message);}
+function showDashboard(){clearError($('login-error'));$('login-panel').classList.add('hidden');$('dashboard').classList.remove('hidden');}
+
+async function login(){
+  var b=$('login-btn'),key=String($('admin-key').value||'').trim();clearError($('login-error'));
+  if(!key){showError($('login-error'),'Enter your Admin Key first.');return;}
+  setBusy(b,true,'Signing in…');
+  try{var r=await api('adminLogin',{adminKey:key});if(!r.data||!r.data.adminToken)throw new Error('The server did not return an admin login token.');adminToken=r.data.adminToken;localStorage.setItem('hr_admin_token',adminToken);showDashboard();await loadData();toast('Admin dashboard opened.','success');}
+  catch(e){localStorage.removeItem('hr_admin_token');adminToken='';showError($('login-error'),e.message||'Admin sign-in failed.');}
+  finally{setBusy(b,false);}
+}
+
+async function loadData(){
+  var r=await api('adminGetData',{adminToken:adminToken});
+  data=r.data||{};
+  renderAll();
+  var lu=$('last-updated');if(lu)lu.textContent='Updated '+new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+}
+
+async function refresh(){var b=$('refresh-btn');setBusy(b,true,'Refreshing…');try{await loadData();toast('Dashboard refreshed.','success');}catch(e){handleApiError(e);}finally{setBusy(b,false);}}
+function handleApiError(e){var msg=e&&e.message?e.message:'Unexpected error.';if(/Admin session expired/i.test(msg)){localStorage.removeItem('hr_admin_token');adminToken='';showLogin(msg);}else toast(msg,'danger');}
+function logout(){localStorage.removeItem('hr_admin_token');adminToken='';data=null;showLogin('You have signed out.');}
+
+function renderKpis(){var k=data.kpis||{};var items=[['Awaiting payment',k.awaiting_payment||0,'warn'],['Submitted',k.submitted||0,'info'],['In review',k.in_review||0,'info'],['Report ready',k.delivered||0,'ok'],['Open tickets',k.open_inquiries||0,k.open_inquiries?'warn':'ok'],['Overdue',k.overdue||0,k.overdue?'bad':'ok']];if(k.custom_requests!=null)items.push(['Custom requests',k.custom_requests||0,'info']);if(k.custom_quote_ready!=null)items.push(['Quotes ready',k.custom_quote_ready||0,'info']);if(k.custom_awaiting_payment!=null)items.push(['Custom, awaiting payment',k.custom_awaiting_payment||0,'warn']);$('kpis').innerHTML=items.map(function(x){return '<div class="kpi" data-tone="'+x[2]+'"><div class="n">'+x[1]+'</div><div class="l">'+esc(x[0])+'</div></div>';}).join('');}
+
+var queueFilter='all';
+function isOverdue(o){return !!o.dueAt&&['submitted','in_review'].indexOf(String(o.status))>=0&&new Date(o.dueAt).getTime()<Date.now();}
+function statusBadge(s){return '<span class="badge '+(s==='delivered'?'success':s==='awaiting_payment'?'warning':s==='in_review'?'info':'')+'">'+esc(statusLabel(s))+'</span>';}
+function renderQueue(){
+  var q=String($('queue-search').value||'').toLowerCase();
+  var searched=(data.orders||[]).filter(function(o){return !q||String(o.orderRef).toLowerCase().indexOf(q)>=0||String(o.email).toLowerCase().indexOf(q)>=0;});
+  var counts={all:searched.length,awaiting_payment:0,submitted:0,in_review:0,delivered:0,overdue:0};
+  searched.forEach(function(o){if(counts[o.status]!=null)counts[o.status]++;if(isOverdue(o))counts.overdue++;});
+  var defs=[['all','All'],['awaiting_payment','Awaiting payment'],['submitted','Submitted'],['in_review','In review'],['delivered','Report ready'],['overdue','Overdue']];
+  $('queue-filters').innerHTML=defs.map(function(d){return '<button type="button" class="chipbtn'+(queueFilter===d[0]?' on':'')+'" data-qfilter="'+d[0]+'" aria-pressed="'+(queueFilter===d[0])+'">'+d[1]+' ('+counts[d[0]]+')</button>';}).join('');
+  var rows=searched.filter(function(o){return queueFilter==='all'||(queueFilter==='overdue'?isOverdue(o):String(o.status)===queueFilter);});
+  $('queue').innerHTML=(rows.length?'<table class="table"><thead><tr><th>Order</th><th>Customer</th><th>Papers</th><th>Instructions</th><th>Price</th><th>Status</th><th>Due</th><th></th></tr></thead><tbody>'+rows.map(function(o){var late=isOverdue(o),pg=o.workTotalPages==null?'—':Number(o.workTotalPages)+' pages';return '<tr'+(late?' class="late"':'')+'><td data-label="Order"><strong>'+esc(o.orderRef)+'</strong></td><td data-label="Customer">'+esc(o.email)+'</td><td data-label="Papers">'+Number(o.workFileCount||0)+' file(s) <span class="small muted">'+bytes(o.workTotalBytes)+' • '+pg+'</span></td><td data-label="Instructions">'+(o.hasInstructions?'Yes':'No')+'</td><td data-label="Price"><strong>'+money(o.price,o.currency)+'</strong></td><td data-label="Status">'+statusBadge(o.status)+'</td><td data-label="Due">'+date(o.dueAt)+(late?' <span class="late-txt">Overdue</span>':'')+'</td><td data-label=""><button type="button" class="btn secondary sm" data-open-order="'+esc(o.orderRef)+'">Open</button></td></tr>';}).join('')+'</tbody></table>':'<div class="empty">No orders found.</div>');
+}
+function renderTabCounts(){var k=(data&&data.kpis)||{};var el=document.querySelector('[data-tab="inquiries"] .count');if(el){var n=Number(k.open_inquiries||0);el.textContent=n;el.classList.toggle('hidden',!n);}var qe=document.querySelector('[data-tab="queue"] .count');if(qe){var m=(data.orders||[]).filter(function(o){return ['submitted','in_review'].indexOf(String(o.status))>=0;}).length;qe.textContent=m;qe.classList.toggle('hidden',!m);}}
+
+function renderFileRows(files){if(!files||!files.length)return '<div class="muted">None</div>';return files.map(function(f){var pg=f.pageCount?(' • '+Number(f.pageCount)+' page'+(Number(f.pageCount)===1?'':'s')):'';return '<div class="file-meta"><div><strong>'+esc(f.name)+'</strong><div class="small">'+bytes(f.size)+pg+(f.uploaded?' • stored':'')+'</div></div></div>';}).join('');}
+function renderThread(i){var conv=Array.isArray(i.conversation)&&i.conversation.length?i.conversation:[{type:'customer',kind:'initial',number:0,at:i.Timestamp,message:i.Message||''}];return '<div class="thread">'+conv.map(function(m){var cls=m.type==='admin'?'admin':(m.kind==='followup'?'followup':'customer');var label=m.type==='admin'?'HumanlyReview':(m.kind==='followup'?'Follow-up '+Number(m.number||1):'Initial request');return '<div class="msg '+cls+'"><div class="msg-head"><strong>'+esc(label)+'</strong><span class="msg-meta">'+date(m.at)+'</span></div><div style="white-space:pre-wrap;margin-top:7px">'+esc(m.message||'')+'</div></div>';}).join('')+'</div>';}
+function renderInquiries(){
+  var rows=data.inquiries||[];
+  $('inquiries').innerHTML=rows.map(function(i){return '<div class="card pad ticket"><div class="spaced"><div><strong>'+esc(i.TicketRef)+'</strong> <span class="badge '+(i.Status==='Open'?'warning':'success')+'">'+esc(i.Status)+'</span><div class="small">'+esc(i.Category)+' • '+esc(i.Email)+(i.FollowUpCount?' • '+i.FollowUpCount+' follow-up(s)':'')+'</div>'+(i.quotePrice?'<div style="margin-top:8px"><span class="quote-chip">Quote: '+money(i.quotePrice,i.quoteCurrency)+' • '+Number(i.quoteDeliveryHours||0)+'h</span></div>':'')+'</div><button type="button" class="btn secondary" data-copy-ticket="'+esc(i.TicketRef)+'">Copy for ChatGPT</button></div>'+renderThread(i)+(i.OrderRef?'<div class="small" style="margin-top:10px">Order: '+esc(i.OrderRef)+'</div>':'')+(i.Status==='Open'?'<div class="reply-box"><div class="small">Reply to the customer using this same ticket.</div><div class="field"><label>Reply</label><textarea class="textarea" rows="4" data-reply-box="'+esc(i.InquiryID)+'" placeholder="Write a clear reply…"></textarea></div><div class="inquiry-tools">'+(i.Category==='Oversized Request'?'<button type="button" class="btn" data-auto-quote="'+esc(i.InquiryID)+'">Send / update custom quote</button>':'')+'<button type="button" class="btn secondary" data-reply-open="'+esc(i.InquiryID)+'">Send reply & keep open</button><button type="button" class="btn success" data-reply-resolve="'+esc(i.InquiryID)+'">Send reply & resolve</button></div><div id="reply-msg-'+esc(i.InquiryID)+'" class="small" style="margin-top:8px"></div></div>':'')+'</div>';}).join('')+(rows.length?'':'<div class="empty">No support tickets.</div>');
+}
+
+function renderPlans(){
+  var rows=(data.plans||[]).slice().sort(function(a,b){return Number(a.TierRank||999)-Number(b.TierRank||999);});
+  $('plans-admin').innerHTML=rows.length?'<table class="table"><thead><tr><th>Tier</th><th>Plan</th><th>MB</th><th>Pages</th><th>Price</th><th>Hours</th><th>Reports</th><th>Active</th><th></th></tr></thead><tbody>'+rows.map(function(p){var outputs=esc(p.RequiredReportFileTypes||p.ReportFileTypes||'Default');return '<tr><td data-label="Tier"><strong>'+Number(p.TierRank||0)+'</strong></td><td data-label="Plan"><strong>'+esc(p.PlanName)+'</strong><div class="mini">'+esc(p.PlanID)+'</div></td><td data-label="MB">'+(Number(p.MinSizeMB)>0?'&gt;'+Number(p.MinSizeMB):'0')+'–'+Number(p.MaxSizeMB)+' MB</td><td data-label="Pages">'+Number(p.MinPages)+'–'+Number(p.MaxPages)+'</td><td data-label="Price">'+money(p.Price,p.Currency)+'</td><td data-label="Hours">'+p.DeliveryHours+'</td><td data-label="Reports">'+outputs+'</td><td data-label="Active">'+(p.Active?'<span class="badge success">Active</span>':'<span class="badge">Off</span>')+'</td><td data-label=""><button type="button" class="btn secondary sm" data-edit-plan="'+esc(p.PlanID)+'">Edit</button></td></tr>';}).join('')+'</tbody></table>':'<div class="empty">No plans yet. Add your first plan.</div>';
+}
+
+var settingsFields=[
+ ['pricing_basis','Pricing method','select',[['higher_of_mb_pages','Higher of MB or pages (recommended)'],['mb_only','MB only'],['pages_only','Pages only']]],
+ ['max_work_files','Maximum papers per online review','number'],['max_upload_mb','Legacy normal-plan MB reference (kept for compatibility)','number'],['max_customer_work_mb','Maximum paper size for online custom requests (MB)','number'],['max_customer_work_pages','Maximum paper pages for online custom requests (0 = disabled)','number'],['system_max_submission_mb','System-wide maximum total upload size (MB)','number'],['system_max_single_file_mb','System-wide maximum single-file size (MB)','number'],['system_max_file_count','System-wide maximum file count per submission','number'],['accepted_work_file_types','Accepted paper file types (comma-separated)','text'],
+ ['max_instruction_files','Maximum instruction PDFs','number'],['max_instruction_total_mb','Maximum instruction size (MB)','number'],['max_instruction_total_pages','Maximum instruction pages (0 = disabled)','number'],['accepted_instruction_file_types','Accepted instruction file types','text'],['instructions_optional','Allow customer without instructions','bool'],['instructions_count_toward_price','Include instruction size/pages in pricing','bool'],
+ ['accepted_report_file_types','Allowed delivered report types','text'],['required_report_file_types','Required delivered report types','text'],['report_file_priority','Report display/download priority','text'],['delivery_retention_days','Delivery retention days','number'],['manual_delivery_hours_override','Manual delivery hours override','number'],
+ ['maintenance_mode','Pause new submissions','bool'],['site_name','Site name','text'],['hero_title','Hero title (shown only if you change it from the old default)','text'],['hero_subtitle','Hero subtitle (shown only if you change it from the old default)','textarea'],['cta_text','Button text','text'],['site_slogan','Site slogan','text'],['site_url','Website URL','text'],['support_email','Support email','text'],
+ ['default_folder_id','Default Drive folder ID','text'],['enterprise_folder_id','Enterprise/custom folder ID','text'],['enterprise_contact_email','Enterprise / institution contact email','text'],['enterprise_email_subject','Enterprise email subject','text'],['enterprise_email_body','Enterprise email message template','textarea'],['oversized_price_per_mb','Custom auto-price per MB (0 = no MB auto-rate)','number'],['oversized_price_per_page','Custom auto-price per page (0 = no page auto-rate)','number'],['oversized_discount_percent','Custom auto-price discount percent','number'],['custom_currency','Custom quote currency','text'],['custom_auto_approve','Automatically approve custom requests only when required rates are configured','bool'],['custom_request_file_retention_days','Custom request file-retention days','number'],['custom_request_response_window_days','Custom quote response window (days)','number'],['custom_quote_validity_days','Custom quote validity (days)','number'],['custom_request_max_open_days','Maximum days a custom request may remain open','number'],['custom_quote_reminder_days','Send quote-expiry reminder this many days before expiry','number'],['require_custom_quote_acceptance','Require customer acceptance before custom payment','bool'],['allow_custom_file_replacement_before_quote','Allow custom file replacement before quote','bool'],['allow_custom_file_replacement_after_quote','Allow custom file replacement after quote','bool'],['allow_custom_request_cancellation','Allow customer to cancel an open custom request','bool'],
+ ['support_message_char_limit','Support message character limit','number'],['support_max_followups','Maximum messages per ticket','number'],['otp_expiry_minutes','OTP expiry minutes','number'],['otp_max_attempts','OTP maximum attempts','number'],['otp_resend_cooldown_seconds','OTP resend cooldown seconds','number'],['auth_session_hours','Verified email session length (hours) — 720 = 30 days','number'],
+ ['email_payment_confirmed_subject','Payment email subject','text'],['email_payment_confirmed_body','Payment email body','textarea'],['email_report_ready_subject','Report-ready email subject','text'],['email_report_ready_body','Report-ready email body','textarea'],['email_oversized_request_subject','Custom request subject','text'],['email_oversized_request_body','Custom request body','textarea'],['email_oversized_quote_subject','Custom quote subject','text'],['email_oversized_quote_body','Custom quote body','textarea'],['email_custom_quote_expiring_subject','Custom quote-expiry subject','text'],['email_custom_quote_expiring_body','Custom quote-expiry body','textarea'],['email_custom_payment_confirmed_subject','Custom payment-confirmed subject','text'],['email_custom_payment_confirmed_body','Custom payment-confirmed body','textarea'],['email_custom_expired_subject','Custom request-expired subject','text'],['email_custom_expired_body','Custom request-expired body','textarea'],['email_support_ack_subject','Support acknowledgement subject','text'],['email_support_ack_body','Support acknowledgement body','textarea'],['email_support_followup_subject','Support follow-up subject','text'],['email_support_followup_body','Support follow-up body','textarea'],['how_it_works_video_url','How-it-works video URL','text'],
+ ['primary_color','Primary colour','text'],['accent_color','Accent colour','text'],['background_color','Background colour','text'],['text_color','Text colour','text'],['success_color','Success colour','text'],['warning_color','Warning colour','text'],['danger_color','Danger colour','text']
+];
+var settingGroups=[
+ ['Pricing',function(k){return ['pricing_basis','max_upload_mb'].indexOf(k)>=0;}],
+ ['Papers & upload limits',function(k){return ['max_work_files','max_customer_work_mb','max_customer_work_pages','system_max_submission_mb','system_max_single_file_mb','system_max_file_count','accepted_work_file_types'].indexOf(k)>=0;}],
+ ['Assignment instructions',function(k){return ['max_instruction_files','max_instruction_total_mb','max_instruction_total_pages','accepted_instruction_file_types','instructions_optional','instructions_count_toward_price'].indexOf(k)>=0;}],
+ ['Finished report formats & delivery',function(k){return ['accepted_report_file_types','required_report_file_types','report_file_priority','delivery_retention_days','manual_delivery_hours_override','default_folder_id'].indexOf(k)>=0;}],
+ ['Enterprise & custom quotes',function(k){return ['enterprise_folder_id','enterprise_contact_email','enterprise_email_subject','enterprise_email_body','oversized_price_per_mb','oversized_price_per_page','oversized_discount_percent','custom_currency','custom_auto_approve','custom_request_file_retention_days','custom_request_response_window_days','custom_quote_validity_days','custom_request_max_open_days','custom_quote_reminder_days','require_custom_quote_acceptance','allow_custom_file_replacement_before_quote','allow_custom_file_replacement_after_quote','allow_custom_request_cancellation'].indexOf(k)>=0;}],
+ ['Site & contact',function(k){return ['maintenance_mode','site_name','hero_title','hero_subtitle','cta_text','site_slogan','site_url','support_email','how_it_works_video_url'].indexOf(k)>=0;}],
+ ['Support & verification',function(k){return ['support_message_char_limit','support_max_followups','otp_expiry_minutes','otp_max_attempts','otp_resend_cooldown_seconds','auth_session_hours'].indexOf(k)>=0;}],
+ ['Email templates',function(k){return /^email_/.test(k);}],
+ ['Colour settings (kept for compatibility)',function(k){return /_color$/.test(k);}]
+];
+function settingField(x){var k=x[0],label=x[1],type=x[2],opts=x[3]||[],v=data.settings[k]==null?'':data.settings[k];var hay=esc((label+' '+k).toLowerCase());
+  if(type==='bool')return '<div class="field check" data-search="'+hay+'"><label><input type="checkbox" data-setting="'+esc(k)+'" '+(String(v)==='true'?'checked':'')+'> '+esc(label)+'</label><div class="mini setting-key">'+esc(k)+'</div></div>';
+  if(type==='textarea')return '<div class="field wide" data-search="'+hay+'"><label>'+esc(label)+'</label><textarea class="textarea" data-setting="'+esc(k)+'" rows="6">'+esc(v)+'</textarea><div class="mini setting-key">'+esc(k)+'</div></div>';
+  if(type==='select')return '<div class="field" data-search="'+hay+'"><label>'+esc(label)+'</label><select class="input" data-setting="'+esc(k)+'">'+opts.map(function(o){return '<option value="'+esc(o[0])+'" '+(String(v)===String(o[0])?'selected':'')+'>'+esc(o[1])+'</option>';}).join('')+'</select><div class="mini setting-key">'+esc(k)+'</div></div>';
+  return '<div class="field" data-search="'+hay+'"><label>'+esc(label)+'</label><input class="input" data-setting="'+esc(k)+'" type="'+(type==='number'?'number':'text')+'" value="'+esc(v)+'"><div class="mini setting-key">'+esc(k)+'</div></div>';
+}
+function renderSettings(){
+  var used={};settingsFields.forEach(function(x){used[x[0]]=true;});
+  var extra=Object.keys(data.settings||{}).filter(function(k){return !used[k]&&['logo_url','google_client_id','backup_folder_id'].indexOf(k)<0;}).map(function(k){return [k,k,'text'];});
+  var all=settingsFields.concat(extra),placed={};
+  var html=settingGroups.map(function(g,gi){var items=all.filter(function(x){if(placed[x[0]])return false;if(g[1](x[0])){placed[x[0]]=true;return true;}return false;});if(!items.length)return '';return '<details class="sgroup"'+(gi===0?' open':'')+'><summary>'+esc(g[0])+' <span class="mini">('+items.length+')</span></summary><div class="sgrid">'+items.map(settingField).join('')+'</div></details>';});
+  var rest=all.filter(function(x){return !placed[x[0]];});
+  if(rest.length)html.push('<details class="sgroup"><summary>Other <span class="mini">('+rest.length+')</span></summary><div class="sgrid">'+rest.map(settingField).join('')+'</div></details>');
+  $('settings-form').innerHTML=html.join('');
+  filterSettings();
+}
+function filterSettings(){var q=String(($('settings-search')&&$('settings-search').value)||'').toLowerCase().trim();document.querySelectorAll('#settings-form details.sgroup').forEach(function(g){var any=false;g.querySelectorAll('.field').forEach(function(f){var hit=!q||String(f.getAttribute('data-search')||'').indexOf(q)>=0;f.classList.toggle('hidden',!hit);if(hit)any=true;});g.classList.toggle('hidden',!any);if(q&&any)g.open=true;});}
+
+function renderFaqs(){var a=data.faqs||[];$('faqs-admin').innerHTML=a.map(function(f){return '<div class="box" style="margin:.6rem 0"><div class="spaced"><strong>'+esc(f.Question)+'</strong><span class="badge '+(f.Active?'success':'')+'">'+(f.Active?'Active':'Inactive')+'</span></div><p class="muted" style="margin-top:.4rem">'+esc(f.Answer)+'</p></div>';}).join('')||'<div class="empty">No FAQs.</div>';}
+function renderSamples(){var a=data.samples||[];$('samples-admin').innerHTML=a.map(function(s){return '<div class="box" style="margin:.6rem 0"><div class="spaced"><strong>'+esc(s.Title)+'</strong><span class="badge '+(s.Active?'success':'')+'">'+(s.Active?'Active':'Inactive')+'</span></div><p class="muted" style="margin-top:.4rem">'+esc(s.Description||'')+'</p></div>';}).join('')||'<div class="empty">No samples.</div>';}
+function renderAll(){renderKpis();renderQueue();renderInquiries();renderPlans();renderSettings();renderFaqs();renderSamples();renderTabCounts();var active=String(data.settings&&data.settings.maintenance_mode)==='true';$('banner').classList.toggle('hidden',!active);if(active)$('banner').textContent='Maintenance mode is ACTIVE. New customer submissions are paused.';var rb=$('restore-pricing');if(rb)rb.classList.toggle('hidden',!data.pricingRollbackAvailable);}
+
+function openModal(title,html){$('modal-title').textContent=title;$('modal-content').innerHTML=html;$('modal').classList.remove('hidden');}
+function closeModal(){$('modal').classList.add('hidden');}
+
+function csvExts(v){return String(v||'').split(',').map(function(x){return x.trim().replace(/^\./,'').toLowerCase();}).filter(Boolean);}
+function ext(name){var p=String(name||'').toLowerCase().split('.');return p.length>1?p.pop():'';}
+function orderReportPolicy(o){if(o&&o.reportPolicy&&Array.isArray(o.reportPolicy.allowed)&&o.reportPolicy.allowed.length)return o.reportPolicy;var a=csvExts(data.settings&&data.settings.accepted_report_file_types||'pdf,docx'),pri=csvExts(data.settings&&data.settings.report_file_priority||'pdf,docx');return {allowed:a.length?a:['pdf','docx'],required:[],priority:pri.length?pri:a};}
+function basisLabel(v){return ({higher_of_mb_pages:'Higher of MB or pages',mb_only:'MB only',pages_only:'Pages only'})[String(v)]||String(v||'—');}
+function openOrder(ref){
+  var o=(data.orders||[]).find(function(x){return String(x.orderRef)===String(ref);});if(!o)return;var pg=o.workTotalPages==null?'—':Number(o.workTotalPages),ipg=o.instructionTotalPages==null?'—':Number(o.instructionTotalPages),policy=orderReportPolicy(o),allowed=policy.allowed||[],required=policy.required||[],pricingAudit=(o.pricingBasisUsed?'<div class="box"><strong>Pricing audit</strong><br>'+esc(basisLabel(o.pricingBasisUsed))+'<div class="mini">MB tier: '+(o.mbTier==null?'—':o.mbTier)+' • Page tier: '+(o.pageTier==null?'—':o.pageTier)+' • Final: '+(o.finalTier==null?'—':o.finalTier)+'</div></div>':'');
+  openModal('Order '+ref,'<div class="grid-2"><div class="box"><strong>Customer</strong><br>'+esc(o.email)+'</div><div class="box"><strong>Status</strong><br>'+esc(statusLabel(o.status))+'</div><div class="box"><strong>Papers to review</strong><br>'+Number(o.workFileCount||0)+' file(s) • '+bytes(o.workTotalBytes)+' • '+pg+' pages</div><div class="box"><strong>Price</strong><br>'+money(o.price,o.currency)+'</div>'+pricingAudit+'</div><h3>Original papers</h3><div id="work-files-admin">'+renderFileRows(o.workFiles)+'</div><h3>Assignment question / instructions</h3>'+(o.hasInstructions?'<div class="notice">'+(o.instructionText?'<strong>Pasted text:</strong><div style="white-space:pre-wrap;margin-top:8px">'+esc(o.instructionText)+'</div>':'')+(o.instructionFiles&&o.instructionFiles.length?'<div style="margin-top:12px"><strong>Uploaded instruction files ('+ipg+' pages):</strong>'+renderFileRows(o.instructionFiles)+'</div>':'')+'</div>':'<div class="notice">Customer said they do not have instructions.</div>')+'<div class="notice info" style="margin-top:14px"><strong>Finished report policy</strong><br>Allowed: '+esc(allowed.join(', ').toUpperCase()||'—')+'<br>Required: '+esc(required.join(', ').toUpperCase()||'None for this legacy order')+'<br>Priority: '+esc((policy.priority||[]).join(' → ').toUpperCase()||'—')+'</div><div class="actions" style="margin-top:18px"><button type="button" class="btn secondary" id="mark-review">Open paper files</button><label class="btn secondary" style="cursor:pointer">Choose finished report file(s)<input id="report-files" type="file" multiple class="vh" accept="'+esc(allowed.map(function(x){return '.'+x;}).join(','))+'"></label><button type="button" class="btn success" id="deliver-order">Upload & deliver</button>'+(['delivered','downloaded','acknowledged'].indexOf(String(o.status))>=0&&o.deliveryToken?'<button type="button" class="btn secondary" id="resend-delivery">Resend delivery email</button>':'')+'<button type="button" class="btn danger" id="clear-reports">Discard pending reports</button></div><div id="selected-report-files" class="small muted" style="margin-top:8px">No finished report files selected.</div><div id="order-actions-msg" class="notice hidden" style="margin-top:12px"></div>');
+  $('mark-review').onclick=async function(){var b=this,set=$('order-actions-msg');setBusy(b,true,'Preparing…');try{await api('adminOpenOriginal',{adminToken:adminToken,orderRef:ref});var r=await api('adminGetWorkFileLinks',{adminToken:adminToken,orderRef:ref});var links=r.data||[];if(!links.length)throw new Error('Paper files are not available.');set.className='notice success';set.innerHTML='<strong>Paper files ready.</strong><br>'+links.map(function(x,i){return '<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">Open paper '+(i+1)+': '+esc(x.name)+'</a>';}).join('<br>');await loadData();}catch(e){showError(set,e.message);}finally{setBusy(b,false);}};
+  $('report-files').onchange=function(){var fs=[].slice.call(this.files||[]),bad=fs.find(function(f){return allowed.indexOf(ext(f.name))<0;});if(bad){this.value='';$('selected-report-files').textContent=bad.name+' is not an allowed report type. Allowed: '+allowed.join(', ').toUpperCase();return;}$('selected-report-files').textContent=fs.length?fs.map(function(f){return f.name+' ('+bytes(f.size)+')';}).join(' • '):'No finished report files selected.';};
+  $('deliver-order').onclick=function(){deliverOrder(ref);};$('clear-reports').onclick=async function(){var b=this;setBusy(b,true,'Clearing…');try{await api('adminClearPendingReports',{adminToken:adminToken,orderRef:ref});$('selected-report-files').textContent='Pending report files cleared.';toast('Pending report files cleared.','success');}catch(e){showError($('order-actions-msg'),e.message);}finally{setBusy(b,false);}};if($('resend-delivery'))$('resend-delivery').onclick=function(){resendDelivery(ref);};
+}
+async function uploadReports(ref){var input=$('report-files'),files=[].slice.call((input&&input.files)||[]),o=(data.orders||[]).find(function(x){return String(x.orderRef)===String(ref);}),policy=orderReportPolicy(o),allowed=policy.allowed||[];if(!files.length)throw new Error('Choose at least one finished report file.');for(var i=0;i<files.length;i++){var f=files[i],e=ext(f.name);if(allowed.indexOf(e)<0)throw new Error(f.name+' is not allowed for this order. Allowed: '+allowed.join(', ').toUpperCase());$('order-actions-msg').className='notice';$('order-actions-msg').textContent='Uploading '+f.name+' ('+(i+1)+'/'+files.length+')…';await api('adminUploadReportFile',{adminToken:adminToken,orderRef:ref,fileName:f.name,fileSizeBytes:f.size,mimeType:f.type||'application/octet-stream',base64:await fileToBase64(f)});}}
+async function deliverOrder(ref){var b=$('deliver-order'),msg=$('order-actions-msg');setBusy(b,true,'Delivering…');try{await uploadReports(ref);var r=await api('adminFinalizeDelivery',{adminToken:adminToken,orderRef:ref});msg.className='notice success';msg.textContent=r.data&&r.data.emailSent?'Delivered successfully. Customer email sent.':'Delivery completed.';await loadData();toast('Order delivered.','success');}catch(e){showError(msg,e.message);}finally{setBusy(b,false);}}
+async function resendDelivery(ref){var b=$('resend-delivery'),msg=$('order-actions-msg');if(!b)return;setBusy(b,true,'Sending…');try{await api('adminResendDeliveryEmail',{adminToken:adminToken,orderRef:ref});msg.className='notice success';msg.textContent='Delivery email resent successfully.';}catch(e){showError(msg,e.message);}finally{setBusy(b,false);}}
+
+async function copyTicket(ticket){var x=(data.inquiries||[]).find(function(i){return String(i.TicketRef)===String(ticket);});if(!x)return;var text='HumanlyReview support ticket\nTicket Ref: '+x.TicketRef+'\nCategory: '+x.Category+'\nCustomer email: '+x.Email+'\nOrder ref: '+(x.OrderRef||'None')+'\nSystem check: '+(x.SystemCheck||'None')+'\nMessage: '+x.Message+'\n\nInstruction: Draft a ready-to-send support reply. Use only the facts supplied above. Do not invent payment status, delivery status, dates, or policies.';try{await navigator.clipboard.writeText(text);toast('Ticket copied for ChatGPT.','success');}catch(e){openModal('Copy for ChatGPT','<textarea class="input" rows="14" id="copy-box">'+esc(text)+'</textarea><button class="btn" id="copy-now" type="button" style="margin-top:10px">Copy text</button>');$('copy-now').onclick=async function(){await navigator.clipboard.writeText($('copy-box').value);toast('Copied.','success');};}}
+
+async function replyTicket(id,resolve){var box=document.querySelector('[data-reply-box="'+CSS.escape(id)+'"]'),msg=$('reply-msg-'+id),buttons=document.querySelectorAll('[data-reply-open="'+CSS.escape(id)+'"],[data-reply-resolve="'+CSS.escape(id)+'"]');if(!box||!String(box.value||'').trim()){if(msg){msg.textContent='Write a reply first.';msg.style.color='#b91c1c';}return;}buttons.forEach(function(b){setBusy(b,true,resolve?'Resolving…':'Sending…');});try{await api('adminReplyInquiry',{adminToken:adminToken,inquiryId:id,message:box.value.trim(),resolve:resolve,requestKey:'reply|'+id+'|'+Date.now()});await loadData();toast(resolve?'Reply sent and ticket resolved.':'Reply sent; ticket remains open.','success');}catch(e){if(msg){msg.textContent=e.message;msg.style.color='#b91c1c';}}finally{buttons.forEach(function(b){setBusy(b,false);});}}
+
+async function autoQuote(id){var x=(data.inquiries||[]).find(function(i){return String(i.InquiryID)===String(id);});if(!x)return;var currency=String(data.settings&&data.settings.custom_currency||x.quoteCurrency||'USD').toUpperCase(),reason=x.CustomReason||x.customReason||'Custom pricing threshold';openModal('Custom quote — '+x.TicketRef,'<div class="notice"><strong>Customer:</strong> '+esc(x.Email)+'<br><strong>Papers:</strong> '+Number(x.RequestWorkTotalMB||0).toFixed(2)+' MB • '+(x.RequestWorkTotalPages===''||x.RequestWorkTotalPages==null?'—':Number(x.RequestWorkTotalPages))+' pages<br><strong>Instructions:</strong> '+Number(x.RequestInstructionTotalMB||0).toFixed(2)+' MB • '+(x.RequestInstructionTotalPages===''||x.RequestInstructionTotalPages==null?'—':Number(x.RequestInstructionTotalPages))+' pages<br><strong>Reason:</strong> '+esc(reason)+'</div><div class="field"><label>Final price ('+esc(currency)+')</label><input class="input" id="quote-price" type="number" min="0.01" step="0.01" placeholder="Leave blank only when a configured auto-rate applies"></div><div class="field"><label>Delivery hours</label><input class="input" id="quote-hours" type="number" min="1" step="1" value="'+(Number(x.quoteDeliveryHours||data.settings.manual_delivery_hours_override||48)||48)+'"></div><div id="quote-error" class="notice danger hidden"></div><button type="button" class="btn" id="send-quote">Send quote email</button>');$('send-quote').onclick=async function(){var b=this;setBusy(b,true,'Sending…');try{var r=await api('adminAutoQuote',{adminToken:adminToken,inquiryId:id,overridePrice:$('quote-price').value.trim(),overrideDeliveryHours:Number($('quote-hours').value)||48,requestKey:'quote|'+id+'|'+Date.now()});closeModal();await loadData();toast('Custom quote sent: '+money(r.data.price,r.data.currency),'success');}catch(e){showError($('quote-error'),e.message);}finally{setBusy(b,false);}};}
+function planForm(p,isNew){var x=p||{PlanID:'',TierRank:(data.plans||[]).length+1,PlanName:'',MinSizeMB:0,MaxSizeMB:2,MinPages:1,MaxPages:25,Price:12.99,Currency:'USD',DeliveryHours:24,DestinationFolderId:'',ReportFileTypes:'',RequiredReportFileTypes:'',ReportFilePriority:'',Active:true};openModal(isNew?'Add plan':'Edit '+x.PlanID,'<div class="grid-2"><div class="field"><label>Plan ID</label><input id="p-id" class="input" value="'+esc(x.PlanID)+'" '+(!isNew?'readonly':'')+'></div><div class="field"><label>Tier rank</label><input id="p-tier" class="input" type="number" min="1" step="1" value="'+Number(x.TierRank||1)+'"></div></div><div class="field"><label>Plan name</label><input id="p-name" class="input" value="'+esc(x.PlanName)+'"></div><div class="grid-2"><div class="field"><label>Lower MB boundary (tier 1 starts at 0; later tiers equal previous max)</label><input id="p-min" class="input" type="number" min="0" step="0.01" value="'+Number(x.MinSizeMB||0)+'"></div><div class="field"><label>Maximum MB</label><input id="p-max" class="input" type="number" min="0" step="0.01" value="'+Number(x.MaxSizeMB||0)+'"></div></div><div class="grid-2"><div class="field"><label>Minimum pages (continuous from previous tier)</label><input id="p-min-pages" class="input" type="number" min="1" step="1" value="'+Number(x.MinPages||1)+'"></div><div class="field"><label>Maximum pages</label><input id="p-max-pages" class="input" type="number" min="1" step="1" value="'+Number(x.MaxPages||1)+'"></div></div><div class="grid-2"><div class="field"><label>Price</label><input id="p-price" class="input" type="number" min="0" step="0.01" value="'+Number(x.Price||0)+'"></div><div class="field"><label>Currency</label><input id="p-currency" class="input" value="'+esc(x.Currency||'USD')+'"></div></div><div class="grid-2"><div class="field"><label>Delivery hours</label><input id="p-hours" class="input" type="number" min="1" step="1" value="'+Number(x.DeliveryHours||24)+'"></div><div class="field"><label>Destination folder ID</label><input id="p-folder" class="input" value="'+esc(x.DestinationFolderId||'')+'"></div></div><div class="notice info"><strong>Finished report formats</strong><br>Leave these blank to inherit the global Settings values. Example: <code>pdf,docx</code>.</div><div class="field"><label>Allowed report types (optional override)</label><input id="p-report-types" class="input" value="'+esc(x.ReportFileTypes||'')+'"></div><div class="field"><label>Required report types (optional override)</label><input id="p-required-report-types" class="input" value="'+esc(x.RequiredReportFileTypes||'')+'"></div><div class="field"><label>Report priority (optional override)</label><input id="p-report-priority" class="input" value="'+esc(x.ReportFilePriority||'')+'"></div><label style="display:flex;gap:8px;align-items:center"><input id="p-active" type="checkbox" '+(x.Active?'checked':'')+'> Active</label><div id="plan-error" class="notice danger hidden" style="margin-top:10px"></div><button type="button" class="btn" id="save-plan" style="margin-top:10px">Save plan</button>');$('save-plan').onclick=async function(){var b=this;setBusy(b,true,'Saving…');try{await api('adminSavePlan',{adminToken:adminToken,plan:{PlanID:$('p-id').value.trim().toUpperCase(),TierRank:Number($('p-tier').value),PlanName:$('p-name').value.trim(),MinSizeMB:Number($('p-min').value),MaxSizeMB:Number($('p-max').value),MinPages:Number($('p-min-pages').value),MaxPages:Number($('p-max-pages').value),Price:Number($('p-price').value),Currency:$('p-currency').value.trim().toUpperCase(),DeliveryHours:Number($('p-hours').value),DestinationFolderId:$('p-folder').value.trim(),ReportFileTypes:$('p-report-types').value.trim(),RequiredReportFileTypes:$('p-required-report-types').value.trim(),ReportFilePriority:$('p-report-priority').value.trim(),Active:$('p-active').checked}});if(typeof hrInvalidatePublicConfigCache==='function')hrInvalidatePublicConfigCache();closeModal();await loadData();toast('Plan saved.','success');}catch(e){showError($('plan-error'),e.message);}finally{setBusy(b,false);}};}
+function bindDelegated(){
+ document.addEventListener('click',function(ev){var t=ev.target.closest?ev.target.closest('button,a'):null;if(!t)return;
+  if(t.matches('[data-open-order]'))openOrder(t.getAttribute('data-open-order'));
+  else if(t.matches('[data-copy-ticket]'))copyTicket(t.getAttribute('data-copy-ticket'));
+  else if(t.matches('[data-reply-open]'))replyTicket(t.getAttribute('data-reply-open'),false);
+  else if(t.matches('[data-reply-resolve]'))replyTicket(t.getAttribute('data-reply-resolve'),true);
+  else if(t.matches('[data-auto-quote]'))autoQuote(t.getAttribute('data-auto-quote'));
+  else if(t.matches('[data-edit-plan]')){var p=(data.plans||[]).find(function(x){return String(x.PlanID)===String(t.getAttribute('data-edit-plan'));});if(p)planForm(p,false);}
+  else if(t.matches('[data-qfilter]')){queueFilter=t.getAttribute('data-qfilter');renderQueue();}
+  else if(t.matches('[data-tab]')){document.querySelectorAll('.tab').forEach(function(b){b.classList.remove('active');});document.querySelectorAll('.tab-panel').forEach(function(p){p.classList.add('hidden');});t.classList.add('active');$('tab-'+t.getAttribute('data-tab')).classList.remove('hidden');}
+ });
+}
+
+$('login-btn').onclick=login;$('retry-connection').onclick=function(){health();};$('refresh-btn').onclick=refresh;$('logout-btn').onclick=logout;$('modal-close').onclick=closeModal;$('queue-search').oninput=renderQueue;$('settings-search').oninput=filterSettings;
+$('toggle-admin-key').onclick=function(){var i=$('admin-key'),b=this;i.type=i.type==='password'?'text':'password';b.textContent=i.type==='password'?'Show':'Hide';};$('admin-key').addEventListener('keydown',function(e){if(e.key==='Enter')login();});
+$('new-plan').onclick=function(){planForm(null,true);};$('apply-recommended').onclick=async function(){if(!confirm('Apply the recommended five-tier USD pricing setup? A rollback snapshot will be saved first. Existing paid orders will not change.'))return;var b=this;setBusy(b,true,'Applying…');try{await api('adminApplyRecommendedPricing',{adminToken:adminToken});if(typeof hrInvalidatePublicConfigCache==='function')hrInvalidatePublicConfigCache();await loadData();toast('Recommended pricing applied. You can restore the previous pricing setup from this tab.','success');}catch(e){handleApiError(e);}finally{setBusy(b,false);}};$('restore-pricing').onclick=async function(){if(!confirm('Restore the pricing plans and related settings saved immediately before the recommended setup was first applied? Existing paid orders will not change.'))return;var b=this;setBusy(b,true,'Restoring…');try{await api('adminRestorePreviousPricing',{adminToken:adminToken});if(typeof hrInvalidatePublicConfigCache==='function')hrInvalidatePublicConfigCache();await loadData();toast('Previous pricing setup restored.','success');}catch(e){handleApiError(e);}finally{setBusy(b,false);}};
+$('save-settings').onclick=async function(){var b=this,out={};document.querySelectorAll('[data-setting]').forEach(function(el){out[el.getAttribute('data-setting')]=el.type==='checkbox'?el.checked:el.value;});setBusy(b,true,'Saving…');try{await api('adminSaveSettings',{adminToken:adminToken,settings:out});if(typeof hrInvalidatePublicConfigCache==='function')hrInvalidatePublicConfigCache();await loadData();toast('Settings saved.','success');}catch(e){handleApiError(e);}finally{setBusy(b,false);}};
+$('modal').addEventListener('click',function(e){if(e.target===$('modal'))closeModal();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('modal').classList.contains('hidden'))closeModal();});
+
+window.addEventListener('error',function(ev){var m=ev&&ev.error&&ev.error.message?ev.error.message:ev&&ev.message?ev.message:'Unexpected page error.';var box=$('login-error');if(box&&$('login-panel').classList.contains('hidden'))toast('Page error: '+m,'danger');else if(box)showError(box,'Page error: '+m);});
+window.addEventListener('unhandledrejection',function(ev){var m=ev&&ev.reason&&ev.reason.message?ev.reason.message:String(ev.reason||'Unexpected error.');if($('login-panel').classList.contains('hidden'))toast('Error: '+m,'danger');else showError($('login-error'),'Error: '+m);});
+
+bindDelegated();
+(async function(){
+  await health();
+  if(adminToken){showDashboard();try{await loadData();}catch(e){localStorage.removeItem('hr_admin_token');adminToken='';showLogin(e.message||'Your admin session expired. Enter the Admin Key again.');}}
+  else showLogin();
+})();
+})();
+
+</script>
+</body>
+</html>
