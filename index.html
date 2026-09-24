@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en" data-size="0" data-contrast="0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HumanlyReview | Expert-Trained AI Review for Dissertations, Essays &amp; Technical Documents</title>
+<meta name="description" content="Expert-trained AI review for dissertations, essays and technical documents. Find every error before you submit. We review. We never write your work.">
+<meta name="theme-color" content="#0A1745">
+<link rel="canonical" href="https://humanlyreview.com/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 300%22%3E%3Crect width=%22300%22 height=%22300%22 rx=%2258%22 fill=%22%230F1F5E%22/%3E%3Ccircle cx=%22139%22 cy=%22141%22 r=%2276%22 fill=%22none%22 stroke=%22%23fff%22 stroke-width=%2224%22/%3E%3Cpath d=%22M193 195L243 243%22 stroke=%22%23fff%22 stroke-width=%2224%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M105 138L132 167L176 116%22 stroke=%22%23F6BC3F%22 stroke-width=%2222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22 fill=%22none%22/%3E%3C/svg%3E" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HumanlyReview">
+<meta property="og:title" content="Find every error before your reviewer does">
+<meta property="og:description" content="Expert-trained AI review for dissertations, essays and technical documents. We review. We never write your work.">
+<meta property="og:url" content="https://humanlyreview.com/">
+<meta property="og:image" content="https://humanlyreview.com/assets/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var a=JSON.parse(localStorage.getItem('hr_display')||'{}'),r=document.documentElement;r.setAttribute('data-size',a.size||'0');r.setAttribute('data-contrast',a.contrast||(!localStorage.getItem('hr_display')&&window.matchMedia&&matchMedia('(prefers-contrast: more)').matches?'1':'0'))}catch(e){}</script>
+<link rel="stylesheet" href="styles.css?v=20260924.2">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "HumanlyReview", "url": "https://humanlyreview.com", "slogan": "Expert-trained AI. Rigorous review. Secure delivery."}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Will you write or edit my work?", "acceptedAnswer": {"@type": "Answer", "text": "No. HumanlyReview reviews your work and identifies exactly what to correct. The writing stays yours."}}, {"@type": "Question", "name": "What can I submit?", "acceptedAnswer": {"@type": "Answer", "text": "Academic work such as theses, dissertations, essays, coursework and assignments, plus professional and technical documents across every field."}}, {"@type": "Question", "name": "How is my price set?", "acceptedAnswer": {"@type": "Answer", "text": "Automatically under the pricing rules configured for the service. You see the price before you pay."}}]}]}</script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="hr-mark" viewBox="0 0 300 300"><rect width="300" height="300" rx="58" fill="#0F1F5E"/><circle cx="139" cy="141" r="76" fill="none" stroke="#fff" stroke-width="24"/><path d="M193 195L243 243" stroke="#fff" stroke-width="24" stroke-linecap="round"/><path d="M105 138L132 167L176 116" stroke="#F6BC3F" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+<symbol id="hr-mark-w" viewBox="0 0 300 300"><rect width="300" height="300" rx="58" fill="#fff"/><circle cx="139" cy="141" r="76" fill="none" stroke="#0F1F5E" stroke-width="24"/><path d="M193 195L243 243" stroke="#0F1F5E" stroke-width="24" stroke-linecap="round"/><path d="M105 138L132 167L176 116" stroke="#F6BC3F" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="ai" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="12" rx="3"/><path d="M12 3v4M9 13h.01M15 13h.01M9 16.5h6"/></symbol>
+<symbol id="eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4M8 11l2 2 4-4"/></symbol>
+<symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/></symbol>
+<symbol id="ck" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+<symbol id="arr" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a3 3 0 0 0-3-1zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></symbol>
+<symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="tag" viewBox="0 0 24 24"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.3"/></symbol>
+<symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="health" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></symbol>
+<symbol id="flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 18l-5-9V3"/><path d="M7.5 15h9"/></symbol>
+<symbol id="gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></symbol>
+<symbol id="screen" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+<symbol id="law" viewBox="0 0 24 24"><path d="M12 4v16M6 20h12M5 8h14"/><path d="M5 8l-3 6a3 3 0 0 0 6 0L5 8zM19 8l-3 6a3 3 0 0 0 6 0l-3-6z"/></symbol>
+<symbol id="chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></symbol>
+<symbol id="people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6M15 14.5c3 0 6 1.8 6 5.5"/></symbol>
+<symbol id="cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5L2 9z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+<symbol id="book" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4zM9 9h5M9 13h5"/></symbol>
+<symbol id="wa" viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M8.6 8.3c.3-.6.7-.6 1-.6l.6.9c.1.3 0 .5-.3.9l-.4.5c.6 1.3 1.7 2.3 3 3l.5-.5c.4-.4.6-.4.9-.3l1 .5c.2.2.3.5.1.9-.5 1.1-1.6 1.3-2.5 1-2.6-.9-4.5-2.9-5.2-5.1-.1-.6 0-1.1.3-1.6z"/></symbol>
+<symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5M5 19h14"/></symbol>
+<symbol id="dl" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></symbol>
+<symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+<symbol id="mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+</defs></svg>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="maint-bar hidden" id="maint-bar" role="status">New submissions are temporarily paused. Please check back soon.</div>
+
+<header class="topbar"><div class="wrap nav">
+<a class="brand" href="index.html" aria-label="HumanlyReview home"><svg class="brand-mark" aria-hidden="true"><use href="#hr-mark"/></svg><span class="wmk">HumanlyReview<span>.com</span></span></a>
+<nav class="navlinks main" aria-label="Main"><a href="#how">How it works</a><a href="#samples">Samples</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="help.html">Help</a></nav>
+<button class="aa" id="aa" type="button" aria-label="Display options: text size and contrast" aria-expanded="false" aria-controls="a11y">Aa</button>
+<button class="btn sm topcta" type="button" data-start-review data-track="start">Review my work</button>
+<button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav"><svg class="i" aria-hidden="true"><use href="#menu"/></svg></button>
+<div id="mobile-nav" hidden><a href="#how">How it works</a><a href="#samples">Samples</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="help.html">Help centre</a></div>
+<div id="a11y" hidden role="group" aria-label="Display options">
+<b>Text size</b><div class="row"><button type="button" data-size="0" aria-pressed="true">A</button><button type="button" data-size="1" aria-pressed="false" style="font-size:1.15rem">A+</button><button type="button" data-size="2" aria-pressed="false" style="font-size:1.3rem">A++</button></div>
+<b>Contrast</b><div class="row"><button type="button" id="hc" role="switch" aria-checked="false">High contrast</button></div>
+<button type="button" class="reset" id="rs">Reset</button>
+</div>
+</div></header>
+
+<main id="main">
+
+<div id="resume" hidden><div class="wrap"><div id="resume-slot"></div></div></div>
+<section class="hero">
+<div class="wrap herogrid">
+<div>
+<span class="chip"><svg class="i" aria-hidden="true"><use href="#brain"/></svg>Expert-trained AI review</span>
+<h1 id="hero-title">Find every error <em>before your reviewer does.</em></h1>
+<p class="sub" id="hero-subtitle">An AI review system trained by experts across every discipline. Upload your dissertation, essay or technical document and know exactly what to correct before you submit.</p>
+<div class="cta">
+<button class="btn" id="start-btn" type="button" data-start-review data-track="start">Review my work <svg class="i" aria-hidden="true"><use href="#arr"/></svg></button>
+<a class="btn out" href="#samples" data-track="sample">View a sample review</a>
+</div>
+<div class="assure"><span><svg class="i" aria-hidden="true"><use href="#ck"/></svg>Price shown before you pay</span><span><svg class="i" aria-hidden="true"><use href="#ck"/></svg>Secure delivery</span></div>
+<p class="for">For BSc, MSc and PhD candidates, researchers and professionals.</p>
+</div>
+<div>
+<div class="win" role="img" aria-label="Sample review: the issue is highlighted in the text, explained, and paired with the exact correction">
+<div class="bar">SAMPLE REVIEW &middot; MEDICINE</div>
+<div class="wb">
+<div class="orig">&hellip;difference 8.8 mmHg; 95% CI 5.1 to 12.5; <mark>p = 0.03</mark><span class="tag">1</span></div>
+<div class="rc"><div class="rc-head"><span class="x">&times;</span>CRITICAL ISSUE</div>
+<div class="why">A 95% interval of 5.1 to 12.5 gives p below 0.001, not 0.03.</div>
+<div class="fix">REPLACE <del>p = 0.03</del> with <ins>p &lt; 0.001</ins></div></div>
+</div></div>
+<p class="note-s">From our demonstration samples.</p>
+</div>
+</div>
+</section>
+
+
+<div class="strip"><div class="wrap">
+<div><svg class="i" aria-hidden="true"><use href="#brain"/></svg>Trained by subject experts</div>
+<div><svg class="i" aria-hidden="true"><use href="#globe"/></svg>Every field covered</div>
+<div><svg class="i" aria-hidden="true"><use href="#tag"/></svg>Price before payment</div>
+<div><svg class="i" aria-hidden="true"><use href="#lock"/></svg>Secure delivery</div>
+</div></div>
+
+<section><div class="wrap">
+<div class="head c"><div class="kick">Built for serious work</div><h2>Whatever you submit, submit it checked.</h2></div>
+<div class="two">
+<div class="panel"><h3>Academic work</h3><ul><li>Thesis</li><li>Dissertation</li><li>Essay</li><li>Coursework</li><li>Assignment</li><li>Research proposal</li></ul></div>
+<div class="panel"><h3>Professional &amp; technical</h3><ul><li>Technical documents</li><li>Engineering &amp; lab reports</li><li>Journal articles</li><li>Business &amp; project proposals</li><li>Case studies</li><li>Policy &amp; research papers</li></ul></div>
+</div>
+<div class="levels" aria-label="Levels"><span class="lv">BSc</span><span class="lv">MSc</span><span class="lv">PhD</span><span>Researchers</span><span>Professionals</span></div>
+</div></section>
+
+<section class="mist" id="why"><div class="wrap">
+<div class="head c"><div class="kick">Why HumanlyReview</div><h2>You wrote it. We catch what you missed.</h2><p class="lead">Small mistakes can cost you marks, or your credibility. We help you find them first.</p></div>
+<div class="grid6">
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#eye"/></svg></div><h3>Fresh eyes</h3><p>After hours with your own work, mistakes become invisible. We read it fresh, just as your reviewer will.</p></div>
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#search"/></svg></div><h3>Every detail checked</h3><p>Numbers, references, facts, logic and claims, checked the way a strict reviewer checks them.</p></div>
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#target"/></svg></div><h3>Exact corrections</h3><p>Not vague comments. Each mistake is marked in your text, with the specific fix to make.</p></div>
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#ai"/></svg></div><h3>Sounds right. Is it right?</h3><p>AI-drafted text can sound convincing and still contain invented facts or references. We check it before you submit.</p></div>
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#clock"/></svg></div><h3>Before they see it</h3><p>Find out what is wrong while you can still fix it, not after your reviewer has marked it.</p></div>
+<div class="tile"><div class="ic"><svg class="i" aria-hidden="true"><use href="#lock"/></svg></div><h3>Your work stays yours</h3><p>We review; we never write. Every change, and every word, stays yours.</p></div>
+</div>
+<p class="small-note">Always follow your institution&rsquo;s guidance on the use of AI.</p>
+</div></section>
+
+<section id="samples"><div class="wrap">
+<div class="head c"><div class="kick">Expertise</div><h2>Trained across every field.</h2><p class="lead">Built with specialists from the sciences, engineering, medicine, law, business and beyond. See what a finished review looks like.</p></div>
+<div class="fields" id="fields">
+<a class="ftile" href="#samples-grid" data-page="4"><svg class="i" aria-hidden="true"><use href="#health"/></svg>Medicine &amp; Health</a>
+<a class="ftile" href="#samples-grid" data-page="27"><svg class="i" aria-hidden="true"><use href="#flask"/></svg>Sciences</a>
+<a class="ftile" href="#samples-grid" data-page="36"><svg class="i" aria-hidden="true"><use href="#gear"/></svg>Engineering</a>
+<a class="ftile" href="#samples-grid" data-page="46"><svg class="i" aria-hidden="true"><use href="#screen"/></svg>Computing &amp; IT</a>
+<a class="ftile" href="#samples-grid" data-page="75"><svg class="i" aria-hidden="true"><use href="#law"/></svg>Law</a>
+<a class="ftile" href="#samples-grid" data-page="71"><svg class="i" aria-hidden="true"><use href="#chart"/></svg>Business &amp; Finance</a>
+<a class="ftile" href="#samples-grid" data-page="80"><svg class="i" aria-hidden="true"><use href="#people"/></svg>Social Sciences</a>
+<a class="ftile" href="#samples-grid" data-page="85"><svg class="i" aria-hidden="true"><use href="#cap"/></svg>Education</a>
+<a class="ftile" href="#samples-grid" data-page="98"><svg class="i" aria-hidden="true"><use href="#book"/></svg>Humanities &amp; more</a>
+</div>
+<div class="fbanner hidden" id="casebook-banner"><div><h3>Explore the full sample reviews</h3><p>Complete examples across many disciplines.</p></div><a class="btn" id="casebook-link" href="#samples-grid" data-track="sample">Open sample reviews <svg class="i" aria-hidden="true"><use href="#arr"/></svg></a></div>
+<div class="spaced" style="margin-top:2.4rem;align-items:flex-end"><div><h3>Sample reports</h3><p class="muted">Examples of the reviewed reports we deliver.</p></div><a class="btn sm" id="sample-report-main-btn" href="#" target="_blank" rel="noopener noreferrer" style="display:none" data-track="sample">View sample report</a></div>
+<div class="sample-grid" id="samples-grid"><div class="notice">Loading samples…</div></div>
+<p class="small-note">Demonstration samples prepared to show the standard of every review.</p>
+</div></section>
+
+<section id="how" class="mist"><div class="wrap">
+<div class="head c"><div class="kick">How it works</div><h2>Four steps to a stronger submission.</h2></div>
+<ol class="steps">
+<li><h3>Upload</h3><p id="how-work-copy">Add your work, and your brief if you have one.</p></li>
+<li><h3>Pay securely</h3><p>Your price is shown first. No surprises.</p></li>
+<li><h3>We review</h3><p>Follow your submission status at any time.</p></li>
+<li><h3>Download</h3><p>Receive your report securely when it is ready.</p></li>
+</ol>
+<div class="center-cta"><button class="btn" type="button" data-start-review data-track="start">Review my work <svg class="i" aria-hidden="true"><use href="#arr"/></svg></button></div>
+</div></section>
+
+<section class="dark"><div class="wrap">
+<div class="head"><div class="kick">Your report</div><h2>Built to be acted on immediately.</h2></div>
+<div class="rep">
+<ul class="feat">
+<li><span class="ck">&#10003;</span><div><b>Precisely located</b>Every issue marked in your own text.</div></li>
+<li><span class="ck">&#10003;</span><div><b>Clearly corrected</b>A specific correction for each issue.</div></li>
+<li><span class="ck">&#10003;</span><div><b>Fully assessed</b>An overall verdict, so you know where you stand.</div></li>
+</ul>
+<div class="win" role="img" aria-label="Sample correction: delete the words proves superior and type was superior at 12 weeks">
+<div class="bar">CORRECTION</div>
+<div class="wb">
+<div class="rc"><div class="rc-head"><span class="x">&times;</span>DELETE</div><div class="fix del"><del>proves superior</del></div></div>
+<div class="rc good"><div class="rc-head"><span class="x">&#10003;</span>REPLACE WITH</div><div class="fix"><ins>was superior at 12 weeks</ins></div></div>
+</div></div>
+</div>
+</div></section>
+
+<section id="pricing"><span id="plans"></span><div class="wrap">
+<div class="head c"><div class="kick">Pricing</div><h2>Transparent pricing.</h2><p class="lead" id="pricing-lead">Your papers are considered together, then the matching plan is selected automatically. You see the price before you pay.</p></div>
+<div class="plans" id="plans-grid"><div class="plan"><div class="skeleton"></div><div class="skeleton tall"></div></div><div class="plan"><div class="skeleton"></div><div class="skeleton tall"></div></div></div>
+<div class="more" id="custom-info">
+<div class="tile"><h3>Larger projects</h3><p>Need more than a standard plan? Upload your work and request a tailored quote. Your files stay attached, so you never upload twice.</p><button class="btn out dk" type="button" data-start-review data-track="contact">Request a custom quote</button></div>
+<div class="tile"><h3>Universities &amp; organisations</h3><p>Institutions, large batches, many files, or special arrangements. Speak to our team.</p><a class="btn out dk" id="enterprise-home-btn" href="mailto:hello@humanlyreview.com" data-track="contact">Speak to our team</a></div>
+</div>
+</div></section>
+
+<section id="faq" class="mist"><div class="wrap">
+<div class="head c"><div class="kick">Questions</div><h2>Good to know.</h2></div>
+<div class="faq">
+<details><summary>Will you write or edit my work?</summary><p>No. HumanlyReview reviews your work and identifies exactly what to correct. The writing stays yours.</p></details>
+<details><summary>What can I submit?</summary><p>Academic work such as theses, dissertations, essays, coursework and assignments, plus professional and technical documents across every field.</p></details>
+<details><summary>Do I need my assignment brief?</summary><p>It is optional but recommended. Adding the question, brief or marking criteria lets us assess your work against what was asked.</p></details>
+<details><summary>How is my price set?</summary><p id="pricing-faq-answer">Automatically under the current pricing rules. You see the price before you pay.</p></details>
+<details><summary>How do I receive my report?</summary><p>You are notified by email when it is ready. Track your submission at any time and download your report securely.</p></details>
+<details><summary>I paid but something went wrong. What now?</summary><p>You will not be charged twice. Reopen your review and we will help you finish, or contact support with your order reference.</p></details>
+</div>
+</div></section>
+
+<section id="whatsapp-support"><div class="wrap">
+<div class="head c"><div class="kick">Support</div><h2>Questions before you start?</h2></div>
+<div class="helpbox"><p style="font-weight:600">Ask about pricing, file types or your deadline. We are glad to help.</p>
+<div class="btns"><a class="btn wa" id="whatsapp-support-btn" href="#" data-wa data-track="contact"><svg class="i" aria-hidden="true"><use href="#wa"/></svg>Message us on WhatsApp</a><a class="btn out dk" href="help.html" data-track="contact">Visit the help centre</a></div></div>
+</div></section>
+
+<section class="dark final"><div class="wrap">
+<h2>Submit with certainty.</h2>
+<p class="lead">Give your work the review it deserves.</p>
+<div class="cta"><button class="btn" type="button" data-start-review data-track="start">Review my work <svg class="i" aria-hidden="true"><use href="#arr"/></svg></button></div>
+<p class="fine">We review. We never write your work.</p>
+</div></section>
+</main>
+
+<footer class="footer landing-footer"><div class="wrap">
+<div class="fbrand"><svg class="brand-mark" aria-hidden="true"><use href="#hr-mark-w"/></svg><b class="wmk">HumanlyReview<span>.com</span></b></div>
+<p class="tag2">Expert-trained AI. Rigorous review. Secure delivery.</p>
+<nav class="flinks" aria-label="Footer"><a href="help.html">Help centre</a><a href="#pricing">Pricing</a><a href="#samples">Sample reviews</a><a id="footer-enterprise" href="mailto:hello@humanlyreview.com">Organisations</a></nav>
+<p class="small">We review. We never write your work. &copy; <span id="yr">2026</span> HumanlyReview.</p>
+</div></footer>
+
+<div class="sticky" id="sticky"><button class="btn" type="button" data-start-review data-track="start">Review my work</button><a class="wab" href="#" data-wa data-track="contact" aria-label="Message us on WhatsApp"><svg class="i" aria-hidden="true" style="width:1.8rem;height:1.8rem"><use href="#wa"/></svg></a></div>
+<a class="wafloat" id="whatsapp-float" href="#" data-wa data-track="contact"><svg class="i" aria-hidden="true"><use href="#wa"/></svg>Message us on WhatsApp</a>
+<div id="consent" role="dialog" aria-label="Cookies"><b>Cookies.</b> We use Meta&rsquo;s tools to measure our advertising. Allow?<div class="r"><button class="y" id="c-yes" type="button">Allow</button><button id="c-no" type="button">No thanks</button></div></div>
+
+<!-- ============ REVIEW FLOW (modal) ============ -->
+<div class="modal-backdrop hidden" id="app-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-shell">
+    <header class="modal-header">
+      <div class="modal-brand"><svg class="brand-mark" aria-hidden="true"><use href="#hr-mark-w"/></svg><div><div class="small" id="progress-label">Secure review</div><strong id="modal-title">HumanlyReview</strong></div></div>
+      <div class="modal-header-actions">
+        <button class="btn out btn-compact" id="start-new-review-inline" type="button">New review</button>
+        <button class="icon-btn" id="close-modal" type="button" aria-label="Close review window">&times;</button>
+      </div>
+    </header>
+    <ol class="stepper hidden" id="stepper" aria-label="Review progress"><li><i>1</i><span>Upload</span></li><li><i>2</i><span>Brief</span></li><li><i>3</i><span>Check</span></li><li><i>4</i><span>Pay</span></li></ol>
+    <div class="modal-body">
+
+<div class="flow-step" id="step-email">
+  <span class="badge info">Email verification</span><h2>Where should we send your report?</h2><p class="muted">Your email saves your review and gives you secure access to its status. We will send a 6-digit code to confirm it is yours.</p>
+  <div class="identity-choice hidden" id="new-review-identity-choice">
+    <div class="identity-choice-title">Your verified email</div>
+    <div class="identity-choice-subtitle">It is already verified, so we will not ask for another code. The field below is locked to prevent accidental changes.</div>
+    <div class="field identity-email-field"><label for="email">Email address</label><input autocomplete="email" class="input identity-email" id="email" inputmode="email" placeholder="you@example.com" type="email" aria-readonly="true" /></div>
+    <div class="identity-actions"><button type="button" class="btn" id="use-verified-email">Continue with this email</button><button type="button" class="btn secondary" id="use-different-email">Use a different email</button></div>
+  </div>
+  <div id="email-entry-field" class="field"><label for="email-manual-entry">Email address</label><input autocomplete="email" class="input" id="email-manual-entry" inputmode="email" placeholder="you@example.com" type="email" autocapitalize="none" spellcheck="false" /></div>
+  <div class="notice success hidden" id="verified-email-note"></div><div class="notice danger hidden" id="email-error"></div>
+  <div class="flow-actions"><button class="btn hidden" id="send-otp" type="button">Continue</button></div>
+</div>
+
+<div class="flow-step hidden" id="step-otp"><span class="badge info">Email verification</span><h2>Check your email</h2><p class="muted">We sent a 6-digit code to <strong id="masked-email"></strong>. It can take a minute. Check your spam folder if you do not see it.</p><div class="field"><label for="otp">6-digit code</label><input autocomplete="one-time-code" class="input otp-input" id="otp" inputmode="numeric" maxlength="6" placeholder="123456" type="text" /></div><div class="notice danger hidden" id="otp-error"></div><div class="actions"><button class="btn" id="verify-otp" type="button">Verify email</button><button class="btn secondary" id="resend-otp" type="button">Resend code</button><button class="btn text-button" id="change-email" type="button">Use a different email</button></div><div class="small muted" id="otp-countdown"></div></div>
+
+<div class="flow-step hidden" id="step-reverify"><span class="badge warning">Verification needed</span><h2>Let&rsquo;s verify your email again</h2><p class="muted">Your secure verification has expired. Your review information is still safe.</p><div class="notice" id="reverify-details" style="margin-top:1rem"></div><div class="notice danger hidden" id="reverify-error" style="margin-top:14px"></div><div class="actions"><button class="btn" id="reverify-btn" type="button">Send a new code</button><button class="btn secondary" id="reverify-back" type="button">Use a different email</button></div></div>
+
+<div class="flow-step hidden" id="step-work"><span class="badge info">Step 1 of 4</span><h2>Upload your paper</h2><p class="muted">Choose the paper(s) you want reviewed. The accepted file types and current pricing rules are applied automatically.</p><div class="notice info" id="work-limits" style="margin-top:1rem"><strong>Before you upload:</strong> Your selected paper stays on this device until payment is confirmed. Before payment, we only inspect local file metadata needed by the active pricing and safety rules.</div><details class="notice info hidden" id="access-code-box" style="margin-top:12px"><summary><strong>🎁 Have a complimentary access code?</strong></summary><div class="small muted" style="margin-top:8px">Enter a code supplied directly by HumanlyReview. It is checked only after your email has been verified and can be limited to one verified user, one order, a plan tier, and an expiry time.</div><div class="access-code-row" style="margin-top:10px"><input class="input" id="access-code-input" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="HRF-XXXX-XXXX-XXXX-XXXX" aria-label="Complimentary access code"><button class="btn secondary" id="apply-access-code" type="button">Apply code</button></div><div class="small" id="access-code-status" role="status" aria-live="polite" style="margin-top:8px"></div></details><label class="consent-row hidden" id="marketing-consent-row"><input id="marketing-consent" type="checkbox"><span id="marketing-consent-text">Send me occasional HumanlyReview updates, tips and offers.</span></label><div class="small muted hidden" id="pdf-check-status" role="status" aria-live="polite" style="margin-top:8px"></div><div class="notice warning hidden" id="work-size-notice" style="margin-top:10px"></div><div class="notice hidden" id="work-enterprise-notice" style="margin-top:10px"></div><div class="file-picker" id="work-upload-box"><div class="file-picker-head"><div><div class="file-picker-title" id="work-upload-cta">Choose your Paper to review</div><div class="file-picker-subtitle" id="work-upload-help">Choose the document you want reviewed.</div></div><label class="file-picker-action" for="work-file-input">Choose file(s)<input id="work-file-input" multiple="" type="file" accept="application/pdf,.pdf" /></label></div><div class="small muted" id="work-upload-count" style="margin-top:10px">1 Paper to review allowed.</div></div><div class="file-stack" id="work-file-list"></div><div class="notice warning hidden" id="work-restore-notice" style="margin-top:12px"></div><div class="notice danger hidden" id="work-error" style="margin-top:14px"></div><div class="flow-actions"><button class="btn" disabled="" id="work-continue" type="button">Continue</button></div></div>
+
+<div class="flow-step hidden" id="step-instructions"><span class="badge info">Step 2 of 4</span><h2>What was this work supposed to answer?</h2><p class="muted">Having the assignment question or instructions helps us review the work against the right requirements.</p><div class="choice-grid"><label class="choice-card"><input id="brief-yes" name="has-brief" type="radio" value="yes"/><span><strong>Yes, I have the question or instructions</strong><small>I can upload them or paste them below.</small></span></label><label class="choice-card"><input id="brief-no" name="has-brief" type="radio" value="no"/><span><strong>No, I don&rsquo;t have one</strong><small>That&rsquo;s okay. We can review the work itself.</small></span></label></div>
+<div class="hidden" id="brief-yes-area"><div class="notice" style="margin:1.1rem 0 0">Upload the assignment question, instructions, marking criteria, assessment brief, project requirements, or a clear photo or screenshot.</div><div class="file-picker" id="instruction-upload-box"><div class="file-picker-head"><div><div class="file-picker-title" id="instruction-upload-cta">Choose assignment question or instructions</div><div class="file-picker-subtitle">Use the accepted instruction file type(s) shown by the current Admin setting.</div></div><label class="file-picker-action" for="instruction-file-input">Choose file(s)<input id="instruction-file-input" multiple="" type="file" accept="application/pdf,.pdf" /></label></div><div class="small muted" id="instruction-upload-count" style="margin-top:10px">Instruction files are optional when the setting allows it.</div></div><div class="file-stack" id="instruction-file-list"></div><div class="notice warning hidden" id="instruction-restore-notice" style="margin-top:12px"></div><div class="field"><label for="instruction-text">Or paste the question or instructions here</label><textarea class="textarea" id="instruction-text" maxlength="12000" placeholder="Paste the question, instructions, marking criteria, or other guidance here…" rows="6"></textarea><div class="field-count" id="instruction-count">0 / 12,000</div></div></div>
+<div class="notice success hidden" id="brief-no-area" style="margin-top:1.1rem">No problem. We can review the work based on the document itself and the information provided.</div><div class="notice danger hidden" id="instruction-error" style="margin-top:14px"></div><div class="flow-actions"><button class="btn" disabled="" id="instructions-continue" type="button">Continue</button><button class="btn secondary" id="back-work" type="button">Back</button></div></div>
+
+<div class="flow-step hidden" id="step-summary"><span class="badge info">Step 3 of 4</span><h2>Check your review</h2><div class="notice" id="summary-box" style="margin-top:1rem"></div><div class="notice danger hidden" id="summary-error" style="margin-top:14px"></div><div class="flow-actions"><button class="btn" id="pay-btn" type="button">Continue to secure payment</button><a class="btn hidden" id="enterprise-summary-btn" href="mailto:hello@humanlyreview.com">Contact Enterprise / Institution</a><button class="btn secondary" id="back-instructions" type="button">Change details</button></div><p class="small muted" style="margin-top:12px">Your payment is verified by our server before your submitted files are stored for review.</p></div>
+
+<div class="flow-step hidden" id="step-custom"><div class="custom-page-head"><div><span class="badge info">Custom review request</span><h2 style="margin-top:.8rem">Your custom review request</h2><div class="small muted" id="custom-ticket-ref">Reference will appear here</div></div><span class="badge warning" id="custom-status-pill">Loading…</span></div><div class="custom-loading loading-panel" id="custom-loading" role="status" aria-live="polite"><span class="loading-spinner" aria-hidden="true"></span><div><strong>Loading your request…</strong><div class="small muted" style="margin-top:3px">Checking your saved request and files.</div></div></div><div id="custom-loaded-content" class="hidden"><div class="notice" id="custom-status-message" style="margin-top:1rem"></div><div id="custom-request-details" class="custom-detail-card"></div><div class="notice" id="custom-timeline" style="margin-top:1rem"></div><div class="notice success" id="custom-next-action" style="margin-top:1rem"></div><div class="notice warning hidden" id="custom-missing-files" style="margin-top:1rem"><strong>One more step is needed</strong><div class="small" style="margin-top:6px">Your request is already saved. No payment has been taken. Choose only the file(s) marked as missing.</div><div id="custom-missing-list" style="margin-top:10px"></div><div class="flow-actions"><button class="btn" id="custom-attach-missing" type="button">Attach missing file(s)</button></div></div><div class="small muted" id="custom-upload-progress" style="margin-top:.8rem"></div><div class="notice danger hidden" id="custom-error" style="margin-top:1rem"></div><div class="custom-action-panel"><button class="btn" id="custom-primary-btn" type="button">Refresh status</button><a class="btn secondary" href="#" id="custom-view-status" rel="noopener">Open full status</a><a class="btn secondary" href="help.html" id="custom-support-link">Contact support</a></div><button class="btn text-button" id="custom-cancel-btn" type="button">Cancel this request</button></div><div class="custom-secondary-actions"><button class="btn secondary" id="custom-close-btn" type="button">Close</button></div></div>
+
+<div class="flow-step hidden" id="step-paying"><span class="badge warning">Step 4 of 4</span><h2>Complete payment securely</h2><p class="muted">You'll be taken to our secure payment page in this same tab. Once payment is done, you'll be brought straight back here automatically.</p><ol class="pay-steps"><li><b>1</b><span>We take you to the secure payment page.</span></li><li><b>2</b><span>You're brought back here automatically. We confirm your payment right away.</span></li><li><b>3</b><span>We submit your files securely. You are never charged twice.</span></li></ol><div class="flow-actions"><a class="btn" href="#" id="open-payment-btn" rel="noopener">Open secure payment page</a><button class="btn secondary" id="recheck-payment" type="button">I have paid, check now</button><a class="btn text-button" href="help.html" id="payment-help-link" rel="noopener" target="_blank">Need help?</a></div><div class="notice info" id="payment-check-status" role="status" aria-live="polite" style="margin-top:14px">Waiting for payment confirmation…</div></div>
+
+<div class="flow-step hidden" id="step-submitting"><span class="badge info">Finishing securely</span><h2>Submitting your review</h2><p class="muted">Your payment is confirmed. Please keep this page open while we finish sending your files.</p><div class="progress" style="margin-top:1.4rem"><span id="submit-progress"></span></div><div class="small muted" id="submit-text" style="margin-top:8px">Preparing your files…</div></div>
+
+<div class="flow-step hidden" id="step-success"><svg class="success-mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="29"/><path d="M19 33l9 9 17-19"/></svg><span class="badge success" id="success-badge">Received ✓</span><h2 id="success-title">We received your submission</h2><p class="muted" id="success-description">Your payment has been confirmed and your files have been securely submitted for review.</p><div class="notice success" id="success-box" style="margin-top:1rem"></div><div class="flow-actions"><a class="btn" href="#" id="status-link">View review status</a><button class="btn secondary" id="success-close" type="button">Close</button></div></div>
+
+<div class="flow-step hidden" id="step-recovery"><span class="badge warning">Payment already confirmed</span><h2>Finish your submission</h2><p class="muted">Your payment is already confirmed. You will not be charged again. Select only the original files that are still missing.</p><div class="recovery-panel"><div class="recovery-summary" id="recovery-details"></div><div class="recovery-section"><h3>Original papers to review</h3><div class="small muted">Choose the exact original paper file(s) listed above.</div><div class="file-picker"><div class="file-picker-head"><div><div class="file-picker-title">Select original paper file(s)</div><div class="file-picker-subtitle">Use the original file name and size where possible.</div></div><label class="file-picker-action" for="recovery-work-input">Choose paper file(s)<input id="recovery-work-input" multiple="" type="file" accept="application/pdf,.pdf" /></label></div><div class="file-stack" id="recovery-work-picked"></div></div></div><div class="recovery-section hidden" id="recovery-instruction-box"><h3>Assignment instruction files</h3><div class="small muted">Choose the exact instruction file(s) listed above.</div><div class="file-picker"><div class="file-picker-head"><div><div class="file-picker-title">Select instruction file(s)</div><div class="file-picker-subtitle">Only missing instruction files are needed.</div></div><label class="file-picker-action" for="recovery-instruction-input">Choose instruction file(s)<input id="recovery-instruction-input" multiple="" type="file" accept="application/pdf,.pdf" /></label></div><div class="file-stack" id="recovery-instruction-picked"></div></div></div></div><div class="notice danger hidden" id="recovery-error" style="margin-top:14px"></div><div class="flow-actions"><button class="btn" id="recovery-submit" type="button">Submit missing files</button><button class="btn secondary" id="recovery-back" type="button">Back</button></div></div>
+
+    </div>
+  </div>
+</div>
+
+<script src="common.js?v=20260924.2"></script>
+<script>
+
+let appData=null,countdownTimer=null,paymentPoll=null,currentExpected=null;
+const $=id=>document.getElementById(id);const steps=['step-email','step-otp','step-reverify','step-work','step-instructions','step-summary','step-custom','step-paying','step-submitting','step-success','step-recovery'];
+function showStep(id){steps.forEach(s=>$(s).classList.toggle('hidden',s!==id));const flow=['step-work','step-instructions','step-summary','step-paying','step-submitting','step-success'];const n=flow.indexOf(id);$('progress-label').textContent=id==='step-success'?'All done':n>=0?`Step ${Math.min(n+1,4)} of 4`:id==='step-custom'?'Custom request':'Secure review';hrUpdateStepper(id);if(id==='step-instructions')updateInstructionCount();const modal=$('app-modal');if(modal){modal.querySelector('.modal-body')?.scrollTo({top:0,behavior:'auto'});}hrFocusStepHeading(id);if(id==='step-email'&&hrState.newReviewMode)prepareNewReviewEmailChoice();if(typeof hrPersistDraftState==='function'&&id!=='step-success')hrPersistDraftState({resumeStep:id,email:hrState.email,sessionToken:hrState.sessionToken,orderRef:hrState.orderRef,customTicketRef:hrState.customTicketRef,instructionText:hrState.instructionText});}
+function isSessionExpiredError(e){const m=String(e&&e.message||e||'').toLowerCase();return m.includes('session has expired')||m.includes('session expired')||m.includes('verify your email again')||m.includes('order not found for this session');}
+function handleApiError(e,errorEl){if(isSessionExpiredError(e)){beginReverify();return true;}if(errorEl)hrSetError(errorEl,e.message);return false;}
+function beginReverify(){clearInterval(paymentPoll);$('reverify-details').innerHTML=`We will send a new 6-digit code to <strong>${hrEscape(hrMaskEmail(hrState.email||currentEmailValue()))}</strong>. You will not be charged again.`;hrSetError($('reverify-error'),'');showStep('step-reverify');}
+async function sendReverifyCode(){const email=(hrState.email||currentEmailValue()).trim();syncEmailFields(email);hrSetError($('reverify-error'),'');if(!hrValidateEmail(email)){hrSetError($('reverify-error'),'Please enter the email address used for this order.');return;}const b=$('reverify-btn');hrSetBusy(b,true,'Checking…');try{const r=await hrApi('requestOtp',{email,orderRef:hrState.orderRef,ticketRef:hrState.customTicketRef,existingSessionToken:hrState.sessionToken||''});if(r.data.alreadyVerified){syncMarketingConsentFromServer(r.data);hrSaveSession(r.data.sessionToken,r.data.email,r.data.expiresAt||'');hrState.newReviewMode=false;await resumeExistingOrder();return;}hrSavePendingSession(r.data.pendingSessionToken,email);if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-otp',email});$('masked-email').textContent=hrMaskEmail(email);$('otp').value='';showStep('step-otp');startResendTimer(r.data.resendAfterSeconds);$('otp').focus();}catch(e){hrSetError($('reverify-error'),e.message);}finally{hrSetBusy(b,false);}}
+async function resumeExistingOrder(){try{const r=await hrApi('getOrderStatus',{sessionToken:hrState.sessionToken,orderRef:hrState.orderRef});hrState.currentOrder=r.data;if(r.data.status==='awaiting_payment'){renderOrderSummary(r.data);showStep('step-summary');}else{await afterPayment(r.data);}}catch(e){if(!handleApiError(e))hrToast(e.message,'danger');}}
+function renderOrderSummary(order){const hasPlan=!!order.planName,pages=order.workTotalPages,showReports=!!appData?.settings?.show_report_formats_on_pricing,isFree=!!order.complimentary;const reportLine=showReports&&order.reportFormatLabel?`<div class="statline"><span>Finished report</span><strong>${hrEscape(order.reportFormatLabel)}</strong></div>`:'';$('summary-box').innerHTML=`<div class="statline"><span>Order</span><strong>${hrEscape(order.orderRef||hrState.orderRef)}</strong></div><div class="statline"><span>Papers to review</span><strong>${Number(order.workFileCount||0)} file(s)</strong></div><div class="statline"><span>Total paper size</span><strong>${hrFormatBytes(Number(order.workTotalBytes||0))}</strong></div>${pages!=null?`<div class="statline"><span>Total pages</span><strong>${Number(pages)}</strong></div>`:''}<div class="statline"><span>Plan</span><strong>${hasPlan?hrEscape(order.planName):'Custom quote request'}</strong></div>${reportLine}${hasPlan?isFree?`<div class="statline"><span>Plan price</span><strong>${hrFormatMoney(order.price,order.currency)}</strong></div><div class="statline"><span>Amount due</span><strong>Complimentary — no payment</strong></div><div class="statline"><span>Estimated delivery</span><strong>${order.dueAt?hrFormatDate(order.dueAt):'Scheduled after submission'}</strong></div>`:`<div class="statline"><span>Price</span><strong>${hrFormatMoney(order.amountDue??order.price,order.currency)}</strong></div><div class="statline"><span>Estimated delivery</span><strong>${order.dueAt?hrFormatDate(order.dueAt):'Shown after payment'}</strong></div>`:''}<div class="small muted" style="margin-top:12px">${isFree?'This order uses complimentary access. No payment is required.':'You are resuming an existing order. You will not be charged twice.'}</div>`;hrState.isCustomQuote=!hasPlan;$('pay-btn').textContent=hasPlan?(isFree?'Continue Secure Submission':'Continue to Secure Payment'):'Request Custom Quote';}
+function isDraftPlaceholder(file){return !!file?.__draftMissing;}
+function hasMissingDraftFiles(files){return (files||[]).some(isDraftPlaceholder);}
+function hasRealFiles(files){const list=files||[];return list.length>0&&list.every(f=>!isDraftPlaceholder(f) && f && typeof f.arrayBuffer==='function' && Number(f.size)>0);}
+function draftFileMeta(files){return (files||[]).map(f=>({name:String(f.name||''),size:Number.isFinite(Number(f.size))?Number(f.size):0,type:f.type||'',lastModified:Number(f.lastModified||Date.now()),pageCount:Number(f.__hrPageCount||0)||null})).filter(x=>x.name);}
+function updateDraftRestoreNotices(){
+  const wm=$('work-restore-notice'),im=$('instruction-restore-notice');
+  if(wm){const missing=(hrState.selectedWorkFiles||[]).filter(isDraftPlaceholder);wm.classList.toggle('hidden',!missing.length);wm.innerHTML=missing.length?`<strong>File needs to be attached again.</strong><br>Your saved review was found, but the original file data is not available in this browser. Choose the original file again to continue.`:'';}
+  if(im){const missing=(hrState.selectedInstructionFiles||[]).filter(isDraftPlaceholder);im.classList.toggle('hidden',!missing.length);im.innerHTML=missing.length?`<strong>Instruction file needs to be attached again.</strong><br>Your saved review was found, but the original instruction file data is not available in this browser. Choose the original file again to continue.`:'';}
+}
+function resetSubmission(){
+  try{clearInterval(countdownTimer);clearInterval(paymentPoll);}catch(_){}
+  hrState.orderRef='';hrState.customTicketRef='';hrState.accessGrantToken='';hrState.accessCodeId='';hrState.accessCodeLabel='';hrState.selectedFile=null;hrState.selectedWorkFiles=[];hrState.selectedInstructionFiles=[];hrState.instructionText='';hrState.currentOrder=null;hrState.currentOrderPreview=null;hrState.isCustomQuote=false;hrState.customQuoteReady=false;hrState.customRequest=null;hrState.enterpriseRequired=false;
+  if($('work-file-input'))$('work-file-input').value='';if($('instruction-file-input'))$('instruction-file-input').value='';if($('instruction-text'))$('instruction-text').value='';document.querySelectorAll('input[name="has-brief"]').forEach(r=>r.checked=false);
+  if($('brief-yes-area'))$('brief-yes-area').classList.add('hidden');if($('brief-no-area'))$('brief-no-area').classList.add('hidden');
+  renderFileList('work-file-list',[],true);renderFileList('instruction-file-list',[],false);$('work-continue').disabled=true;$('instructions-continue').disabled=true;
+  hideEnterpriseOption();if($('access-code-input'))$('access-code-input').value='';renderAccessCodeState();$('pay-btn')?.classList.remove('hidden');$('enterprise-summary-btn')?.classList.add('hidden');$('work-restore-notice')?.classList.add('hidden');$('instruction-restore-notice')?.classList.add('hidden');
+}
+function openModal(step){const modal=$('app-modal');if(modal.classList.contains('hidden'))lastOpener=document.activeElement;modal.classList.remove('hidden');document.body.classList.add('modal-open');showStep(step|| (hrState.sessionToken?'step-work':'step-email'));if((step||'').includes('email')){prepareNewReviewEmailChoice();setTimeout(()=>{const target=$('email-manual-entry')?.classList.contains('hidden')?$('use-verified-email'):$('email-manual-entry');target?.focus();},40);}}
+function closeModal(){ $('app-modal').classList.add('hidden');document.body.classList.remove('modal-open');clearInterval(countdownTimer);clearInterval(paymentPoll);if(typeof stopCustomAutoRetry==='function')stopCustomAutoRetry();try{const o=lastOpener;if(o&&o.isConnected&&o.focus)o.focus();}catch(_){} }
+const LEGACY_HERO_TITLE='Professional review of your work — without the hassle.';
+const LEGACY_HERO_SUB='Upload your document, see the correct price automatically, pay securely, and receive your reviewed report when it is ready.';
+function setTheme(settings){settings=settings||{};const ht=String(settings.hero_title||'').trim(),hs=String(settings.hero_subtitle||'').trim();if(ht&&ht!==LEGACY_HERO_TITLE)$('hero-title').textContent=ht;if(hs&&hs!==LEGACY_HERO_SUB)$('hero-subtitle').textContent=hs;}
+const HR_PDFJS_VERSION='6.3.289';
+const HR_PDFJS_CDN=`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${HR_PDFJS_VERSION}/pdf.min.mjs`;
+const HR_PDFJS_WORKER=`https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${HR_PDFJS_VERSION}/pdf.worker.min.mjs`;
+const HR_PDFJS_FALLBACK=`https://cdn.jsdelivr.net/npm/pdfjs-dist@${HR_PDFJS_VERSION}/build/pdf.min.mjs`;
+const HR_PDFJS_WORKER_FALLBACK=`https://cdn.jsdelivr.net/npm/pdfjs-dist@${HR_PDFJS_VERSION}/build/pdf.worker.min.mjs`;
+let hrPdfJsPromise=null;
+function pricingBasis(){return String(appData?.settings?.pricing_basis||'higher_of_mb_pages');}
+function workPagesNeeded(){return pricingBasis()!=='mb_only'||Number(appData?.settings?.max_customer_work_pages||0)>0;}
+function instructionPagesNeeded(){return (pricingBasis()!=='mb_only'&&!!appData?.settings?.instructions_count_toward_price)||Number(appData?.settings?.max_instruction_total_pages||0)>0;}
+function pageCountOf(f){return Number(f?.__hrPageCount||0)||0;}
+function totalPages(files){return (files||[]).reduce((n,f)=>n+pageCountOf(f),0);}
+function fileMetaForApi(f){return {name:f.name,size:Number(f.size),mime:f.type||'application/octet-stream',pageCount:pageCountOf(f)||null};}
+async function loadPdfJs(){
+  if(hrPdfJsPromise)return hrPdfJsPromise;
+  hrPdfJsPromise=(async()=>{try{const lib=await import(HR_PDFJS_CDN);lib.GlobalWorkerOptions.workerSrc=HR_PDFJS_WORKER;return lib;}catch(primary){try{const lib=await import(HR_PDFJS_FALLBACK);lib.GlobalWorkerOptions.workerSrc=HR_PDFJS_WORKER_FALLBACK;return lib;}catch(_){throw new Error('The PDF checker could not load. Check your connection and try again.');}}})();
+  try{return await hrPdfJsPromise;}catch(e){hrPdfJsPromise=null;throw e;}
+}
+async function verifyPdfHeader(file){const ext=getExt(file.name);if(ext!=='pdf')return true;const b=new Uint8Array(await file.slice(0,5).arrayBuffer());const sig=String.fromCharCode(...b);if(sig!=='%PDF-')throw new Error(`${file.name} does not appear to be a valid PDF.`);if(file.type&&file.type!=='application/pdf'&&file.type!=='application/octet-stream')throw new Error(`${file.name} does not appear to be a PDF.`);return true;}
+async function ensurePdfPages(file){
+  if(pageCountOf(file)>0)return pageCountOf(file);if(getExt(file.name)!=='pdf')throw new Error(`${file.name} cannot be page-counted. Please use PDF while page-based pricing or page limits are enabled.`);
+  await verifyPdfHeader(file);const lib=await loadPdfJs(),data=new Uint8Array(await file.arrayBuffer());let task,pdf;
+  try{task=lib.getDocument({data,stopAtErrors:false});pdf=await task.promise;const n=Number(pdf.numPages||0);if(!Number.isInteger(n)||n<1)throw new Error('No readable pages were found.');file.__hrPageCount=n;return n;}
+  catch(e){const msg=String(e?.message||e||'');if(/password|encrypted/i.test(msg)||String(e?.name||'').includes('Password'))throw new Error(`${file.name} is password-protected or encrypted. Please upload an unlocked PDF.`);throw new Error(`${file.name} could not be read. Please upload a valid, non-password-protected PDF.`);}
+  finally{try{if(pdf)await pdf.destroy();else if(task)task.destroy();}catch(_){}}
+}
+async function preparePickedFiles(files,label,needPages){
+  const allowed=allowedList(label==='paper'?appData.settings.accepted_work_file_types:appData.settings.accepted_instruction_file_types),validation=validatePickedFiles(files,allowed,label);if(validation)throw new Error(validation);
+  const status=$('pdf-check-status');if(status){status.textContent='Checking file…';status.classList.remove('hidden');}
+  try{for(const f of files){if(getExt(f.name)==='pdf')await verifyPdfHeader(f);if(needPages)await ensurePdfPages(f);}return files;}
+  finally{if(status){status.textContent='';status.classList.add('hidden');}}
+}
+function pricingExplanation(){const b=pricingBasis();if(b==='mb_only')return 'Your plan is based on the combined size of the papers to review.';if(b==='pages_only')return 'Your plan is based on the combined page count.';return 'Your final plan is based on whichever tier is higher: the combined paper size or total page count.';}
+function rangeText(p){const b=pricingBasis(),minMb=Number(p.MinSizeMB),maxMb=Number(p.MaxSizeMB),mb=minMb>0?`>${minMb}–${maxMb} MB`:`0–${maxMb} MB`,pg=`${Number(p.MinPages)}–${Number(p.MaxPages)} pages`;return b==='mb_only'?mb:b==='pages_only'?pg:`${mb}<br>${pg}`;}
+function renderPlans(plans){const g=$('plans-grid'),showReports=!!appData?.settings?.show_report_formats_on_pricing;g.innerHTML=(plans||[]).map(p=>`<div class="plan"><div class="nm">${hrEscape(p.PlanName)}</div><div class="pr">${hrFormatMoney(p.Price,p.Currency)}</div><div class="mt"><b>${rangeText(p)}</b><br>Delivered in <b>${Number(p.DeliveryHours)} hours</b>${showReports&&p.ReportFormatLabel?`<br><span class="plan-report">📄 Report: <b>${hrEscape(p.ReportFormatLabel)}</b></span>`:''}</div></div>`).join('')||'<div class="notice" style="grid-column:1/-1">Pricing plans are not available yet.</div>';const text=pricingExplanation()+' You see the price before you pay.',lead=$('pricing-lead'),faq=$('pricing-faq-answer');if(lead)lead.textContent=text;if(faq)faq.textContent=text;}
+function acceptedLabel(value){const a=allowedList(value);return a.length?a.map(x=>x.toUpperCase()).join(', '):'configured formats';}
+function setUploadLimitText(){
+  const workMax=Math.max(1,Number(appData?.settings?.max_work_files||1)),instMax=Math.max(1,Number(appData?.settings?.max_instruction_files||1)),workSingular=workMax===1,workTypes=String(appData?.settings?.accepted_work_file_types||'pdf'),instTypes=String(appData?.settings?.accepted_instruction_file_types||'pdf'),instPages=Number(appData?.settings?.max_instruction_total_pages||0);
+  $('work-upload-help').textContent=workSingular?`Choose the paper you want reviewed. Accepted: ${acceptedLabel(workTypes)}.`:`Choose up to ${workMax} papers. Their totals are considered together. Accepted: ${acceptedLabel(workTypes)}.`;
+  const howWorkCopy=$('how-work-copy');if(howWorkCopy)howWorkCopy.textContent=workSingular?'Choose the paper you want reviewed.':`Choose up to ${workMax} papers to review together.`;
+  $('work-upload-cta').textContent=workSingular?'Tap to choose your paper':'Tap to choose your papers';$('work-upload-count').textContent=workSingular?'1 paper allowed.':`${workMax} papers maximum.`;
+  $('work-file-input').multiple=!workSingular;$('recovery-work-input').multiple=!workSingular;$('instruction-upload-cta').textContent=instMax===1?'Upload the assignment question or instruction file':'Upload assignment question or instruction files';$('instruction-upload-count').textContent=(instMax===1?'1 instruction file maximum.':`Up to ${instMax} instruction files.`)+` Accepted: ${acceptedLabel(instTypes)} · ${Number(appData.settings.max_instruction_total_mb||0)} MB total${instPages?' · '+instPages+' pages total':''}.`;
+  $('work-file-input').toggleAttribute('multiple',workMax>1);$('instruction-file-input').toggleAttribute('multiple',instMax>1);$('recovery-instruction-input').toggleAttribute('multiple',instMax>1);
+  const workAccept=hrExtsToAccept(workTypes),instAccept=hrExtsToAccept(instTypes);$('work-file-input').accept=workAccept;$('recovery-work-input').accept=workAccept;$('instruction-file-input').accept=instAccept;$('recovery-instruction-input').accept=instAccept;
+}
+function renderSamples(samples){
+  const list=Array.isArray(samples)?samples:[];
+  const first=list.find(s=>String(s?.PreviewURL||s?.FileURL||'').trim());
+  const main=$('sample-report-main-btn');
+  if(main&&first){
+    main.href=String(first.PreviewURL||first.FileURL).trim();
+    main.style.display='inline-flex';
+  }
+  if(main&&!first){main.style.display='none';main.removeAttribute('href');}
+  const grid=$('samples-grid');
+  grid.innerHTML=list.map(s=>{
+    const href=String(s?.PreviewURL||s?.FileURL||'').trim();
+    return `<div class="sample"><h3>${hrEscape(s.Title)}</h3><p>${hrEscape(s.Description||'')}</p>${href?`<a class="btn secondary sm" href="${hrEscape(href)}" target="_blank" rel="noopener noreferrer">View sample report</a>`:''}</div>`;
+  }).join('')||'<div class="notice">Sample reports will appear here.</div>';
+}
+function applyHomeData(){setTheme(appData.settings);setUploadLimitText();renderPlans(appData.plans);renderSamples(appData.samples);configureEnterpriseLinks();const accessBox=$('access-code-box');if(accessBox)accessBox.classList.toggle('hidden',!appData.settings.complimentary_codes_enabled);const consentRow=$('marketing-consent-row');if(consentRow)consentRow.classList.toggle('hidden',!appData.settings.marketing_opt_in_enabled);if($('marketing-consent-text')&&appData.settings.marketing_opt_in_text)$('marketing-consent-text').textContent=appData.settings.marketing_opt_in_text;if(appData.settings.maintenance_mode){document.querySelectorAll('[data-start-review]').forEach(b=>{b.disabled=true;b.setAttribute('aria-disabled','true');});$('maint-bar')?.classList.remove('hidden');hrToast('New submissions are temporarily paused.','warning');}const pageCap=Number(appData.settings.max_customer_work_pages||0),types=acceptedLabel(appData.settings.accepted_work_file_types);$('work-limits').innerHTML=`<strong>Before you upload</strong><div class="small" style="margin-top:.25rem">Your selected papers stay on your device until payment is confirmed. ${hrEscape(pricingExplanation())}</div><div class="limits"><span>Up to ${Number(appData.settings.max_work_files)} paper file(s)</span><span>Online custom range: ${Number(appData.settings.max_customer_work_mb)} MB${pageCap?' / '+pageCap+' pages':''}</span><span>Accepted: ${hrEscape(types)}</span></div>`;if(!appData.settings.instructions_optional){$('brief-no').disabled=true;$('brief-no').closest('label').innerHTML='<span class="small muted">Your school instructions are required for this order.</span>';}if(hrState.sessionToken&&hrState.email)showVerifiedEmailNote();}
+async function loadHome(force=false,attempt=0){
+  const grid=$("plans-grid");
+  try{
+    if(force&&typeof hrInvalidatePublicConfigCache==='function')hrInvalidatePublicConfigCache();
+    appData=await hrGetPublicConfig(!!force);
+    applyHomeData();
+  }catch(e){
+    console.error('[HumanlyReview] Public settings load failed:',e);
+    if(attempt<2){
+      grid.innerHTML=`<div class="notice center" style="grid-column:1/-1"><div class="loading-spinner" aria-hidden="true"></div><strong style="display:block;margin-top:8px">Loading current pricing…</strong><div class="small muted" style="margin-top:4px">Getting the latest plans automatically.</div></div>`;
+      setTimeout(()=>loadHome(true,attempt+1),700+attempt*900);
+      return;
+    }
+    grid.innerHTML=`<div class="notice danger" style="grid-column:1/-1"><strong>Pricing is temporarily unavailable.</strong><br><span class="small">No files have been uploaded or stored. Please try again.</span><div class="actions"><button type="button" class="btn sm secondary" id="plans-retry">Try again</button></div></div>`;const rb=$('plans-retry');if(rb)rb.onclick=()=>{grid.innerHTML='<div class="plan"><div class="skeleton"></div><div class="skeleton tall"></div></div>';loadHome(true,0);};
+  }
+}
+
+function enterpriseReasonText(reason){const m={work_file_count:'This request contains more papers than the online review limit.',custom_range:'The combined paper size is above the online custom-review range.',custom_pages:'The combined page count is above the online custom-review range.',system_total_size:'This request is above the system-wide online upload limit.',single_file_size:'At least one PDF is above the system-wide single-file limit.',file_count:'This request contains too many files for online submission.'};return m[reason]||'This request is better handled as an Enterprise / Institutional review.';}
+function enterpriseMailto(reason='custom_range'){const s=appData?.settings||{},to=s.enterprise_contact_email||'hello@humanlyreview.com',subject=s.enterprise_email_subject||'HumanlyReview — Enterprise / Institutional Review Request',work=hrState.selectedWorkFiles||[],ins=hrState.selectedInstructionFiles||[],wb=work.reduce((n,f)=>n+Number(f.size||0),0),ib=ins.reduce((n,f)=>n+Number(f.size||0),0),wp=totalPages(work),ip=totalPages(ins);let body=s.enterprise_email_body||'Hello HumanlyReview team,\n\nI would like to discuss an enterprise/institutional review arrangement.\n\n';body=body.replaceAll('{{workFileCount}}',String(work.length)).replaceAll('{{workTotalMB}}',(wb/1048576).toFixed(2)).replaceAll('{{workTotalPages}}',String(wp||'—')).replaceAll('{{instructionFileCount}}',String(ins.length)).replaceAll('{{instructionTotalMB}}',(ib/1048576).toFixed(2)).replaceAll('{{instructionTotalPages}}',String(ip||'—')).replaceAll('{{customerEmail}}',hrState.email||'');body += `\n\nPaper pages: ${wp||'—'}\nInstruction pages: ${ip||'—'}\nReason for enquiry: ${enterpriseReasonText(reason)}`;return 'mailto:'+encodeURIComponent(to)+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);}
+function configureEnterpriseLinks(){const href=enterpriseMailto('custom_range');['enterprise-home-btn','enterprise-summary-btn','footer-enterprise'].forEach(id=>{const el=$(id);if(el)el.href=href;});}
+function showVerifiedEmailNote(){const el=$('verified-email-note');if(!el||!hrState.email||!hrState.sessionToken)return;el.innerHTML=`✓ ${hrEscape(hrMaskEmail(hrState.email))} is already verified. You will not be asked for another code unless you choose a different email or the secure session expires.`;el.classList.remove('hidden');renderAccessCodeState();if($('marketing-consent'))$('marketing-consent').checked=hrState.marketingConsent===true;}
+function syncEmailFields(value){const v=String(value||'');const a=$('email'),b=$('email-manual-entry');if(a&&a.value!==v)a.value=v;if(b&&b.value!==v)b.value=v;}
+function setEmailEntryEnabled(enabled){const a=$('email'),b=$('email-manual-entry');if(a){a.disabled=!enabled;a.readOnly=!enabled;a.classList.toggle('identity-email-locked',!enabled);a.setAttribute('aria-readonly',String(!enabled));}if(b){b.disabled=!enabled;b.readOnly=!enabled;b.classList.toggle('hidden',!enabled);b.setAttribute('aria-readonly',String(!enabled));}}
+function currentEmailValue(){const a=$('email-manual-entry'),b=$('email');return String((a&&!a.classList.contains('hidden')?a.value:b?.value)||hrState.email||'').trim().toLowerCase();}
+function prepareNewReviewEmailChoice(){
+  const box=$('new-review-identity-choice');const v=hrGetStoredVerifiedIdentity();if(!box)return;
+  const saved=v?.sessionToken&&v?.email;
+  const entry=$('email-entry-field');
+  if(saved){
+    syncEmailFields(v.email);setEmailEntryEnabled(false);entry.classList.add('hidden');box.classList.remove('hidden');$('send-otp').classList.add('hidden');$('verified-email-note').classList.add('hidden');
+    $('use-verified-email').onclick=async()=>{const b=$('use-verified-email');hrSetBusy(b,true,'Opening…');try{hrState.sessionToken=v.sessionToken;hrState.email=v.email;hrState.newReviewMode=false;hrSaveSession(v.sessionToken,v.email,v.expiresAt||'');if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-work',email:v.email,sessionToken:v.sessionToken});box.classList.add('hidden');entry.classList.remove('hidden');setEmailEntryEnabled(true);syncEmailFields(v.email);$('email').disabled=false;$('email').readOnly=false;$('email').classList.remove('identity-email-locked');$('work-file-input').accept=hrExtsToAccept(appData.settings.accepted_work_file_types);$('instruction-file-input').accept=hrExtsToAccept(appData.settings.accepted_instruction_file_types);openModal('step-work');showVerifiedEmailNote();}finally{hrSetBusy(b,false);}};
+    $('use-different-email').onclick=()=>{box.classList.add('hidden');entry.classList.remove('hidden');setEmailEntryEnabled(true);syncEmailFields('');$('email-manual-entry').focus();hrState.newReviewMode=false;$('verified-email-note').classList.add('hidden');$('send-otp').classList.remove('hidden');$('send-otp').textContent='Continue';};
+  }else{
+    box.classList.add('hidden');entry.classList.remove('hidden');setEmailEntryEnabled(true);syncEmailFields('');$('send-otp').classList.remove('hidden');$('send-otp').textContent='Continue';
+  }
+  const manual=$('email-manual-entry');if(manual)manual.oninput=()=>syncEmailFields(manual.value);
+  const primary=$('email');if(primary)primary.oninput=()=>syncEmailFields(primary.value);
+}
+
+function showEnterpriseOption(reason){const box=$('work-enterprise-notice');if(box){box.innerHTML=`<strong>Online custom review is not the right path for this request.</strong><br>${hrEscape(enterpriseReasonText(reason))}<br><span class="small muted">For institutions, large batches, or special arrangements, contact Enterprise / Institutional Review.</span><div class="actions" style="margin-top:10px"><a class="btn secondary" id="work-enterprise-btn" href="${hrEscape(enterpriseMailto(reason))}">Open Enterprise email</a></div>`;box.classList.remove('hidden');}hrState.enterpriseRequired=true;}
+function hideEnterpriseOption(){const box=$('work-enterprise-notice');if(box){box.classList.add('hidden');box.innerHTML='';}hrState.enterpriseRequired=false;}
+function syncMarketingConsentFromServer(data){if(!data||typeof data.marketingConsent==='undefined')return;hrState.marketingConsent=!!data.marketingConsent;if(typeof hrPersistDraftState==='function')hrPersistDraftState({marketingConsent:hrState.marketingConsent});if($('marketing-consent'))$('marketing-consent').checked=hrState.marketingConsent;}
+async function sendOtp(){const email=currentEmailValue();syncEmailFields(email);hrSetError($('email-error'),'');if(!hrValidateEmail(email)){hrSetError($('email-error'),'Enter a valid email address.');return;}const b=$('send-otp');hrSetBusy(b,true,'Checking…');try{if(await hrReuseVerifiedIdentity(email)){hrState.newReviewMode=false;hrSaveSession(hrState.sessionToken,email,hrGetVerifiedSession()?.expiresAt||'');if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-work',email});$('work-file-input').accept=hrExtsToAccept(appData.settings.accepted_work_file_types);$('instruction-file-input').accept=hrExtsToAccept(appData.settings.accepted_instruction_file_types);openModal('step-work');showVerifiedEmailNote();return;}const r=await hrApi('requestOtp',{email,orderRef:hrState.orderRef,ticketRef:hrState.customTicketRef,existingSessionToken:hrState.sessionToken&&hrState.email===email?hrState.sessionToken:''});if(r.data.alreadyVerified){syncMarketingConsentFromServer(r.data);hrState.newReviewMode=false;hrSaveSession(r.data.sessionToken,r.data.email,r.data.expiresAt||'');if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-work',email:r.data.email});openModal('step-work');showVerifiedEmailNote();return;}hrSavePendingSession(r.data.pendingSessionToken,email);$('masked-email').textContent=hrMaskEmail(email);showStep('step-otp');startResendTimer(r.data.resendAfterSeconds);$('otp').focus();}catch(e){hrSetError($('email-error'),e.message);}finally{hrSetBusy(b,false);}}
+function startResendTimer(sec){clearInterval(countdownTimer);let n=Math.max(0,Number(sec||0));const btn=$('resend-otp');const render=()=>{const ready=n<=0;$('otp-countdown').textContent=ready?'You can resend the code now.':`You can resend in ${n}s.`;if(btn){btn.disabled=!ready;btn.setAttribute('aria-disabled',ready?'false':'true');btn.classList.toggle('is-disabled',!ready);}};render();if(n>0)countdownTimer=setInterval(()=>{n--;render();if(n<=0)clearInterval(countdownTimer);},1000);}
+async function verifyOtp(){const code=$('otp').value.trim();hrSetError($('otp-error'),'');if(!/^\d{6}$/.test(code)){hrSetError($('otp-error'),'Enter the 6-digit code.');return;}const b=$('verify-otp');hrSetBusy(b,true,'Verifying…');try{const pending=hrState.pendingSessionToken||hrGetReviewMeta()?.pendingSessionToken||'';if(!pending)throw new Error('This verification code is no longer connected to the current review. Please request a new code.');const r=await hrApi('verifyOtp',{pendingSessionToken:pending,code});syncMarketingConsentFromServer(r.data);hrState.newReviewMode=false;hrSaveSession(r.data.sessionToken,r.data.email,r.data.expiresAt||'');if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-work',email:r.data.email,sessionToken:r.data.sessionToken});$('work-file-input').accept=hrExtsToAccept(appData.settings.accepted_work_file_types);$('instruction-file-input').accept=hrExtsToAccept(appData.settings.accepted_instruction_file_types);if(hrState.customTicketRef&&!hrState.orderRef){await loadCustomRequest(true);}else if(hrState.orderRef){await resumeExistingOrder();}else{openModal('step-work');}}catch(e){hrSetError($('otp-error'),e.message);}finally{hrSetBusy(b,false);}}
+function renderAccessCodeState(){const el=$('access-code-status');if(!el)return;if(hrState.accessGrantToken){el.className='small success-text';el.innerHTML=`✅ <strong>${hrEscape(hrState.accessCodeLabel||'Complimentary access')}</strong> is connected to this verified email. Your plan eligibility will be checked before submission. <button type="button" class="link-btn" id="remove-access-code">Remove</button>`;setTimeout(()=>{const b=$('remove-access-code');if(b)b.onclick=clearAccessCode;},0);}else{el.className='small muted';el.textContent='';}}
+function clearAccessCode(){hrState.accessGrantToken='';hrState.accessCodeId='';hrState.accessCodeLabel='';if($('access-code-input'))$('access-code-input').value='';if(typeof hrPersistDraftState==='function')hrPersistDraftState({accessGrantToken:'',accessCodeId:'',accessCodeLabel:''});renderAccessCodeState();hrToast('Complimentary access removed from this review.','info');}
+async function applyAccessCode(){const input=$('access-code-input'),code=String(input?.value||'').trim(),b=$('apply-access-code');hrSetError($('work-error'),'');if(!code){hrSetError($('work-error'),'Enter the complimentary access code first.');return;}hrSetBusy(b,true,'Checking…');try{const r=await hrApi('claimAccessCode',{sessionToken:hrState.sessionToken,code},{noRetry:true});hrState.accessGrantToken=r.data.grantToken;hrState.accessCodeId=r.data.accessCodeId;hrState.accessCodeLabel=r.data.label||'Complimentary access';if(input)input.value='';if(typeof hrPersistDraftState==='function')hrPersistDraftState({accessGrantToken:hrState.accessGrantToken,accessCodeId:hrState.accessCodeId,accessCodeLabel:hrState.accessCodeLabel});renderAccessCodeState();hrToast('Complimentary access code accepted.','success');}catch(e){hrSetError($('work-error'),e.message);}finally{hrSetBusy(b,false);}}
+async function updateMarketingConsent(){const box=$('marketing-consent');if(!box||!appData?.settings?.marketing_opt_in_enabled)return;const desired=!!box.checked;try{await hrApi('setMarketingConsent',{sessionToken:hrState.sessionToken,consent:desired},{noRetry:true});hrState.marketingConsent=desired;if(typeof hrPersistDraftState==='function')hrPersistDraftState({marketingConsent:desired});hrToast(desired?'Email updates enabled. You can change this choice later.':'Email updates disabled.','success');}catch(e){box.checked=hrState.marketingConsent===true;hrToast(e.message||'Could not save that preference.','danger');}}
+function setWorkFiles(list){hrState.selectedWorkFiles=[...list];renderFileList('work-file-list',hrState.selectedWorkFiles,true);$('work-continue').disabled=!hrState.selectedWorkFiles.length||hasMissingDraftFiles(hrState.selectedWorkFiles);if(typeof hrPersistDraftFiles==='function')hrPersistDraftFiles('work',hrState.selectedWorkFiles);if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-work',workFilesMeta:draftFileMeta(hrState.selectedWorkFiles)});updateDraftRestoreNotices();}
+function getExt(name){const parts=String(name||'').toLowerCase().split('.');return parts.length>1?parts.pop():'';}
+function allowedList(value){return String(value||'').split(',').map(x=>x.trim().replace(/^\./,'').toLowerCase()).filter(Boolean);}
+function validatePickedFiles(files,allowed,label){for(const f of files){const ext=getExt(f.name);if(!allowed.includes(ext))return `${f.name} is not accepted. Allowed ${label} types: ${allowed.join(', ')}.`;if(!f.size)return `${f.name} is empty. Please choose a file with content.`;if(ext==='pdf'&&f.type&&f.type!=='application/pdf'&&f.type!=='application/octet-stream')return `${f.name} does not appear to be a PDF.`;}return '';}
+function updateWorkSizeNotice(total){const el=$('work-size-notice'),pages=totalPages(hrState.selectedWorkFiles),highest=(appData.plans||[]).slice().sort((a,b)=>Number(b.TierRank)-Number(a.TierRank))[0],overMb=highest&&pricingBasis()!=='pages_only'&&total/1048576>Number(highest.MaxSizeMB),overPages=highest&&pricingBasis()!=='mb_only'&&pages>Number(highest.MaxPages);if(overMb||overPages){el.textContent=`This paper selection is above the standard plan range (${hrFormatBytes(total)}${pages?' · '+pages+' pages':''}), so a custom quote will be used. No payment is due yet.`;el.classList.remove('hidden');}else{el.classList.add('hidden');el.textContent='';}}
+async function addWorkFiles(files){try{await preparePickedFiles(files,'paper',workPagesNeeded());const merged=[...hrState.selectedWorkFiles];for(const f of files){const key=hrFileKey(f),missingIndex=merged.findIndex(x=>isDraftPlaceholder(x)&&(hrFileKey(x)===key||String(x.name||'')===String(f.name||'')));if(missingIndex>=0){const expectedSize=Number(merged[missingIndex].size||0);if(expectedSize&&expectedSize!==Number(f.size||0))throw new Error(`Please choose the original paper: ${merged[missingIndex].name}. The saved file was ${hrFormatBytes(expectedSize)}.`);merged[missingIndex]=f;continue;}if(merged.some(x=>!isDraftPlaceholder(x)&&hrFileKey(x)===key))continue;merged.push(f);}const maxSystemFiles=Number(appData.settings.system_max_file_count||100),maxSystemMB=Number(appData.settings.system_max_submission_mb||60),maxSingleMB=Number(appData.settings.system_max_single_file_mb||50),total=merged.reduce((a,f)=>a+Number(f.size||0),0),pages=totalPages(merged);if(merged.length>maxSystemFiles){showEnterpriseOption('file_count');throw new Error(`This selection contains more than the system can safely accept online (${maxSystemFiles} files).`);}if(merged.some(f=>Number(f.size)>maxSingleMB*1048576)||total>maxSystemMB*1048576){showEnterpriseOption(merged.some(f=>Number(f.size)>maxSingleMB*1048576)?'single_file_size':'system_total_size');throw new Error('This selection is above the online system capacity. The files have not been submitted.');}setWorkFiles(merged);const tooMany=merged.length>Number(appData.settings.max_work_files),tooBig=total>Number(appData.settings.max_customer_work_mb)*1048576,tooManyPages=Number(appData.settings.max_customer_work_pages||0)>0&&pages>Number(appData.settings.max_customer_work_pages);if(tooMany||tooBig||tooManyPages){$('work-continue').disabled=true;showEnterpriseOption(tooMany?'work_file_count':tooBig?'custom_range':'custom_pages');}else hideEnterpriseOption();updateWorkSizeNotice(total);hrSetError($('work-error'),'');}catch(e){hrSetError($('work-error'),e.message||String(e));}}
+function setInstructionFiles(list){
+  hrState.selectedInstructionFiles=[...(list||[])];
+  renderFileList('instruction-file-list',hrState.selectedInstructionFiles,true);
+  const real=hrState.selectedInstructionFiles.filter(f=>!isDraftPlaceholder(f));
+  const total=real.reduce((n,f)=>n+Number(f.size||0),0);
+  if(hrState.selectedInstructionFiles.length){
+    if(typeof hrPersistDraftFiles==='function')hrPersistDraftFiles('instruction',real);
+  }else if(typeof hrPersistDraftFiles==='function'){hrPersistDraftFiles('instruction',[]);}
+  if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-instructions',instructionText:hrState.instructionText||'',briefChoice:selectedBriefChoice()||'',instructionFilesMeta:draftFileMeta(hrState.selectedInstructionFiles)});
+  const workReal=hrState.selectedWorkFiles.filter(f=>!isDraftPlaceholder(f));
+  const combined=workReal.reduce((n,f)=>n+Number(f.size||0),0)+total;
+  if(combined>Number(appData.settings.system_max_submission_mb||40)*1024*1024)showEnterpriseOption('system_total_size');
+  else if(!hasMissingDraftFiles(hrState.selectedWorkFiles)&&hrState.selectedWorkFiles.length&&hrState.selectedWorkFiles.length<=Number(appData.settings.max_work_files||5)&&workReal.reduce((n,f)=>n+Number(f.size||0),0)<=Number(appData.settings.max_customer_work_mb||30)*1024*1024)hideEnterpriseOption();
+  updateDraftRestoreNotices();
+}
+async function addInstructionFiles(files){try{await preparePickedFiles(files,'instruction',instructionPagesNeeded());const merged=[...hrState.selectedInstructionFiles];for(const f of files){const key=hrFileKey(f),missingIndex=merged.findIndex(x=>isDraftPlaceholder(x)&&(hrFileKey(x)===key||String(x.name||'')===String(f.name||'')));if(missingIndex>=0){const expectedSize=Number(merged[missingIndex].size||0);if(expectedSize&&expectedSize!==Number(f.size||0))throw new Error(`Please choose the original instruction file: ${merged[missingIndex].name}.`);merged[missingIndex]=f;continue;}if(merged.some(x=>!isDraftPlaceholder(x)&&hrFileKey(x)===key))continue;merged.push(f);}const s=appData.settings,total=merged.reduce((a,f)=>a+Number(f.size||0),0),pages=totalPages(merged);if(merged.length>Number(s.max_instruction_files))throw new Error(`You can upload up to ${s.max_instruction_files} instruction file(s).`);if(total>Number(s.max_instruction_total_mb)*1048576)throw new Error(`Instruction files may total up to ${s.max_instruction_total_mb} MB.`);if(Number(s.max_instruction_total_pages||0)>0&&pages>Number(s.max_instruction_total_pages))throw new Error(`Instruction files may total up to ${s.max_instruction_total_pages} pages. Upload only the relevant instruction pages or use a custom review.`);const allBytes=hrState.selectedWorkFiles.reduce((n,f)=>n+Number(f.size||0),0)+total;if(allBytes>Number(s.system_max_submission_mb||60)*1048576){showEnterpriseOption('system_total_size');throw new Error('This submission would exceed the system-wide online upload limit.');}hrSetError($('instruction-error'),'');setInstructionFiles(merged);}catch(e){hrSetError($('instruction-error'),e.message||String(e));}}
+function renderFileList(id,files,removable){const host=$(id);if(!host)return;host.innerHTML=(files||[]).map((f,i)=>{const missing=isDraftPlaceholder(f),pages=pageCountOf(f);return `<div class="file-chip${missing?' missing':''}"><div class="file-chip-main"><div class="file-chip-name">${hrEscape(f.name||'Saved file')}</div><div class="file-chip-meta">${f.size?hrFormatBytes(Number(f.size)):'Size unavailable'}${pages?' · '+pages+' page'+(pages===1?'':'s'):''}${missing?' · choose again':''}</div></div>${removable?`<button type="button" class="btn secondary sm" data-remove-file="${i}">Remove</button>`:''}</div>`;}).join('');host.querySelectorAll('[data-remove-file]').forEach(b=>b.onclick=()=>{hrClearNearbyErrors(b);files.splice(Number(b.dataset.removeFile),1);if(id==='work-file-list'){setWorkFiles(files);const real=files.filter(f=>!isDraftPlaceholder(f)),total=real.reduce((a,f)=>a+Number(f.size||0),0);if(!files.length){hideEnterpriseOption();updateWorkSizeNotice(0);}else if(!hasMissingDraftFiles(files)){const pages=totalPages(real);if(files.length>Number(appData.settings.max_work_files||5))showEnterpriseOption('work_file_count');else if(total>Number(appData.settings.max_customer_work_mb||50)*1048576)showEnterpriseOption('custom_range');else if(Number(appData.settings.max_customer_work_pages||0)>0&&pages>Number(appData.settings.max_customer_work_pages))showEnterpriseOption('custom_pages');else hideEnterpriseOption();updateWorkSizeNotice(total);}}else if(id==='instruction-file-list')setInstructionFiles(files);updateDraftRestoreNotices();});updateDraftRestoreNotices();if(id==='work-file-list'){const real=files.filter(f=>!isDraftPlaceholder(f));$('work-continue').disabled=hasMissingDraftFiles(files)||!real.length||hrState.enterpriseRequired;}}
+function selectedBriefChoice(){return document.querySelector('input[name="has-brief"]:checked')?.value||'';}
+function updateBriefArea(){const choice=selectedBriefChoice();$('brief-yes-area').classList.toggle('hidden',choice!=='yes');$('brief-no-area').classList.toggle('hidden',choice!=='no');$('instructions-continue').disabled=!choice;hrSetError($('instruction-error'),'');if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-instructions',briefChoice:choice,instructionText:$('instruction-text').value.trim()});}
+async function previewOrder(){if(hasMissingDraftFiles(hrState.selectedWorkFiles))throw new Error('One or more saved papers need to be attached again before you can continue.');if(hasMissingDraftFiles(hrState.selectedInstructionFiles))throw new Error('One or more saved instruction files need to be attached again before you can continue.');if(!hasRealFiles(hrState.selectedWorkFiles))throw new Error('Please choose the paper you want reviewed before continuing.');const instructionText=$('instruction-text').value.trim();hrState.instructionText=instructionText;return (await hrApi('matchPlan',{sessionToken:hrState.sessionToken,workFiles:hrState.selectedWorkFiles.map(fileMetaForApi),instructionFiles:hrState.selectedInstructionFiles.map(fileMetaForApi),instructionText,customTicketRef:hrState.customTicketRef||'',accessGrantToken:hrState.accessGrantToken||''})).data;}
+function renderSummary(preview){const workTotal=Number(preview.workTotalBytes||0),workPages=Number(preview.workTotalPages||0),instructionsHave=selectedBriefChoice()==='yes',instPages=Number(preview.instructionTotalPages||0);if(preview.enterpriseRequired){hrState.isCustomQuote=false;hrState.customQuoteReady=false;hrState.enterpriseRequired=true;$('summary-box').innerHTML=`<div class="statline"><span>Papers to review</span><strong>${Number(preview.workFileCount||hrState.selectedWorkFiles.length)} file(s)</strong></div><div class="statline"><span>Total paper size</span><strong>${hrFormatBytes(workTotal)}</strong></div>${workPages?`<div class="statline"><span>Total pages</span><strong>${workPages}</strong></div>`:''}<div class="statline"><span>Next step</span><strong>Enterprise / Institutional Review</strong></div><div class="notice warning" style="margin-top:12px"><strong>No payment is due.</strong><br>${hrEscape(enterpriseReasonText(preview.enterpriseReason))}</div>`;$('pay-btn').classList.add('hidden');$('enterprise-summary-btn').classList.remove('hidden');$('enterprise-summary-btn').href=enterpriseMailto(preview.enterpriseReason);return;}const oversized=!preview.plan||!!preview.oversized;hrState.isCustomQuote=oversized;hrState.customQuoteReady=!!preview.customQuoteReady;hrState.enterpriseRequired=false;$('pay-btn').classList.remove('hidden');$('enterprise-summary-btn').classList.add('hidden');const instructionPricing=!!appData.settings.instructions_count_toward_price,showReports=!!appData.settings.show_report_formats_on_pricing,complimentary=!oversized&&!!preview.complimentaryAccess?.eligible,accessError=!oversized&&hrState.accessGrantToken&&preview.complimentaryAccess?.error?String(preview.complimentaryAccess.error):'';const reportLine=!oversized&&showReports&&preview.plan?.ReportFormatLabel?`<div class="statline"><span>Finished report</span><strong>${hrEscape(preview.plan.ReportFormatLabel)}</strong></div>`:'';const priceLine=oversized?'':complimentary?`<div class="statline"><span>Plan price</span><strong>${hrFormatMoney(preview.plan.Price,preview.plan.Currency)}</strong></div><div class="statline"><span>Amount due</span><strong>Complimentary — no payment</strong></div><div class="notice success" style="margin-top:12px"><strong>🎁 ${hrEscape(preview.complimentaryAccess.label||'Complimentary access')} applied.</strong><br>This one order can continue without payment.</div>`:`<div class="statline"><span>Price</span><strong>${hrFormatMoney(preview.plan.Price,preview.plan.Currency)}</strong></div>`;$('summary-box').innerHTML=`<div class="statline"><span>Papers to review</span><strong>${Number(preview.workFileCount||hrState.selectedWorkFiles.length)} file(s)</strong></div><div class="statline"><span>Total paper size</span><strong>${hrFormatBytes(workTotal)}</strong></div>${workPages?`<div class="statline"><span>Total pages</span><strong>${workPages}</strong></div>`:''}<div class="statline"><span>Assignment instructions</span><strong>${instructionsHave?'Provided':'Not provided'}</strong></div>${instructionsHave&&instPages?`<div class="statline"><span>Instruction pages</span><strong>${instPages}</strong></div>`:''}<div class="statline"><span>${oversized?'Next step':'Plan'}</span><strong>${oversized?'Custom review request':hrEscape(preview.plan.PlanName)}</strong></div>${reportLine}${oversized?`<div class="notice warning" style="margin-top:12px"><strong>No payment is due yet.</strong><br>This request is outside the standard plan range, so a custom quote will be prepared.</div>`:`${priceLine}<div class="statline"><span>Estimated delivery</span><strong>${Number(preview.plan.DeliveryHours)} hours</strong></div><div class="small muted" style="margin-top:12px">${hrEscape(pricingExplanation())}</div>`}${accessError?`<div class="notice warning" style="margin-top:12px"><strong>Complimentary code not applied to this plan.</strong><br>${hrEscape(accessError)} You can continue with normal payment or enter another code.</div>`:''}<div class="small muted" style="margin-top:8px">Assignment instructions ${instructionPricing?'are included in the pricing totals under the current Admin setting.':'do not affect the price under the current Admin setting.'}</div>`;$('pay-btn').textContent=oversized?'Request My Custom Quote':complimentary?'Submit with Complimentary Access':'Continue to Secure Payment';}
+async function prepareSummary(){if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-instructions',briefChoice:selectedBriefChoice(),instructionText:$('instruction-text').value.trim()});const b=$('instructions-continue');hrSetBusy(b,true,'Checking…');hrSetError($('instruction-error'),'');try{const choice=selectedBriefChoice();if(!choice){hrSetError($('instruction-error'),'Please choose Yes or No.');return;}if(choice==='yes'&&!$('instruction-text').value.trim()&&!hrState.selectedInstructionFiles.length){hrSetError($('instruction-error'),'Please upload or paste the assignment question or instructions.');return;}if(choice==='no'){setInstructionFiles([]);$('instruction-text').value='';hrState.instructionText='';}const preview=await previewOrder();renderSummary(preview);hrState.currentOrderPreview=preview;showStep('step-summary');}catch(e){handleApiError(e,$('instruction-error'));}finally{hrSetBusy(b,false);}}
+function customMissingItems(x){
+  const missing=[];
+  (x?.workFiles||[]).forEach(f=>{if(!f.uploaded)missing.push({kind:'work',index:Number(f.index),name:f.name,size:Number(f.size),pageCount:Number(f.pageCount||0)});});
+  (x?.instructionFiles||[]).forEach(f=>{if(!f.uploaded)missing.push({kind:'instruction',index:Number(f.index),name:f.name,size:Number(f.size),pageCount:Number(f.pageCount||0)});});
+  return missing;
+}
+function renderCustomMissingFiles(x){
+  const box=$('custom-missing-files'),list=$('custom-missing-list');
+  if(!box||!list)return;
+  const missing=customMissingItems(x);
+  if(!missing.length){box.classList.add('hidden');list.innerHTML='';$('custom-upload-progress').textContent='';return;}
+  box.classList.remove('hidden');
+  list.innerHTML=missing.map(item=>{
+    const safeKind=hrEscape(item.kind),safeName=hrEscape(item.name);
+    return `<div class="file-chip" style="margin-top:8px"><div class="file-chip-main"><div class="file-chip-name">${safeName}</div><div class="file-chip-meta">${hrFormatBytes(item.size)}${item.pageCount?' · '+item.pageCount+' page'+(item.pageCount===1?'':'s'):''} · ${item.kind==='work'?'Paper to review':'Assignment instruction'}</div></div><label class="btn secondary" style="white-space:nowrap">Choose<input type="file" data-custom-missing-kind="${safeKind}" data-custom-missing-index="${item.index}" data-custom-missing-name="${safeName}" data-custom-missing-size="${item.size}" class="vh"></label></div>`;
+  }).join('');
+}
+function getSelectedCustomMissingFiles(){
+  return [...document.querySelectorAll('[data-custom-missing-index]')].map(input=>{
+    const f=input.files&&input.files[0];
+    return f?{kind:input.dataset.customMissingKind,index:Number(input.dataset.customMissingIndex),file:f}:null;
+  }).filter(Boolean);
+}
+async function attachMissingCustomFiles(){
+  hrSetError($('custom-error'),'');
+  const selected=getSelectedCustomMissingFiles();
+  const missing=customMissingItems(hrState.customRequest||{});
+  if(!selected.length){hrSetError($('custom-error'),'Please choose the missing file(s) shown above first.');return;}
+  const chosenKeys=new Set(selected.map(x=>x.kind+'|'+x.index));
+  const notChosen=missing.filter(x=>!chosenKeys.has(x.kind+'|'+x.index));
+  if(notChosen.length){hrSetError($('custom-error'),'Please choose every file marked as still needed before attaching.');return;}
+  const b=$('custom-attach-missing');hrSetBusy(b,true,'Attaching…');
+  try{
+    for(let i=0;i<selected.length;i++){
+      const item=selected[i];
+      $('custom-upload-progress').textContent=`Attaching ${i+1} of ${selected.length}: ${item.file.name}`;
+      const expected=missing.find(x=>x.kind===item.kind&&x.index===item.index);if(expected&&expected.pageCount>0){const pages=await ensurePdfPages(item.file);if(pages!==expected.pageCount)throw new Error(`${item.file.name} has ${pages} pages, but this request expects ${expected.pageCount}. Please choose the exact original file.`);}const b64=await hrFileToBase64(item.file);
+      await hrApi('customUploadFile',{sessionToken:hrState.sessionToken,ticketRef:hrState.customTicketRef,kind:item.kind,index:item.index,fileName:item.file.name,fileSizeBytes:item.file.size,mimeType:item.file.type||'application/octet-stream',pageCount:pageCountOf(item.file)||null,base64:b64},{timeoutMs:120000,noRetry:true});
+    }
+    $('custom-upload-progress').textContent='Checking your request…';
+    await loadCustomRequest(true);
+    hrToast('Missing file(s) attached successfully.','success');
+  }catch(e){hrSetError($('custom-error'),e.message);}finally{hrSetBusy(b,false);}
+}
+async function uploadCustomMissingFiles(ticketRef){
+  const st=await hrApi('getCustomRequestStatus',{sessionToken:hrState.sessionToken,ticketRef},{noRetry:true});
+  let x=st.data||{};
+  const missing=[];
+  (x.workFiles||[]).forEach(f=>{if(!f.uploaded)missing.push({kind:'work',index:f.index,file:hrState.selectedWorkFiles.find(v=>hrFileKey(v)===`${f.name}__${f.size}`),name:f.name,size:f.size,pageCount:Number(f.pageCount||0)});});
+  (x.instructionFiles||[]).forEach(f=>{if(!f.uploaded)missing.push({kind:'instruction',index:f.index,file:hrState.selectedInstructionFiles.find(v=>hrFileKey(v)===`${f.name}__${f.size}`),name:f.name,size:f.size,pageCount:Number(f.pageCount||0)});});
+  for(let i=0;i<missing.length;i++){
+    const item=missing[i];
+    if(!item.file)throw new Error(`The file ${item.name} could not be attached automatically.`);
+    $('custom-upload-progress').textContent=`Attaching file ${i+1} of ${missing.length}: ${item.name}`;
+    if(Number(item.pageCount||0)>0){const pages=await ensurePdfPages(item.file);if(pages!==Number(item.pageCount))throw new Error(`${item.file.name} no longer matches the page count saved for this request.`);}const b64=await hrFileToBase64(item.file);const r=await hrApi('customUploadFile',{sessionToken:hrState.sessionToken,ticketRef,kind:item.kind,index:item.index,fileName:item.file.name,fileSizeBytes:item.file.size,mimeType:item.file.type||'application/octet-stream',pageCount:pageCountOf(item.file)||null,base64:b64},{timeoutMs:120000,noRetry:true});
+    x=r.data.request||x;
+  }
+  $('custom-upload-progress').textContent=missing.length?'All request files are securely attached.':'';
+  return x;
+}
+let customAutoRetryTimer=null;
+function stopCustomAutoRetry(){clearTimeout(customAutoRetryTimer);customAutoRetryTimer=null;}
+function startCustomAutoRetry(){
+  stopCustomAutoRetry();
+  let secs=12;
+  const box=$('custom-status-message');
+  let note=box?.querySelector('#custom-retry-count');
+  if(box&&!note){note=document.createElement('div');note.id='custom-retry-count';note.className='small muted';note.style.marginTop='6px';box.appendChild(note);}
+  const draw=()=>{if(note)note.textContent=`Trying again automatically in ${secs}s…`;};
+  draw();
+  const tick=()=>{secs--;if(secs<=0){customAutoRetryTimer=null;loadCustomRequest(false);}else{draw();customAutoRetryTimer=setTimeout(tick,1000);}};
+  customAutoRetryTimer=setTimeout(tick,1000);
+}
+async function loadCustomRequest(show=true,preserveError=''){
+  if(!hrState.customTicketRef||!hrState.sessionToken)return null;
+  stopCustomAutoRetry();
+  $('custom-loading')?.classList.remove('hidden');$('custom-loaded-content')?.classList.add('hidden');if(show)showStep('step-custom');
+  const attempts=3;
+  for(let i=0;i<attempts;i++){
+    try{
+      const r=await hrApi('getCustomRequestStatus',{sessionToken:hrState.sessionToken,ticketRef:hrState.customTicketRef},{noRetry:true});
+      hrState.customRequest=r.data;
+      renderCustomRequest(r.data);
+      if(preserveError)hrSetError($('custom-error'),preserveError);
+      if(show)showStep('step-custom');
+      return r.data;
+    }catch(e){
+      if(isSessionExpiredError(e)){handleApiError(e,$('custom-error'));return null;}
+      if(i<attempts-1){await new Promise(res=>setTimeout(res,900+i*700));continue;}
+      $('custom-loading')?.classList.add('hidden');$('custom-loaded-content')?.classList.remove('hidden');$('custom-status-pill').textContent='Could not load';$('custom-status-pill').className='badge danger';$('custom-status-message').innerHTML='<strong>We could not load this request yet.</strong><div class="small muted" style="margin-top:6px">Your request has not been deleted — this is usually a brief connection hiccup. We will keep trying automatically, or use Refresh status.</div>';hrSetError($('custom-error'),'');if(show)showStep('step-custom');startCustomAutoRetry();return null;
+    }
+  }
+  return null;
+}
+function customStatusClass(status){return ({REQUEST_RECEIVED:'success',UPLOADS_PENDING:'warning',QUOTE_READY:'info',AWAITING_PAYMENT:'warning',PAID:'success',IN_REVIEW:'info',REPORT_READY:'success',COMPLETED:'success',EXPIRED:'warning',CANCELLED:'warning'})[status]||'info';}
+function customStatusMessage(x){const missing=customMissingItems(x);const m={REQUEST_RECEIVED:'Your request is saved. All files are attached. No action is needed while we prepare your final quote.',UPLOADS_PENDING:(missing.length?`Your request is saved, but ${missing.length===1?'one file is':'some files are'} not attached yet. No payment has been taken. Choose the missing file(s) below.`:'Your request is saved. We are finishing the file check now.'),QUOTE_READY:'Your final custom quote is ready. Review the price and estimated delivery, then continue to payment.',AWAITING_PAYMENT:'Your quote is accepted and the request is ready for secure payment. Your files are already attached.',PAID:'Payment is confirmed. Your papers are now in the review queue. No further upload is needed.',IN_REVIEW:'Your papers are currently being reviewed.',REPORT_READY:'Your reviewed report is ready for secure download.',COMPLETED:'This custom review is complete and the stored files have been removed.',EXPIRED:'This custom request is no longer active. No payment is due for the expired request.',CANCELLED:'This custom request has been closed.'};return m[x.status]||'Your custom request is being processed.';}
+function renderCustomTimeline(status){
+  const steps=[['REQUEST_RECEIVED','Request received'],['UPLOADS_PENDING','Files checked'],['QUOTE_READY','Quote ready'],['AWAITING_PAYMENT','Payment'],['IN_REVIEW','Review'],['REPORT_READY','Report ready']];
+  const order={REQUEST_RECEIVED:0,UPLOADS_PENDING:1,QUOTE_READY:2,AWAITING_PAYMENT:3,PAID:4,IN_REVIEW:4,REPORT_READY:5,COMPLETED:6,EXPIRED:6,CANCELLED:6};
+  const current=order[status]??1;
+  return '<strong>Your progress</strong><div class="timeline-compact">'+steps.map((st,i)=>{const done=status==='COMPLETED'||i<current;const active=!done&&i===current;return `<span class="${done?'done ':''}${active?'current':''}">${i+1}. ${st[1]}</span>`;}).join('')+'</div>';
+}
+function renderCustomRequest(x){
+  hrState.customRequest=x;const missing=customMissingItems(x);
+  $('custom-loading')?.classList.add('hidden');$('custom-loaded-content')?.classList.remove('hidden');
+  const pill=$('custom-status-pill');pill.textContent=x.statusLabel||x.status||'Status unavailable';pill.className=`badge ${customStatusClass(x.status)}`;
+  $('custom-ticket-ref').textContent=x.ticketRef?`Reference: ${hrEscape(x.ticketRef)}`:'Reference unavailable';$('custom-status-message').innerHTML=`<strong>${hrEscape(customStatusMessage(x))}</strong>`;
+  const fileLine=f=>`${hrFormatBytes(f.size)}${f.pageCount?' · '+Number(f.pageCount)+' page'+(Number(f.pageCount)===1?'':'s'):''}`;
+  const work=(x.workFiles||[]).map(f=>`<div class="file-status-row"><div class="file-chip-main"><div class="file-chip-name">${hrEscape(f.name)}</div><div class="file-chip-meta">${fileLine(f)}</div></div><span class="file-status ${f.uploaded?'saved':'pending'}">${f.uploaded?'Saved ✓':'Needs action'}</span></div>`).join('');
+  const inst=(x.instructionFiles||[]).map(f=>`<div class="file-status-row"><div class="file-chip-main"><div class="file-chip-name">${hrEscape(f.name)}</div><div class="file-chip-meta">${fileLine(f)}</div></div><span class="file-status ${f.uploaded?'saved':'pending'}">${f.uploaded?'Saved ✓':'Needs action'}</span></div>`).join('');
+  const quote=x.finalPrice>0?`<div class="statline"><span>Final price</span><strong>${hrFormatMoney(x.finalPrice,x.finalCurrency)}</strong></div><div class="statline"><span>Estimated review time</span><strong>${Number(x.finalDeliveryHours||0)} hours</strong></div><div class="statline"><span>Quote expires</span><strong>${x.quoteExpiresAt?hrFormatDate(x.quoteExpiresAt):'—'}</strong></div>`:`<div class="statline"><span>Estimated price</span><strong>${x.preliminaryPrice>0?hrFormatMoney(x.preliminaryPrice,x.preliminaryCurrency):'Manual quote'}</strong></div><div class="statline"><span>Estimated review time</span><strong>${Number(x.preliminaryDeliveryHours||0)} hours</strong></div><div class="small muted" style="margin-top:6px">The final price is confirmed before payment.</div>`;
+  const workPages=x.workTotalPages==null?'—':Number(x.workTotalPages),instPages=x.instructionTotalPages==null?'—':Number(x.instructionTotalPages);
+  $('custom-request-details').innerHTML=`<div class="custom-detail-grid"><div><div class="detail-label">Papers to review</div><div class="detail-value">${Number(x.workFileCount||0)} file(s) · ${hrFormatBytes(x.workTotalBytes)} · ${workPages} pages</div></div><div><div class="detail-label">Instructions</div><div class="detail-value">${x.instructionFileCount||x.instructionText?'Provided':'Not provided'}${x.instructionFileCount?' · '+hrFormatBytes(x.instructionTotalBytes)+' · '+instPages+' pages':''}</div></div></div><div class="detail-section"><strong>Your papers</strong>${work||'<div class="small muted" style="margin-top:8px">No papers listed.</div>'}</div><div class="detail-section"><strong>Assignment instructions</strong>${inst||'<div class="small muted" style="margin-top:8px">None attached.</div>'}${x.instructionText?`<div class="small muted" style="margin-top:8px">Pasted instructions supplied.</div>`:''}</div><div class="detail-section"><strong>Quote</strong><div class="quote-box">${quote}</div>${x.quoteNote?`<div class="notice" style="margin-top:10px"><strong>Note:</strong> ${hrEscape(x.quoteNote)}</div>`:''}${x.orderRef?`<div class="statline" style="margin-top:10px"><span>Order</span><strong>${hrEscape(x.orderRef)}</strong></div>`:''}</div>`;
+  renderCustomMissingFiles(x);$('custom-timeline').innerHTML=renderCustomTimeline(x.status);
+  let next='';if(x.status==='REQUEST_RECEIVED')next='<strong>No action needed.</strong><div class="small muted">Your files are saved. We are preparing your final quote.</div>';else if(x.status==='UPLOADS_PENDING')next=missing.length?'<strong>Action needed.</strong><div class="small muted">Attach the missing file(s) below. No payment is due.</div>':'<strong>Almost ready.</strong><div class="small muted">We are finishing the file check.</div>';else if(x.status==='QUOTE_READY')next='<strong>Your final quote is ready.</strong><div class="small muted">Review it before payment.</div>';else if(x.status==='AWAITING_PAYMENT')next='<strong>Payment is the next step.</strong><div class="small muted">Your files are already saved.</div>';else if(x.status==='REPORT_READY')next='<strong>Your report is ready.</strong><div class="small muted">Open it from the button below.</div>';else if(x.status==='EXPIRED'||x.status==='CANCELLED')next='<strong>This request is closed.</strong><div class="small muted">No payment is due. You can start another review.</div>';else next='<strong>No action needed right now.</strong>';$('custom-next-action').innerHTML=next;
+  $('custom-view-status').href=x.customStatusLink||`status.html?ticket=${encodeURIComponent(x.ticketRef||'')}`;$('custom-support-link').href='help.html'+(x.ticketRef?'?ticket='+encodeURIComponent(x.ticketRef):'');$('custom-cancel-btn').classList.toggle('hidden',!x.canCancel);$('custom-error').classList.add('hidden');
+  const b=$('custom-primary-btn');b.disabled=false;b.textContent='Refresh status';b.onclick=()=>loadCustomRequest(true);if(x.status==='UPLOADS_PENDING'&&missing.length){b.textContent='Attach missing file(s)';b.onclick=attachMissingCustomFiles;}else if(x.status==='QUOTE_READY'){b.textContent=x.requireAcceptance?'Review & accept quote':'Continue to payment';b.onclick=continueCustomRequest;}else if(x.status==='AWAITING_PAYMENT'){b.textContent='Continue to secure payment';b.onclick=async()=>{if(x.orderRef){hrSaveOrder(x.orderRef);await startPayment();}else await continueCustomRequest();};}else if(x.status==='REPORT_READY'&&x.deliveryLink){b.textContent='View / download report';b.onclick=()=>window.location.href=x.deliveryLink;}else if(x.status==='EXPIRED'||x.status==='CANCELLED'){b.textContent='Start a new review';b.onclick=()=>window.hrStartFreshReview?window.hrStartFreshReview(true):location.href='index.html?new=1';}
+}
+async function continueCustomRequest(){
+  hrSetError($('custom-error'),'');const b=$('custom-primary-btn');hrSetBusy(b,true,'Preparing payment…');
+  try{const r=await hrApi('continueCustomRequest',{sessionToken:hrState.sessionToken,ticketRef:hrState.customTicketRef},{noRetry:true});hrSaveOrder(r.data.orderRef);hrState.currentOrder=r.data.order;hrState.isCustomQuote=false;renderOrderSummary(r.data.order);showStep('step-summary');setTimeout(()=>startPayment(),150);}catch(e){if(!handleApiError(e,$('custom-error')))hrSetError($('custom-error'),e.message);}finally{hrSetBusy(b,false);}
+}
+async function cancelCustomRequest(){
+  if(!hrState.customTicketRef||!(await hrConfirm('Cancel this custom review request? No payment will be taken.',{title:'Cancel this request?',confirmText:'Yes, cancel request',cancelText:'Keep request'})))return;const b=$('custom-cancel-btn');hrSetBusy(b,true,'Cancelling…');try{await hrApi('cancelCustomRequest',{sessionToken:hrState.sessionToken,ticketRef:hrState.customTicketRef},{noRetry:true});await loadCustomRequest(true);hrToast('Custom request cancelled.','success');}catch(e){hrSetError($('custom-error'),e.message);}finally{hrSetBusy(b,false);}
+}
+async function createOrder(){const b=$('pay-btn');hrSetBusy(b,true,'Creating request…');hrSetError($('summary-error'),'');try{const r=await hrApi('createOrder',{sessionToken:hrState.sessionToken,workFiles:hrState.selectedWorkFiles.map(fileMetaForApi),instructionFiles:hrState.selectedInstructionFiles.map(fileMetaForApi),instructionText:$('instruction-text').value.trim(),customTicketRef:hrState.customTicketRef||'',accessGrantToken:hrState.accessGrantToken||''});if(r.data.enterpriseRequired){hrState.enterpriseRequired=true;$('summary-box').innerHTML=`<div class="notice warning"><strong>Enterprise / Institutional Review</strong><br>${hrEscape(enterpriseReasonText(r.data.enterpriseReason))}<br>No payment is due.</div>`;$('pay-btn').classList.add('hidden');$('enterprise-summary-btn').classList.remove('hidden');$('enterprise-summary-btn').href=enterpriseMailto(r.data.enterpriseReason);return r.data;}if(r.data.oversized){hrClearOrder();hrSaveCustomTicket(r.data.ticketRef);if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-custom',customTicketRef:r.data.ticketRef});$('custom-upload-progress').textContent=r.data.existing?'Checking your existing request files…':'Saving your custom request and attaching your files…';showStep('step-custom');try{await uploadCustomMissingFiles(r.data.ticketRef);}catch(uploadErr){$('custom-upload-progress').textContent='';await loadCustomRequest(true,uploadErr.message);return r.data;}await loadCustomRequest(true);return r.data;}hrSaveOrder(r.data.orderRef);hrState.currentOrder=r.data.order;hrState.customTicketRef='';hrClearCustomTicket();if(r.data.paymentBypassed){hrState.accessGrantToken='';hrState.accessCodeId='';hrState.accessCodeLabel='';if(typeof hrPersistDraftState==='function')hrPersistDraftState({accessGrantToken:'',accessCodeId:'',accessCodeLabel:''});$('success-description').textContent='Your complimentary access was confirmed and your files were securely submitted for review.';}else $('success-description').textContent='Your payment has been confirmed and your files have been securely submitted for review.';renderOrderSummary(r.data.order);showStep('step-summary');return r.data;}catch(e){handleApiError(e,$('summary-error'));return null;}finally{hrSetBusy(b,false);}}
+async function startPayment(){const b=$('pay-btn');hrSetBusy(b,true,'Preparing payment…');try{const r=await hrApi('initializePayment',{sessionToken:hrState.sessionToken,orderRef:hrState.orderRef},{noRetry:true});const link=r.data.paymentLink;$('open-payment-btn').href=link;$('payment-help-link').href='help.html'+(hrState.orderRef?'?order='+encodeURIComponent(hrState.orderRef):'');showStep('step-paying');const statusEl=$('payment-check-status');if(statusEl){statusEl.className='notice info';statusEl.textContent='Taking you to the secure payment page…';statusEl.classList.remove('hidden');}setTimeout(()=>{try{window.location.href=link;}catch(_){}},450);}catch(e){handleApiError(e,$('summary-error'));}finally{hrSetBusy(b,false);}}
+async function checkPayment(options={}){
+  const button=options.button||null;
+  const silent=!!options.silent;
+  const statusEl=$('payment-check-status');
+  const setStatus=(message,type='info')=>{
+    if(!statusEl)return;
+    statusEl.className=`notice ${type}`;
+    statusEl.textContent=message;
+    statusEl.classList.remove('hidden');
+  };
+  const clearStatus=()=>{
+    if(!statusEl)return;
+    statusEl.textContent='';
+    statusEl.classList.add('hidden');
+  };
+  const restoreState=async()=>{
+    try{if(typeof hrRestoreDraftIntoState==='function')await hrRestoreDraftIntoState();}catch(_){ }
+    const q=hrGetQuery();
+    const qOrder=q.get('order')||q.get('tx_ref')||q.get('orderRef')||'';
+    if(!hrState.orderRef&&qOrder)hrSaveOrder(qOrder);
+    const verified=typeof hrGetVerifiedSession==='function'?hrGetVerifiedSession():null;
+    if(!hrState.sessionToken&&verified?.sessionToken&&verified?.email){
+      hrState.sessionToken=verified.sessionToken;
+      hrState.email=verified.email;
+    }
+  };
+  if(button)hrSetBusy(button,true,'Checking payment…');
+  try{
+    if(!hrState.orderRef||!hrState.sessionToken)await restoreState();
+    if(!hrState.orderRef){
+      setStatus('We could not find the payment order for this review. Please open the secure payment page and try again.','warning');
+      if(!silent)hrToast('No review order was found yet.','warning');
+      return false;
+    }
+    if(!hrState.sessionToken){
+      clearInterval(paymentPoll);
+      setStatus('Your secure verification has expired. Please verify your email once to continue checking this payment.','warning');
+      if(!silent)beginReverify();
+      return false;
+    }
+    setStatus('Checking your payment securely…','info');
+    const r=await hrApi('getOrderStatus',{sessionToken:hrState.sessionToken,orderRef:hrState.orderRef},{noRetry:true});
+    hrState.currentOrder=r.data;
+    const paid=r.data.paymentStatus==='successful'||['submitted','in_review','delivered','downloaded','acknowledged','deleted'].includes(r.data.status);
+    if(paid){
+      clearInterval(paymentPoll);
+      setStatus('Payment confirmed. Finishing your submission…','success');
+      await afterPayment(r.data);
+      return true;
+    }
+    setStatus('Payment has not been confirmed yet. Please give it a moment, then try this check again.','info');
+    if(!silent)hrToast('Payment has not been confirmed yet.','info');
+    return false;
+  }catch(e){
+    if(isSessionExpiredError(e)){
+      clearInterval(paymentPoll);
+      setStatus('Your secure verification has expired. Please verify your email once to continue.','warning');
+      if(!silent)beginReverify();
+      return false;
+    }
+    if(!silent){
+      setStatus('We could not check the payment right now. Please try again in a moment.','danger');
+      hrToast(e.message||'We could not check the payment right now.','danger');
+    }
+    return false;
+  }finally{if(button)hrSetBusy(button,false);}
+}
+function startPaymentPolling(){clearInterval(paymentPoll);checkPayment({silent:true});paymentPoll=setInterval(()=>checkPayment({silent:true}),5000);setTimeout(()=>clearInterval(paymentPoll),15*60*1000);}
+async function afterPayment(order){if(order.status==='awaiting_payment'){showStep('step-paying');return;}if(['submitted','in_review','delivered','downloaded','acknowledged','deleted'].includes(order.status)){await finalizeSelectedFiles();}}
+async function uploadOne(kind,index,file,position,total){const b64=await hrFileToBase64(file);const r=await hrApi('finalizeSubmission',{sessionToken:hrState.sessionToken,orderRef:hrState.orderRef,kind,index,fileName:file.name,fileSizeBytes:file.size,mimeType:file.type,pageCount:pageCountOf(file)||null,base64:b64},{timeoutMs:120000});$('submit-progress').style.width=`${Math.min(98,Math.round(position/total*100))}%`;$('submit-text').textContent=`Submitting ${position} of ${total}: ${file.name}`;return r.data;}
+async function finalizeSelectedFiles(){showStep('step-submitting');$('submit-progress').style.width='3%';const expected=hrState.currentOrder||{};const files=[];const workExpected=expected.workFiles||[];const instructionExpected=expected.instructionFiles||[];if(workExpected.length){for(let i=0;i<workExpected.length;i++){const e=workExpected[i];if(e.uploaded)continue;const f=hrState.selectedWorkFiles.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);if(!f){await startRecovery();return;}files.push({kind:'work',index:i,file:f});}}for(let i=0;i<instructionExpected.length;i++){const e=instructionExpected[i];if(e.uploaded)continue;const f=hrState.selectedInstructionFiles.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);if(!f){await startRecovery();return;}files.push({kind:'instruction',index:i,file:f});}try{if(!files.length){showSuccess(expected);return;}let latest=expected;for(let i=0;i<files.length;i++){latest=await uploadOne(files[i].kind,files[i].index,files[i].file,i+1,files.length);hrState.currentOrder=latest;}if(latest.status==='submitted'||latest.status==='in_review'||latest.status==='awaiting_payment'){showSuccess(latest);}else{await checkPayment();}}catch(e){if(isSessionExpiredError(e)){beginReverify();return;}hrSetError($('recovery-error'),e.message);await startRecovery();}}
+function showSuccess(order){clearInterval(paymentPoll);hrClearPaymentEvent();$('success-badge').textContent='Submitted ✓';$('success-title').textContent='We received your submission';$('submit-progress').style.width='100%';$('submit-text').textContent='Submitted successfully.';$('success-box').innerHTML=`<div class="statline"><span>Order</span><strong>${hrEscape(order.orderRef||hrState.orderRef)}</strong></div><div class="statline"><span>Status</span><strong>${hrEscape(hrStatusLabel(order.status||'submitted'))}</strong></div><div class="statline"><span>Papers to review</span><strong>${Number(order.workFileCount||0)}</strong></div><div class="statline"><span>Total paper size</span><strong>${hrFormatBytes(Number(order.workTotalBytes||0))}</strong></div>${order.workTotalPages!=null?`<div class="statline"><span>Total pages</span><strong>${Number(order.workTotalPages)}</strong></div>`:''}<div class="statline"><span>Expected delivery</span><strong>${hrFormatDate(order.dueAt)}</strong></div>`;$('status-link').href=`status.html?order=${encodeURIComponent(order.orderRef||hrState.orderRef)}`;showStep('step-success');}
+function renderPickedRecoveryFiles(inputId,targetId){const files=[...($(inputId)?.files||[])];const host=$(targetId);if(!host)return;host.innerHTML=files.map(f=>`<div class="file-chip"><div class="file-chip-main"><div class="file-chip-name">${hrEscape(f.name)}</div><div class="file-chip-meta">${hrFormatBytes(f.size)}</div></div><span class="badge success">Selected</span></div>`).join('');}
+async function startRecovery(){try{hrSetError($('recovery-error'),'');const r=await hrApi('getPaidOrderRecovery',{sessionToken:hrState.sessionToken,orderRef:hrState.orderRef},{noRetry:true});currentExpected=r.data;if(!r.data.canRetry){$('success-box').innerHTML=`<strong>Payment confirmed.</strong><p class="small muted">This order no longer accepts file uploads. Please contact support and quote <strong>${hrEscape(hrState.orderRef)}</strong>.</p>`;showStep('step-success');return;}const missingWork=r.data.workFiles.filter(x=>!x.uploaded),missingInstruction=r.data.instructionFiles.filter(x=>!x.uploaded),fmt=e=>`${hrEscape(e.name)} — ${hrFormatBytes(e.size)}${e.pageCount?' — '+Number(e.pageCount)+' pages':''}`;$('recovery-details').innerHTML=`<strong>Files still needed</strong><div style="margin-top:10px"><div><strong>Papers to review:</strong> ${missingWork.length?missingWork.map(fmt).join('<br>'):'None'}</div><div style="margin-top:10px"><strong>Assignment instructions:</strong> ${missingInstruction.length?missingInstruction.map(fmt).join('<br>'):'None'}</div></div>`;$('recovery-work-input').accept=hrExtsToAccept(appData.settings.accepted_work_file_types);$('recovery-instruction-input').accept=hrExtsToAccept(appData.settings.accepted_instruction_file_types);$('recovery-instruction-box').classList.toggle('hidden',!missingInstruction.length);$('recovery-work-input').value='';$('recovery-instruction-input').value='';renderPickedRecoveryFiles('recovery-work-input','recovery-work-picked');renderPickedRecoveryFiles('recovery-instruction-input','recovery-instruction-picked');showStep('step-recovery');}catch(e){if(isSessionExpiredError(e)){beginReverify();return;}hrToast(e.message,'danger');}}
+async function validateRecoverySelection(file,expected,label){if(!file)return;const allowed=allowedList(label==='paper'?appData.settings.accepted_work_file_types:appData.settings.accepted_instruction_file_types),err=validatePickedFiles([file],allowed,label);if(err)throw new Error(err);if(getExt(file.name)==='pdf')await verifyPdfHeader(file);if(Number(expected.pageCount||0)>0){const pages=await ensurePdfPages(file);if(pages!==Number(expected.pageCount))throw new Error(`${file.name} has ${pages} pages, but this paid order expects ${Number(expected.pageCount)} pages. Please choose the exact original file.`);}}
+async function submitRecovery(){hrSetError($('recovery-error'),'');if(!currentExpected){await startRecovery();return;}const missingWork=currentExpected.workFiles.filter(x=>!x.uploaded),missingInstruction=currentExpected.instructionFiles.filter(x=>!x.uploaded),wf=[...$('recovery-work-input').files],inf=[...$('recovery-instruction-input').files];try{for(const e of missingWork){const f=wf.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);if(!f)throw new Error(`Please select the exact original paper: ${e.name}`);await validateRecoverySelection(f,e,'paper');}for(const e of missingInstruction){const f=inf.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);if(!f)throw new Error(`Please select the exact original instruction file: ${e.name}`);await validateRecoverySelection(f,e,'instruction');}const total=missingWork.length+missingInstruction.length;let pos=0;showStep('step-submitting');$('submit-progress').style.width='5%';let latest=hrState.currentOrder;for(const e of missingWork){const f=wf.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);latest=await uploadOne('work',e.index,f,++pos,total);hrState.currentOrder=latest;}for(const e of missingInstruction){const f=inf.find(x=>hrFileKey(x)===`${e.name}__${e.size}`);latest=await uploadOne('instruction',e.index,f,++pos,total);hrState.currentOrder=latest;}showSuccess(latest);}catch(e){if(isSessionExpiredError(e)){beginReverify();return;}hrSetError($('recovery-error'),e.message||String(e));showStep('step-recovery');}}
+async function resumeSavedReview(){
+  await hrRestoreDraftIntoState();
+  if(hrState.email&&$('email'))$('email').value=hrState.email;
+  if(hrState.selectedWorkFiles.length){renderFileList('work-file-list',hrState.selectedWorkFiles,true);const real=hrState.selectedWorkFiles.filter(f=>!isDraftPlaceholder(f));$('work-continue').disabled=hasMissingDraftFiles(hrState.selectedWorkFiles)||!real.length;updateWorkSizeNotice(real.reduce((a,f)=>a+Number(f.size||0),0));}
+  else if(['step-instructions','step-summary','step-paying','step-submitting'].includes(hrGetResumeStep())){$('work-restore-notice').classList.remove('hidden');$('work-restore-notice').innerHTML='<strong>Your saved paper is not available on this device.</strong><br>Please choose the original paper file again before continuing.';$('work-continue').disabled=true;}
+  if(hrState.selectedInstructionFiles.length)renderFileList('instruction-file-list',hrState.selectedInstructionFiles,true);
+  updateDraftRestoreNotices();
+  const meta=hrGetReviewMeta()||{};
+  if($('instruction-text'))$('instruction-text').value=hrState.instructionText||meta.instructionText||'';
+  const brief=meta.briefChoice||'';
+  if(brief){const r=document.querySelector(`input[name="has-brief"][value="${CSS.escape(brief)}"]`);if(r){r.checked=true;updateBriefArea();}}
+  const step=hrGetResumeStep();
+  if(step==='step-otp'){openModal('step-otp');$('masked-email').textContent=hrMaskEmail(hrState.email);$('otp').value='';$('otp').focus();return;}
+  if(hrState.customTicketRef){openModal('step-custom');await loadCustomRequest(true);return;}
+  if(hrState.orderRef){openModal(step||'step-paying');await resumeExistingOrder();return;}
+  if(step==='step-email'&&hrState.sessionToken&&!hrState.newReviewMode){openModal('step-work');showVerifiedEmailNote();return;}openModal(step||'step-email');
+  if(step==='step-summary'&&hrState.sessionToken&&hrState.selectedWorkFiles.length){
+    try{const preview=await previewOrder();renderSummary(preview);hrState.currentOrderPreview=preview;showStep('step-summary');return;}catch(e){handleApiError(e,$('summary-error'));return;}
+  }
+  if(step==='step-instructions'){updateBriefArea();$('instruction-text').value=hrState.instructionText||'';return;}
+  if(step==='step-reverify'){beginReverify();return;}
+  if(step==='step-work'&&hrState.selectedWorkFiles.length)return;
+  if(step!=='step-email')showStep(step||'step-work');
+}
+
+function auditIndexActions(){
+  const requiredButtons=['start-btn','start-new-review-inline','close-modal','send-otp','verify-otp','resend-otp','change-email','reverify-btn','reverify-back','work-continue','instructions-continue','back-work','back-instructions','pay-btn','custom-attach-missing','custom-primary-btn','custom-cancel-btn','custom-close-btn','recheck-payment','success-close','recovery-submit','recovery-back'];
+  const missing=requiredButtons.filter(id=>{const el=$(id);return !el||typeof el.onclick!=='function';});
+  if(missing.length)console.warn('[HumanlyReview] Unbound index controls:',missing);
+  document.querySelectorAll('a.btn[href="#"]').forEach(el=>{
+    if(el.dataset.safeHrefBound)return;
+    el.dataset.safeHrefBound='1';
+    el.addEventListener('click',ev=>{
+      const href=el.getAttribute('href')||'';
+      if(href&&href!=='#')return;
+      ev.preventDefault();
+      hrToast('This action is still being prepared. Please wait a moment and try again.','info');
+    });
+  });
+}
+
+function bind(){$('start-new-review-inline').onclick=()=>window.hrStartFreshReview?window.hrStartFreshReview(true):location.href='index.html?new=1';document.querySelectorAll('[data-start-review]').forEach(el=>el.onclick=async()=>{if(hrHasActiveReview()){await resumeSavedReview();return;}if(hrState.orderRef){openModal('step-work');await resumeExistingOrder();}else{if(!hrGetQuery().get('custom'))hrClearCustomTicket();resetSubmission();openModal(hrState.sessionToken?'step-work':'step-email');if(hrState.newReviewMode)prepareNewReviewEmailChoice();}});$('close-modal').onclick=closeModal;document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('app-modal').classList.contains('hidden'))closeModal();});$('reverify-btn').onclick=sendReverifyCode;$('reverify-back').onclick=()=>{hrSetError($('email-error'),'');hrState.newReviewMode=false;$('new-review-identity-choice')?.classList.add('hidden');$('email-entry-field')?.classList.remove('hidden');setEmailEntryEnabled(true);syncEmailFields('');$('send-otp')?.classList.remove('hidden');$('send-otp').textContent='Continue';showStep('step-email');$('email-manual-entry')?.focus()};$('send-otp').onclick=sendOtp;$('verify-otp').onclick=verifyOtp;$('change-email').onclick=()=>{hrState.newReviewMode=false;$('new-review-identity-choice')?.classList.add('hidden');$('email-entry-field')?.classList.remove('hidden');setEmailEntryEnabled(true);syncEmailFields('');$('send-otp')?.classList.remove('hidden');showStep('step-email');$('email-manual-entry')?.focus();};$('resend-otp').onclick=async()=>{const btn=$('resend-otp');hrSetError($('otp-error'),'');if(btn.disabled)return;hrSetBusy(btn,true,'Sending…');try{const r=await hrApi('requestOtp',{email:hrState.email,orderRef:hrState.orderRef,ticketRef:hrState.customTicketRef,existingSessionToken:''});if(r.data.alreadyVerified){syncMarketingConsentFromServer(r.data);hrSaveSession(r.data.sessionToken,r.data.email,r.data.expiresAt||'');hrState.newReviewMode=false;hrToast('Your email is already verified. Continuing…','success');if(hrState.orderRef)await resumeExistingOrder();else if(hrState.customTicketRef)await loadCustomRequest(true);else openModal('step-work');return;}hrSavePendingSession(r.data.pendingSessionToken,r.data.email||hrState.email);startResendTimer(r.data.resendAfterSeconds);$('otp').value='';$('otp').focus();hrToast('A new verification code was sent.','success');}catch(e){hrSetError($('otp-error'),e.message);}finally{if(btn.isConnected)hrSetBusy(btn,false);if(btn.isConnected&&Number(btn.dataset.resendBlocked||0)>0)btn.disabled=true;}};if($('apply-access-code'))$('apply-access-code').onclick=applyAccessCode;if($('marketing-consent'))$('marketing-consent').onchange=updateMarketingConsent;$('work-file-input').onchange=e=>{hrClearNearbyErrors(e.target);addWorkFiles([...e.target.files]);};$('instruction-file-input').onchange=e=>{hrClearNearbyErrors(e.target);addInstructionFiles([...e.target.files]);};$('work-upload-box').ondragover=e=>{e.preventDefault();$('work-upload-box').classList.add('drag');};$('work-upload-box').ondragleave=()=>$('work-upload-box').classList.remove('drag');$('work-upload-box').ondrop=e=>{e.preventDefault();$('work-upload-box').classList.remove('drag');addWorkFiles([...e.dataTransfer.files]);};document.querySelectorAll('input[name="has-brief"]').forEach(r=>r.onchange=updateBriefArea);$('instruction-text').oninput=()=>{hrState.instructionText=$('instruction-text').value;if(typeof hrPersistDraftState==='function')hrPersistDraftState({resumeStep:'step-instructions',instructionText:hrState.instructionText,briefChoice:selectedBriefChoice()});};$('instruction-upload-box').ondragover=e=>{e.preventDefault();$('instruction-upload-box').classList.add('drag');};$('instruction-upload-box').ondragleave=()=>$('instruction-upload-box').classList.remove('drag');$('instruction-upload-box').ondrop=e=>{e.preventDefault();$('instruction-upload-box').classList.remove('drag');addInstructionFiles([...e.dataTransfer.files]);};$('work-continue').onclick=(e)=>{e.preventDefault();hrSetError($('work-error'),'');if(!hrState.selectedWorkFiles.length){hrSetError($('work-error'),'Please choose at least one paper to review.');return;}if(hasMissingDraftFiles(hrState.selectedWorkFiles)){hrSetError($('work-error'),'A saved paper needs to be attached again before you continue.');return;}if(!hasRealFiles(hrState.selectedWorkFiles)){hrSetError($('work-error'),'Please choose the paper you want reviewed before continuing.');return;}showStep('step-instructions');};$('instructions-continue').onclick=(e)=>{e.preventDefault();hrSetError($('instruction-error'),'');hrSetError($('summary-error'),'');prepareSummary();};$('back-work').onclick=()=>showStep('step-work');$('back-instructions').onclick=()=>showStep('step-instructions');$('pay-btn').onclick=async()=>{hrSetError($('summary-error'),'');if(hrState.enterpriseRequired)return;if(hrState.customQuoteReady){await loadCustomRequest(true);return;}if(hrState.isCustomQuote){await createOrder();return;}if(hrState.orderRef){if(hrState.currentOrder?.complimentary)await afterPayment(hrState.currentOrder);else await startPayment();return;}const created=await createOrder();if(!created||created.oversized||created.enterpriseRequired)return;if(created.paymentBypassed||created.order?.complimentary)await afterPayment(created.order);else if(hrState.orderRef)await startPayment();};$('recheck-payment').onclick=(e)=>{e.preventDefault();checkPayment({button:$('recheck-payment')});};$('open-payment-btn').onclick=(e)=>{if(!$('open-payment-btn').href||$('open-payment-btn').href.endsWith('#')){e.preventDefault();hrToast('Payment is still being prepared. Please wait a moment.','info');}};$('success-close').onclick=closeModal;$('custom-primary-btn').onclick=()=>loadCustomRequest(true);$('custom-cancel-btn').onclick=cancelCustomRequest;$('custom-attach-missing').onclick=attachMissingCustomFiles;$('custom-close-btn').onclick=closeModal;$('recovery-work-input').onchange=e=>{hrClearNearbyErrors(e.target);renderPickedRecoveryFiles('recovery-work-input','recovery-work-picked');};$('recovery-instruction-input').onchange=e=>{hrClearNearbyErrors(e.target);renderPickedRecoveryFiles('recovery-instruction-input','recovery-instruction-picked');};$('recovery-back').onclick=()=>closeModal();$('recovery-submit').onclick=submitRecovery;{const waHref='https://wa.me/'+['234','912','625','9221'].join('')+'?text='+encodeURIComponent('Hello HumanlyReview, I would like to ask about a review.');document.querySelectorAll('[data-wa]').forEach(a=>{a.href=waHref;a.target='_blank';a.rel='noopener noreferrer';});}hrOnPaymentEvent(async ev=>{if(ev&&ev.orderRef===hrState.orderRef){clearInterval(paymentPoll);await checkPayment({silent:true});}});auditIndexActions();installUx();}
+/* ===== HumanlyReview 7.0 UX additions (presentation only; no flow logic) ===== */
+var lastOpener=null;
+function hrUpdateStepper(id){
+  const st=document.getElementById('stepper');if(!st)return;
+  const map={'step-work':1,'step-instructions':2,'step-summary':3,'step-paying':4,'step-submitting':4,'step-success':5};
+  const n=map[id]||0;
+  st.classList.toggle('hidden',!n);
+  st.querySelectorAll('li').forEach((li,i)=>{li.classList.toggle('done',id==='step-success'||i+1<n);li.classList.toggle('current',id!=='step-success'&&i+1===n);});
+}
+function hrFocusStepHeading(id){
+  const modal=document.getElementById('app-modal');
+  if(!modal||modal.classList.contains('hidden'))return;
+  const step=document.getElementById(id),h=step&&step.querySelector('h2');
+  if(!h)return;
+  h.setAttribute('tabindex','-1');
+  try{h.focus({preventScroll:true});}catch(_){}
+}
+function updateInstructionCount(){
+  const t=document.getElementById('instruction-text'),c=document.getElementById('instruction-count');
+  if(t&&c)c.textContent=t.value.length.toLocaleString('en-US')+' / 12,000';
+}
+function installUx(){
+  const t=document.getElementById('instruction-text');
+  if(t)t.addEventListener('input',updateInstructionCount);
+  const m=document.getElementById('app-modal');
+  if(m)m.addEventListener('keydown',e=>{
+    if(e.key!=='Tab')return;
+    const list=[...m.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([type="hidden"]),textarea:not([disabled]),select:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length>0);
+    if(!list.length)return;
+    const first=list[0],last=list[list.length-1];
+    if(e.shiftKey&&(document.activeElement===first||!m.contains(document.activeElement))){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  });
+}
+
+(async function(){bind();await loadHome();if(typeof hrRestoreDraftIntoState==='function')await hrRestoreDraftIntoState();const q=hrGetQuery();if(q.get('new')==='1'){setTimeout(()=>{if(typeof window.hrStartFreshReview==='function')window.hrStartFreshReview(true);else{resetSubmission();openModal('step-email');prepareNewReviewEmailChoice();}},80);return;}if(q.get('custom')){hrSaveCustomTicket(q.get('custom'));if(hrState.sessionToken){await loadCustomRequest(true);}else{openModal('step-email');}}if(q.get('payment')==='1'){const orderRef=q.get('tx_ref')||q.get('orderRef');const txId=q.get('transaction_id');if(orderRef)hrSaveOrder(orderRef);if(orderRef&&txId){try{await hrApi('verifyPayment',{orderRef,transactionId:txId,txRef:orderRef},{noRetry:true});hrPersistPaymentEvent(orderRef,true);document.body.insertAdjacentHTML('afterbegin','<div class="pay-banner ok" role="status">✅ Payment confirmed. Finishing your submission…</div>');}catch(e){document.body.insertAdjacentHTML('afterbegin',`<div class="pay-banner bad" role="alert">We could not verify your payment yet. We will keep checking automatically — you can also tap “I have paid, check now” below once it opens. ${hrEscape(e.message)}</div>`);}}if(hrState.orderRef){openModal('step-paying');startPaymentPolling();}}else if(q.get('order')){hrSaveOrder(q.get('order'));if(hrState.sessionToken)resumeExistingOrder();else beginReverify();}})();
+
+</script>
+<script>
+(function(){
+"use strict";
+/* ============ EDIT HERE ============ */
+var C={
+  PIXEL_ID:"YOUR_PIXEL_ID",   /* Meta Pixel ID (digits). Leave as is to keep tracking OFF. */
+  CASEBOOK:""                 /* e.g. "samples/HumanlyReview_Sample_Casebook.pdf" once you upload it. Empty = field tiles scroll to the sample reports. */
+};
+/* =================================== */
+var d=document,$=function(s){return d.querySelector(s)},$$=function(s){return d.querySelectorAll(s)};
+var yr=$("#yr");if(yr)yr.textContent=new Date().getFullYear();
+
+/* Optional sample casebook deep links */
+if(C.CASEBOOK){
+  $$(".ftile[data-page]").forEach(function(a){a.href=C.CASEBOOK+"#page="+a.getAttribute("data-page");a.target="_blank";a.rel="noopener"});
+  var cb0=$("#casebook-banner"),cl=$("#casebook-link");
+  if(cb0&&cl){cl.href=C.CASEBOOK;cl.target="_blank";cl.rel="noopener";cb0.classList.remove("hidden")}
+}
+
+/* Mobile sticky bar: appears after the hero */
+var st=$("#sticky"),hero=$(".hero");
+if(st&&hero){
+  if("IntersectionObserver" in window){new IntersectionObserver(function(e){st.classList.toggle("show",!e[0].isIntersecting)},{rootMargin:"-80px 0px 0px 0px"}).observe(hero)}
+  else{st.classList.add("show")}
+}
+
+/* Meta Pixel: only if an ID is set AND the visitor allowed it */
+var pxOK=/^\d{10,20}$/.test(C.PIXEL_ID),cons=null;
+try{cons=localStorage.getItem("hr_consent")}catch(e){}
+function loadPixel(){if(!pxOK||window.fbq)return;
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version="2.0";n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,d,"script","https://connect.facebook.net/en_US/fbevents.js");
+fbq("init",C.PIXEL_ID);fbq("track","PageView");fbq("track","ViewContent",{content_name:"Landing page"})}
+if(pxOK){if(cons==="yes"){loadPixel()}else if(cons===null){var cb=$("#consent");cb.classList.add("show");
+$("#c-yes").onclick=function(){try{localStorage.setItem("hr_consent","yes")}catch(e){}cb.classList.remove("show");loadPixel()};
+$("#c-no").onclick=function(){try{localStorage.setItem("hr_consent","no")}catch(e){}cb.classList.remove("show")}}}
+
+/* Click tracking (active only when the Pixel is loaded) */
+d.addEventListener("click",function(e){var el=e.target.closest&&e.target.closest("[data-track]");if(!el||!window.fbq)return;var t=el.getAttribute("data-track");
+if(t==="contact")fbq("track","Contact");else if(t==="start")fbq("trackCustom","StartReviewClick");else if(t==="sample")fbq("trackCustom","SampleOpened")});
+})();
+
+</script>
+</body>
+</html>
