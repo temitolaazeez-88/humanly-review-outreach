@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# ChatGPT search discovery. This is separate from model-training crawling.
+User-agent: OAI-SearchBot
+Allow: /
+
+# Privacy-conscious default: ChatGPT search remains allowed, while potential
+# model-training crawling is opted out. Change this only if you intentionally
+# want to allow GPTBot.
+User-agent: GPTBot
+Disallow: /
+
+Sitemap: https://humanlyreview.com/sitemap.xml

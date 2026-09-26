@@ -1,0 +1,21 @@
+# HumanlyReview
+
+HumanlyReview is a professional document-review service. It reviews customer work and identifies what needs attention before submission; it does not write or impersonate the customer.
+
+Primary site: https://humanlyreview.com/
+Help: https://humanlyreview.com/help.html
+Updates and guides: https://humanlyreview.com/updates.html
+Privacy: https://humanlyreview.com/privacy.html
+Terms: https://humanlyreview.com/terms.html
+Order status: https://humanlyreview.com/status.html
+Partner portal: https://humanlyreview.com/affiliate.html
+
+## Service facts
+- Standard online review plans are selected under the site's current configured page-count and file-size rules.
+- The applicable current price is shown before payment.
+- Requests outside the active standard-plan range may use a custom or enterprise workflow.
+- Customer document contents are not intentionally exported to the HumanlyReview AI Support Brain or AI Support Desk.
+- HumanlyReview can use AI-assisted customer support based on a separate sanitized support workspace, with sensitive or uncertain cases held for manual review.
+- Delivery times are estimates and may vary slightly with review requirements.
+
+For current pricing, plan limits, eligibility and availability, use the live public website rather than cached third-party summaries.
